@@ -11,13 +11,6 @@ use App\Corpora;
 class CorporaModelTest extends TestCase
 {
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->corporaRepo = App::make(CorporaRepository::class);
-        $equipamento = factory(Equipamento::class)->create();
-    }
-
     /**
      * @test create
      */

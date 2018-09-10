@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "a2adb65abe84d5d83515c86c3e060d33",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2249,6 +2249,46 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "uspdev/laravel-comet-theme",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uspdev/laravel-comet-theme.git",
+                "reference": "3f42fba49f7df44fce04c9795d00af37b1bcca73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/3f42fba49f7df44fce04c9795d00af37b1bcca73",
+                "reference": "3f42fba49f7df44fce04c9795d00af37b1bcca73",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Uspdev\\CometTheme\\CometThemeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Uspdev\\CometTheme\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Thiago Gomes Verissimo",
+                    "email": "thiago.verissimo@usp.br"
+                }
+            ],
+            "description": "comet theme for laravel",
+            "time": "2018-09-08T15:40:53+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.5.1",
             "source": {
@@ -4057,7 +4097,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "uspdev/laravel-comet-theme": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -25,7 +25,7 @@ class CorporaController extends Controller
      */
     public function create()
     {
-        //
+        return view('corporas.create');
     }
 
     /**
@@ -36,7 +36,10 @@ class CorporaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $corpora = new Corpora;
+      $corpora->titulo = $request->titulo;
+      $corpora->save();
+      return redirect('/corporas');
     }
 
     /**
@@ -58,7 +61,7 @@ class CorporaController extends Controller
      */
     public function edit(Corpora $corpora)
     {
-        //
+        return view('corporas.edit',compact('corpora'));
     }
 
     /**
@@ -70,7 +73,9 @@ class CorporaController extends Controller
      */
     public function update(Request $request, Corpora $corpora)
     {
-        //
+      $corpora->titulo = $request->titulo;
+      $corpora->save();
+      return redirect("/corporas/$corpora->id");
     }
 
     /**

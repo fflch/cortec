@@ -12,17 +12,6 @@ class CorporaCrudTest extends TestCase
 {
 
     /**
-     * @test index
-     */
-    public function testIndexCorpora()
-    {
-        $corpora = factory(Corpora::class)->make();
-        $response = $this->get('/corpora');
-        $response->assertStatus(200);
-        $response->assertSeeText($corpora->titulo);
-    }
-
-    /**
      * @test create
      */
     public function testCreateCorpora()
@@ -38,7 +27,7 @@ class CorporaCrudTest extends TestCase
     public function testReadCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $response = $this->get('/corpora/' . $corpora->id);
+        $response = $this->get('/corporas/' . $corpora->id);
         $response->assertStatus(200);
         $response->assertSeeText($corpora->titulo);
     }
@@ -52,12 +41,12 @@ class CorporaCrudTest extends TestCase
         $corpora = factory(Corpora::class)->create();
 
         // Edit page exists?
-        $response = $this->get('corpora/' . $corpora->id . '/edit');
+        $response = $this->get('corporas/' . $corpora->id . '/edit');
         $response->assertStatus(200);
 
         // edit
-        $corpora->titulo = $corpora->titulo . ' Edited';    
-        $response = $this->patch('/corpora/' . $corpora->id, $corpora->toArray());
+        $corpora->titulo = $corpora->titulo . ' Edited';
+        $response = $this->patch('/corporas/' . $corpora->id, $corpora->toArray());
         $this->assertDatabaseHas('corporas', $corpora->toArray());
     }
 
@@ -68,7 +57,18 @@ class CorporaCrudTest extends TestCase
     public function testDeleteCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $response = $this->delete('/redes/' . $rede->id);
+        $response = $this->delete('/corporas/' . $corpora->id);
         $this->assertNull(Corpora::find($corpora->id));
+    }
+
+    /**
+     * @test index
+     */
+    public function testIndexCorpora()
+    {
+        $corpora = factory(Corpora::class)->create();
+        $response = $this->get('corporas');
+        $response->assertStatus(200);
+        $response->assertSeeText($corpora->titulo);
     }
 }

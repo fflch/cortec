@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/corpora/','CorporaController@index');
+Route::get('/corporas/','CorporaController@index');
 Route::resource('corporas','CorporaController');

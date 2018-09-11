@@ -47,7 +47,7 @@ class CorporaController extends Controller
      */
     public function show(Corpora $corpora)
     {
-        //
+        return view('corporas.show',compact('corpora'));
     }
 
     /**

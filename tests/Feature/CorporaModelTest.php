@@ -16,12 +16,8 @@ class CorporaModelTest extends TestCase
      */
     public function testCreateCorpora()
     {
-        $createdCorpora = factory(Corpora::class)->create();
-        $createdCorpora = $createdCorpora->toArray();
-        $this->assertArrayHasKey('id', $createdCorpora);
-        $this->assertNotNull($createdCorpora['id'], 'Created Corpora must have id specified');
-        $this->assertNotNull(Corpora::find($createdCorpora['id']), 'Corpora with given id must be in DB');
-        $this->assertModelData($corpora, $createdCorpora);
+        $corpora = factory(Corpora::class)->create();
+        $this->assertDatabaseHas('corporas', $corpora->toArray());    
     }
 
     /**
@@ -30,26 +26,34 @@ class CorporaModelTest extends TestCase
     public function testReadCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $this->assertDatabaseHas('corpora', $corpora->toArray());
+        $this->assertNotNull(Corpora::find($corpora['id']));
     }
 
     /**
      * @test update
      */
+
     public function testUpdateCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        // Not Implemented
+        $corpora_updated = Corpora::find($corpora['id']);
+
+        // updated title field
+        $corpora_updated->titulo = $corpora_updated->titulo . ' updated';
+        $corpora_updated->save();
+        $this->assertDatabaseHas('corporas', $corpora_updated->toArray());
     }
 
     /**
      * @test delete
      */
+
     public function testDeleteCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $resp = $this->corporaRepo->delete($corpora->id);
-        $this->assertTrue($resp);
-        $this->assertNull(Corpora::find($corpora->id), 'Corpora should not exist in DB');
+        $corpora = Corpora::find($corpora['id']);
+        $this->assertTrue($corpora->delete());
+        $this->assertNull(Corpora::find($corpora->id));
     }
+
 }

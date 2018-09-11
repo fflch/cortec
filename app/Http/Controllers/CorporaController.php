@@ -86,6 +86,7 @@ class CorporaController extends Controller
      */
     public function destroy(Corpora $corpora)
     {
-        //
+      $corpora->delete();
+      return redirect('/corporas/');
     }
 }

@@ -4,7 +4,13 @@
   <a href="/corporas/create">Criar Corpora</a>
   <ul>
     @foreach ($corporas as $corpora)
-        <a href="/corporas/{{ $corpora->id }}"><li>{{ $corpora->titulo }} </li></a>
+        <form name="passo1" action="" method="post">
+          <li>
+            <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" onchange="somacont(this)" onuncheck="subcont()">
+            <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
+          </li>
+        </form>
+
         <form method="POST" action="/corporas/{{ $corpora->id }}">
           {{ csrf_field() }}
           {{ method_field('delete') }}

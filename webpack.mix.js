@@ -13,3 +13,5 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
+mix.copyDirectory('vendor/uspdev/laravel-comet-theme/resources/assets', 'public/vendor/laravel-comet-theme');

@@ -11,6 +11,7 @@
     <div class="row align-items-center row-header-lista">
       <div class="col-xs-1 text-center">
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
+      </div>
     </div>
     <div class="row">
       <div class="col-lg-1-12">

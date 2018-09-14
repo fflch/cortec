@@ -14,7 +14,7 @@ class ChangeLocale
     protected $locales = ['en', 'pt_br'];
 
     /**
-     * Handle an incoming request.
+     * Handle an incoming request and change app locale.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

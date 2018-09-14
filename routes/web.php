@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,3 +17,9 @@ Route::get('/', function () {
 
 Route::get('/corporas/','CorporaController@index');
 Route::resource('corporas','CorporaController');
+
+Route::get('/locale/{locale}', function ($locale, Request $request) {
+    App::setLocale('pt_');
+    Session::put('locale', $locale);
+    return redirect('/corporas');
+});

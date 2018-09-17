@@ -1,4 +1,4 @@
-@extends('laravel-comet-theme::master')
+@extends('master')
 
 @section('content')
   <h1>{{ $corpora->titulo }}</h1>

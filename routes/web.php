@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'IndexController@index' );
 
 Route::get('/corporas/','CorporaController@index');
 Route::resource('corporas','CorporaController');

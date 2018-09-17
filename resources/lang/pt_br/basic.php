@@ -3,5 +3,5 @@
   return [
       'busca' => 'Busca',
       'oquee' => 'O que é',
-      'rodape' => 'Corpus Técnico-Científico',
+      'rodape' => 'CorTec - <i>Corpus</i> Técnico-Científico',
   ];

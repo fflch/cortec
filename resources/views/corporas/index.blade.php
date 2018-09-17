@@ -8,12 +8,12 @@
     <div class="row mt-10">
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
-    <div class="row align-items-center row-header-lista">
+    <div class="row align-items-center row-header-lista px-1">
       <div class="col-xs-1 text-center">
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row bg-gray" >
       <div class="col-lg-1-12">
         <ul class="corpora">
           @foreach ($corporas as $corpora)
@@ -33,12 +33,12 @@
       </div>
     </div>
 
-    <div class="row align-items-center row-header-lista">
+    <div class="row align-items-center row-header-lista mt-4 px-1">
       <div class="col-xs-1 text-center">
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row bg-gray">
       <div class="col-lg-1-12">
         <ul class="corpora">
           <li class="corpora">

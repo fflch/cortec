@@ -1,4 +1,4 @@
-@extends('laravel-comet-theme::master')
+@extends('master')
 
 @section('content')
   <form method="POST" action="/corporas">

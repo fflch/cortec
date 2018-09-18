@@ -14,7 +14,7 @@
 
 @section('menu-itens')
   <li class="nav-item active divider-vertical">
-    <a class="nav-link" href="#">{!! __('basic.busca') !!}</a>
+    <a class="nav-link" href="/">{!! __('basic.busca') !!}</a>
   </li>
   <li class="nav-item divider-vertical">
     <a class="nav-link" href="#">{!! __('basic.oquee') !!}</a>

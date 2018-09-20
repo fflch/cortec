@@ -75,7 +75,7 @@ class CorporaController extends Controller
     {
       $corpora->titulo = $request->titulo;
       $corpora->save();
-      return redirect("/corporas/$corpora->id");
+      return redirect("/corporas/");
     }
 
     /**

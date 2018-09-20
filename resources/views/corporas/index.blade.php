@@ -3,51 +3,37 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <h2>{!! __('texts.passo1.passo') !!}</h2>
+      <a class="btn btn-success" href="/corporas/create" >Criar Corpora</a>
     </div>
-    <div class="row mt-10">
-      <p>{!! __('texts.passo1.texto1') !!}</p>
-    </div>
-    <div class="row align-items-center row-header-lista px-1">
+    <div class="row align-items-center row-header-lista px-1 mt-4">
       <div class="col-xs-1 text-center">
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
       </div>
     </div>
-    <div class="row bg-gray" >
-      <div class="col-lg-1-12">
-        <ul class="corpora">
+    <div class="row" >
+        <ul class="corpora list-group" style='width:100%'>
           @foreach ($corporas as $corpora)
-              <form name="passo1" action="" method="post">
-                <li class="corpora">
-                  <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" onchange="somacont(this)" onuncheck="subcont()">
+            <li class="corpora list-group-item list-group-item-action">
+              <div class="row align-items-center">
+                <div class="col">
                   <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
-                  <form method="POST" action="/corporas/{{ $corpora->id }}">
+                </div>
+                <div class="col">
+                  <form method="GET" action="/corporas/{{ $corpora->id }}/edit">
+                    <button type="submit" class="btn btn-outline-secondary mx-1">Editar</button>
+                  </form>
+                </div>
+                <div class="col">
+                  <form class="delete" method="POST" action="/corporas/{{ $corpora->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
-                    <button type="submit" class="btn btn-danger">Apagar</button>
+                    <button type="submit" class="btn btn-outline-danger mx-1">Apagar</button>
                   </form>
-                </li>
-              </form>
+                </div>
+              </div>
+            </li>
           @endforeach
         </ul>
-      </div>
-    </div>
-
-    <div class="row align-items-center row-header-lista mt-4 px-1">
-      <div class="col-xs-1 text-center">
-        <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
-      </div>
-    </div>
-    <div class="row bg-gray">
-      <div class="col-lg-1-12">
-        <ul class="corpora">
-          <li class="corpora">
-            <input type="radio" name="check_lingua" value="portugues" checked="">{!! __('texts.passo1.lingua1') !!}
-          </li>
-            <input type="radio" name="check_lingua" value="ingles" checked="">{!! __('texts.passo1.lingua2') !!}
-          </li>
-        </ul>
-      </div>
     </div>
 
   </div>

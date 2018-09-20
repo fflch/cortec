@@ -12,8 +12,18 @@
     @endif
 @endsection
 
+@section('menu-itens')
+  <li class="nav-item active divider-vertical">
+    <a class="nav-link" href="/">{!! __('basic.busca') !!}</a>
+  </li>
+  <li class="nav-item divider-vertical">
+    <a class="nav-link" href="#">{!! __('basic.oquee') !!}</a>
+  </li>
+  <li class="nav-item divider-vertical">
+    <a class="nav-link" href="/corporas/">{!! __('basic.ger_corpora') !!}</a>
+  </li>
+@endsection
+
 @section('footer')
     {!! __('basic.rodape') !!}
 @endsection
-
-

@@ -5,6 +5,6 @@
       {{ csrf_field() }}
       {{ method_field('patch') }}
       Nome: <input name="titulo" value="{{ $corpora->titulo }}">
-      <button type="submit"> Salvar </button>
+      <button class="btn btn-success" type="submit">Salvar</button>
   </form>
 @endsection

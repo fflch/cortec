@@ -3,8 +3,14 @@
 @section('content')
   <form method="POST" action="/corporas">
       {{ csrf_field() }}
-      Nome: <input name="titulo" required>
-      Descrição: <input name="descricao" required>
-      <button class="btn btn-success" type="submit">Salvar</button>
+      <div class="form-group">
+        <label for="titulo">Nome</label>
+        <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ex.: Turismo">
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Salvar</button>
   </form>
 @endsection

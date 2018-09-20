@@ -4,7 +4,14 @@
   <form method="POST" action="/corporas/{{ $corpora->id  }}">
       {{ csrf_field() }}
       {{ method_field('patch') }}
-      Nome: <input name="titulo" value="{{ $corpora->titulo }}">
-      <button class="btn btn-success" type="submit">Salvar</button>
+      <div class="form-group">
+        <label for="titulo">Nome</label>
+        <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $corpora->titulo }}">
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ $corpora->descricao }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-success">Salvar</button>
   </form>
 @endsection

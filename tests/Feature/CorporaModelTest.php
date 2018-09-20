@@ -17,7 +17,7 @@ class CorporaModelTest extends TestCase
     public function testCreateCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $this->assertDatabaseHas('corporas', $corpora->toArray());    
+        $this->assertDatabaseHas('corporas', $corpora->toArray());
     }
 
     /**
@@ -40,6 +40,7 @@ class CorporaModelTest extends TestCase
 
         // updated title field
         $corpora_updated->titulo = $corpora_updated->titulo . ' updated';
+        $corpora_updated->descricao = $corpora_updated->descricao . ' updated';
         $corpora_updated->save();
         $this->assertDatabaseHas('corporas', $corpora_updated->toArray());
     }

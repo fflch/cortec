@@ -38,6 +38,7 @@ class CorporaController extends Controller
     {
       $corpora = new Corpora;
       $corpora->titulo = $request->titulo;
+      $corpora->descricao = $request->descricao;
       $corpora->save();
       return redirect('/corporas');
     }
@@ -74,6 +75,7 @@ class CorporaController extends Controller
     public function update(Request $request, Corpora $corpora)
     {
       $corpora->titulo = $request->titulo;
+      $corpora->descricao = $request->descricao;
       $corpora->save();
       return redirect("/corporas/");
     }

@@ -35,6 +35,9 @@
           @endforeach
         </ul>
     </div>
+    <div class="row mt-4">
+      {{ $corporas->links() }}
+    </div>
 
   </div>
 @endsection

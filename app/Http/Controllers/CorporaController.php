@@ -14,7 +14,7 @@ class CorporaController extends Controller
      */
     public function index()
     {
-        $corporas = Corpora::all();
+        $corporas = Corpora::paginate(10);
         return view('corporas.index', compact('corporas'));
     }
 

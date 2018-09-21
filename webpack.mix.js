@@ -12,8 +12,3 @@ const mix = require('laravel-mix');
  */
 mix.js('vendor/uspdev/laravel-comet-theme/resources/assets/js/script.js', 'public/js')
    .sass('vendor/uspdev/laravel-comet-theme/resources/assets/sass/app.scss', 'public/css');
-
- mix.styles([
-     'public/css/app.css',
-     'vendor/uspdev/laravel-comet-theme/resources/assets/css/style.css',
- ], 'public/css/app.css');

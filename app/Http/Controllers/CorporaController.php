@@ -91,4 +91,30 @@ class CorporaController extends Controller
       $corpora->delete();
       return redirect('/corporas/');
     }
+
+    /**
+     * Show the form for creating a new corpus.
+     *
+     * @return \Illuminate\Http\Response
+     */
+     public function createCorpus($corpora_id)
+    {
+        return view('corpora.corpuses.create',compact('corpora_id'));
+    }
+
+    /**
+     * Store a newly created corpus in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCorus(Request $request)
+    {
+      $corpus = new \App\Corpus;
+      $corpus->conteudo = $request->conteudo;
+      $corpus->corpora_id = $corpora->id;
+
+      $corpora->corpuses()->save($corpus);
+      return redirect("/corporas/$corpora->id");
+    }
 }

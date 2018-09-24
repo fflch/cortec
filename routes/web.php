@@ -16,6 +16,10 @@ Route::get('/', 'IndexController@index' );
 Route::get('/corporas/','CorporaController@index');
 Route::resource('corporas','CorporaController');
 
+Route::get('/corporas/{disciplina_id}/corpus/create','CorporaController@createCorpus');
+
+Route::post('/corporas/{corpora}/corpus','CorporaController@storeCorpus');
+
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');
     Session::put('locale', $locale);

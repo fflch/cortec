@@ -99,7 +99,7 @@ class CorporaController extends Controller
      */
      public function createCorpus($corpora_id)
     {
-        return view('corpora.corpuses.create',compact('corpora_id'));
+        return view('corporas.corpuses.create',compact('corpora_id'));
     }
 
     /**
@@ -108,7 +108,7 @@ class CorporaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCorus(Request $request)
+    public function storeCorpus(Request $request, Corpora $corpora)
     {
       $corpus = new \App\Corpus;
       $corpus->conteudo = $request->conteudo;

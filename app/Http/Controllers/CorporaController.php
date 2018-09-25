@@ -166,4 +166,9 @@ class CorporaController extends Controller
       $corpus->delete();
       return redirect("/corporas/$corpora->id/corpus");
     }
+
+    public function uploadCorpus(Request $request){
+      dd($_FILES);
+      return $file->extension();
+    }
 }

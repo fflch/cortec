@@ -26,7 +26,7 @@
       </div>
 
       <div class="form-group" id="div_upload" style="display:none;">
-        <label for="upload">Upload</label>
+        <label for="upload_field">Upload</label>
         <input type="file" class="form-control-file" id="upload_field" name="upload_field">
       </div>
 
@@ -56,4 +56,35 @@
     }
 
   </script>
+
+  <script>
+    document.getElementById('upload_field').addEventListener("change",uploadFile);
+
+    function uploadFile()
+    {
+      var xhr = new XMLHttpRequest();
+
+      xhr.open("POST","/api/corporas/corpus/upload",true);
+      xhr.setRequestHeader("Content-type","multipart/form-data");
+      var formdata = new FormData();
+
+      var file = document.getElementById('upload_field').files[0];
+      if(file)
+      {
+          formdata.append("file",file);
+          console.log(file);
+          console.log(formdata);
+          xhr.send(formdata);
+      }
+
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200)
+        {
+          //alert(xhr.responseText);
+        }
+      }
+    }
+
+  </script>
+
 @endsection

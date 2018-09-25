@@ -29,7 +29,7 @@
                   <a href="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>
                 </div>
                 <div class="col text-center">
-                  <form class="delete" method="POST" action="/corpus/{{ $corpora->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
+                  <form class="delete" method="POST" action="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     <button type="submit" class="btn btn-outline-danger mx-1">Apagar</button>

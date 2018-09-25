@@ -154,4 +154,16 @@ class CorporaController extends Controller
     {
         return view('corporas.corpuses.edit',compact('corpora','corpus'));
     }
+
+    /**
+     * Remove the specified corpus from storage.
+     *
+     * @param  \App\Corpora  $corpora
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyCorpus(Corpora $corpora, Corpus $corpus)
+    {
+      $corpus->delete();
+      return redirect("/corporas/$corpora->id/corpus");
+    }
 }

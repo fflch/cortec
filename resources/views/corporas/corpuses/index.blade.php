@@ -1,6 +1,10 @@
 @extends('master')
 
 @section('content')
+  <div class="row mb-3">
+    Corpora: <b>{{ $corpora->titulo }}</b>
+  </div>
+
   <div class="container-lista">
     <div class="row">
       <a class="btn btn-success" href="/corporas/{{ $corpora->id }}/corpus/create">Adicionar Corpus</a>
@@ -16,10 +20,10 @@
             <li class="corpora list-group-item list-group-item-action">
               <div class="row align-items-center">
                 <div class="col">
-                  <a href="/corporas/{{ $corpora->id }}">{{ $corpus->created_at->formatLocalized('%d/%m/%G %k:%M:%S')}}</a>
+                  {{ $corpus->created_at->formatLocalized('%d/%m/%G %k:%M:%S')}}
                 </div>
                   <div class="col">
-                    <a href="/corporas/{{ $corpora->id }}">{{ str_limit($corpus->conteudo, 100) }}</a>
+                    {{ str_limit($corpus->conteudo, 100) }}
                   </div>
                 <div class="col text-center">
                   <a href="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>

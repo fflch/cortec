@@ -117,4 +117,15 @@ class CorporaController extends Controller
       $corpora->corpuses()->save($corpus);
       return redirect("/corporas/$corpora->id");
     }
+
+    /**
+     * Display a listing of the corpus.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexCorpus(Corpora $corpora)
+    {
+      $corpora->corpuses = \App\Corpus::paginate(10);
+      return view('corporas.corpuses.index', compact('corpora'));
+    }
 }

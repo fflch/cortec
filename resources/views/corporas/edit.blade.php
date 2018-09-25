@@ -2,7 +2,10 @@
 
 @section('content')
   <div class="row">
-    <div class="col text-right">
+    <div class="col">
+      <a href="/corporas/{{ $corpora->id }}/corpus/index"  class="btn btn-success">Listar Corpus</a>
+    </div>
+    <div class="col">
       <a href="/corporas/{{ $corpora->id }}/corpus/create"  class="btn btn-success">Adicionar Corpus</a>
     </div>
   </div>

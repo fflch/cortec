@@ -21,12 +21,10 @@
                   <div class="col">
                     <a href="/corporas/{{ $corpora->id }}">{{ str_limit($corpus->conteudo, 100) }}</a>
                   </div>
-                <div class="col">
-                  <form method="GET" action="/corpus/{{ $corpus->id }}/edit">
-                    <button type="submit" class="btn btn-outline-secondary mx-1">Editar</button>
-                  </form>
+                <div class="col text-center">
+                  <a href="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>
                 </div>
-                <div class="col">
+                <div class="col text-center">
                   <form class="delete" method="POST" action="/corpus/{{ $corpora->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}

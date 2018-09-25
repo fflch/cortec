@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Corpora;
+use App\Corpus;
 use Illuminate\Http\Request;
 
 class CorporaController extends Controller
@@ -127,5 +128,30 @@ class CorporaController extends Controller
     {
       $corpora->corpuses = \App\Corpus::paginate(10);
       return view('corporas.corpuses.index', compact('corpora'));
+    }
+
+    /**
+     * Update the specified corpus in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Corpora  $corpora
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCorpus(Request $request, Corpora $corpora, Corpus $corpus)
+    {
+      $corpus->conteudo = $request->conteudo;
+      $corpus->save();
+      return redirect("/corporas/$corpora->id/corpus");
+    }
+
+    /**
+     * Show the form for editing the specified corpus.
+     *
+     * @param  \App\Corpora  $corpora
+     * @return \Illuminate\Http\Response
+     */
+    public function editCorpus(Corpora $corpora, Corpus $corpus)
+    {
+        return view('corporas.corpuses.edit',compact('corpora','corpus'));
     }
 }

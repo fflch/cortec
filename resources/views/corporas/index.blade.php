@@ -19,9 +19,7 @@
                   <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
                 </div>
                 <div class="col">
-                  <form method="GET" action="/corporas/{{ $corpora->id }}/edit">
-                    <button type="submit" class="btn btn-outline-secondary mx-1">Editar</button>
-                  </form>
+                  <a href="/corporas/{{ $corpora->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>
                 </div>
                 <div class="col">
                   <form class="delete" method="POST" action="/corporas/{{ $corpora->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">

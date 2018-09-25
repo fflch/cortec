@@ -116,7 +116,7 @@ class CorporaController extends Controller
       $corpus->corpora_id = $corpora->id;
 
       $corpora->corpuses()->save($corpus);
-      return redirect("/corporas/$corpora->id");
+      return redirect("/corporas/$corpora->id/corpus");
     }
 
     /**

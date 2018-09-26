@@ -7,27 +7,29 @@
       <div class="form-group">
         <legend class="col-form-label">Qual forma inserir o Corpus?</legend>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="modo" id="campo" value="campo" checked>
+          <input class="form-check-input" type="radio" name="modo" id="campo" value="campo" checked data-show="#div_conteudo">
           <label class="form-check-label" for="campo">
             Campo de digitação
           </label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="modo" id="upload" value="upload">
+          <input class="form-check-input" type="radio" name="modo" id="upload" value="upload" data-show="#div_upload">
           <label class="form-check-label" for="exampleRadios1">
             Upload de arquivo de texto (.txt)
           </label>
         </div>
       </div>
 
-      <div class="form-group" id="div_conteudo">
-        <label for="conteudo">Conteúdo</label>
-        <textarea class="form-control" id="conteudo" name="conteudo" rows="5"></textarea>
-      </div>
+      <div id='fields'>
+        <div class="form-group" id="div_conteudo">
+          <label for="conteudo">Conteúdo</label>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="5"></textarea>
+        </div>
 
-      <div class="form-group" id="div_upload" style="display:none;">
-        <label for="upload_field">Upload</label>
-        <input type="file" class="form-control-file" id="upload_field" name="upload_field">
+        <div class="form-group d-none" id="div_upload">
+          <label for="upload_field">Upload</label>
+          <input type="file" class="form-control-file" id="upload_field" name="upload_field">
+        </div>
       </div>
 
       <button type="submit" class="btn btn-success">Salvar</button>
@@ -45,45 +47,40 @@
 
     for(radio in radios) {
         radios[radio].onclick = function() {
-            if(document.querySelector('input[name="modo"]:checked').value == 'campo'){
-              text_field.style.display = "block";
-              file_field.style.display = "none";
-            }else{
-              text_field.style.display = "none";
-              file_field.style.display = "block";
-            }
+          showHideFields(this.getAttribute("data-show").split('|'));
         }
+    }
+
+    function showHideFields(show_ids){
+      parent_elm = document.querySelector(show_ids[0]).parentElement;
+      hideFields = parent_elm.children;
+      for (i = 0, len = hideFields.length; i < len; i++) {
+        hideFields[i].classList.add("d-none");
+      }
+
+      for (i = 0, len = show_ids.length; i < len; i++) {
+          document.querySelector(show_ids[i]).classList.remove("d-none");
+      }
     }
 
   </script>
 
   <script>
-    document.getElementById('upload_field').addEventListener("change",uploadFile);
+    document.getElementById('upload_field').addEventListener('change', function(evt) {
+      var file    = document.getElementById('upload_field').files[0];
+      var reader  = new FileReader();
 
-    function uploadFile()
-    {
-      var xhr = new XMLHttpRequest();
+      reader.addEventListener("load", function () {
+        document.getElementById("campo").checked = true;
+        document.getElementById('conteudo').value = reader.result;
+      }, false);
 
-      xhr.open("POST","/api/corporas/corpus/upload",true);
-      xhr.setRequestHeader("Content-type","multipart/form-data");
-      var formdata = new FormData();
-
-      var file = document.getElementById('upload_field').files[0];
-      if(file)
-      {
-          formdata.append("file",file);
-          console.log(file);
-          console.log(formdata);
-          xhr.send(formdata);
+      if (file) {
+        reader.readAsText(file);
+        showHideFields(['#div_conteudo']);
       }
 
-      xhr.onreadystatechange = function(){
-        if(xhr.readyState == 4 && xhr.status == 200)
-        {
-          //alert(xhr.responseText);
-        }
-      }
-    }
+    }, false);
 
   </script>
 

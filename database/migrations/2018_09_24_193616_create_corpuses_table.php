@@ -17,7 +17,7 @@ class CreateCorpusesTable extends Migration
             $table->increments('id');
             $table->integer('corpora_id')->unsigned();
             $table->foreign('corpora_id')->references('id')->on('corporas');
-            $table->text('conteudo');
+            $table->longText('conteudo');
             $table->timestamps();
         });
     }

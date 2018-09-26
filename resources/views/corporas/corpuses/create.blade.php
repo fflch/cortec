@@ -47,20 +47,8 @@
 
     for(radio in radios) {
         radios[radio].onclick = function() {
-          showHideFields(this.getAttribute("data-show").split('|'));
+          showHideFields([this.getAttribute("data-show")]);
         }
-    }
-
-    function showHideFields(show_ids){
-      parent_elm = document.querySelector(show_ids[0]).parentElement;
-      hideFields = parent_elm.children;
-      for (i = 0, len = hideFields.length; i < len; i++) {
-        hideFields[i].classList.add("d-none");
-      }
-
-      for (i = 0, len = show_ids.length; i < len; i++) {
-          document.querySelector(show_ids[i]).classList.remove("d-none");
-      }
     }
 
   </script>

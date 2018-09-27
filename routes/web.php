@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 Route::get('/', 'IndexController@index' );
 
 Route::get('/corporas/','CorporaController@index');
+Route::get('/corporas/sobre','CorporaController@sobre');
 Route::resource('corporas','CorporaController');
 
 Route::get('/corporas/{disciplina_id}/corpus/create','CorporaController@createCorpus');

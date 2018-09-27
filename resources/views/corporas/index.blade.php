@@ -19,6 +19,9 @@
                   <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
                 </div>
                 <div class="col">
+                  <a href="/corporas/{{ $corpora->id }}/corpus/" class="btn btn-outline-secondary mx-1">Listar Corpus</a>
+                </div>
+                <div class="col">
                   <a href="/corporas/{{ $corpora->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>
                 </div>
                 <div class="col">

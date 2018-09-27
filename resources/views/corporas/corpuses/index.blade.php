@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="row mb-3">
-    Corpora: <b>{{ $corpora->titulo }}</b>
+    Corpora: <a href="/corporas/{{$corpora->id}}"><b>{{ $corpora->titulo }}</b></a>
   </div>
 
   <div class="container-lista">

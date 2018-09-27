@@ -19,16 +19,16 @@
           @foreach ($corpora->corpuses as $corpus)
             <li class="corpora list-group-item list-group-item-action">
               <div class="row align-items-center">
-                <div class="col">
+                <div class="col-sm-3 my-2">
                   {{ $corpus->created_at->formatLocalized('%d/%m/%G %k:%M:%S')}}
                 </div>
-                  <div class="col">
+                  <div class="col-sm-3 my-2">
                     {{ str_limit($corpus->conteudo, 100) }}
                   </div>
-                <div class="col text-center">
+                <div class="col-sm-3 my-2 text-center">
                   <a href="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary mx-1">Editar</a>
                 </div>
-                <div class="col text-center">
+                <div class="col-sm-3 my-2 text-center">
                   <form class="delete" method="POST" action="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}

@@ -1,11 +1,9 @@
 @extends('master')
 
 @section('content')
-  <div class="row">
+  <div class="row fluid">
     <div class="col">
       <a href="/corporas/{{ $corpora->id }}/corpus/"  class="btn btn-success">Listar Corpus</a>
-    </div>
-    <div class="col">
       <a href="/corporas/{{ $corpora->id }}/corpus/create"  class="btn btn-success">Adicionar Corpus</a>
     </div>
   </div>

@@ -168,7 +168,13 @@ class CorporaController extends Controller
     }
 
     public function uploadCorpus(Request $request){
-      dd($request->all());
-      return $file->extension();
+      $file_info = $request->file;
+      $file = $file_info->openFile();
+
+      while (!$file->eof()) {
+          echo $file->fgets();
+      }
+
+      return null;
     }
 }

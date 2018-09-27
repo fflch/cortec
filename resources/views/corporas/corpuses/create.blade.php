@@ -23,7 +23,7 @@
       <div id='fields'>
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required></textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required oninvalid="LibComet.showHideFields(['#div_conteudo']);document.getElementById('campo').checked=true"></textarea>
         </div>
 
         <div class="form-group d-none" id="div_upload">
@@ -51,20 +51,41 @@
 
   <script>
     document.getElementById('upload_field').addEventListener('change', function(evt) {
-      var file    = document.getElementById('upload_field').files[0];
-      var reader  = new FileReader();
+      var file = document.getElementById('upload_field').files[0];
 
-      reader.addEventListener("load", function () {
-        document.getElementById("campo").checked = true;
-        document.getElementById('conteudo').value = reader.result;
-        LibComet.showHideFields(['#div_conteudo']);
-      }, false);
+      if(window.FileReader) {
+        //the browser does support the FileReader Object, so do this
+        var reader  = new FileReader();
+        reader.addEventListener("load", function () {
+          insertResult(reader.result);
+        }, false);
+        if (file) {
+          reader.readAsText(file);
+        }
+      } else {
+        //the browser doesn't support the FileReader Object, so do this
+        var formData = new FormData();
+        formData.append('file', file);
 
-      if (file) {
-        reader.readAsText(file);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               insertResult(xhr.responseText);
+            }
+        };
+        xhr.open('POST', '/api/corporas/corpus/upload', true);
+        xhr.send(formData);
+
       }
 
     }, false);
+
+    function insertResult(result){
+        document.getElementById("campo").checked = true;
+        document.getElementById('conteudo').value = result;
+        document.getElementById('upload_field').value = '';
+        LibComet.showHideFields(['#div_conteudo']);
+    }
 
   </script>
 

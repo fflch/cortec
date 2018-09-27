@@ -10,4 +10,15 @@ class Corpora extends Model
   {
     return $this->hasMany('App\Corpus');
   }
+
+  public function getAllCorpus()
+  {
+    $t_corpus = '';
+    foreach ($this->corpuses as $corpus)
+    {
+      $t_corpus .= $corpus->conteudo;
+    }
+
+    return $t_corpus;
+  }
 }

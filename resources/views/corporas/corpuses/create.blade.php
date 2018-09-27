@@ -23,7 +23,7 @@
       <div id='fields'>
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5"></textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required></textarea>
         </div>
 
         <div class="form-group d-none" id="div_upload">
@@ -47,7 +47,6 @@
           LibComet.showHideFields([this.getAttribute("data-show")]);
         }
     }
-
   </script>
 
   <script>
@@ -58,11 +57,11 @@
       reader.addEventListener("load", function () {
         document.getElementById("campo").checked = true;
         document.getElementById('conteudo').value = reader.result;
+        LibComet.showHideFields(['#div_conteudo']);
       }, false);
 
       if (file) {
         reader.readAsText(file);
-        LibComet.showHideFields(['#div_conteudo']);
       }
 
     }, false);

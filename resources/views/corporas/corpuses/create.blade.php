@@ -42,12 +42,9 @@
 
   <script>
     var radios = document.forms["corpus"].modo;
-    var text_field = document.getElementById('div_conteudo');
-    var file_field = document.getElementById('div_upload');
-
     for(radio in radios) {
         radios[radio].onclick = function() {
-          showHideFields([this.getAttribute("data-show")]);
+          LibComet.showHideFields([this.getAttribute("data-show")]);
         }
     }
 
@@ -65,7 +62,7 @@
 
       if (file) {
         reader.readAsText(file);
-        showHideFields(['#div_conteudo']);
+        LibComet.showHideFields(['#div_conteudo']);
       }
 
     }, false);

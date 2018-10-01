@@ -21,4 +21,18 @@ class Corpora extends Model
 
     return $t_corpus;
   }
+
+  public function countTokens()
+  {
+    //inserir remover acentos
+
+    $palavras = preg_replace('/(\\[a-z])/i', '', $this->getAllCorpus());
+
+    preg_match_all('/([A-Z|-])+/i', $this->getAllCorpus(), $matches);
+
+    $palavras_count = array_count_values($matches[0]);
+
+    return $palavras_count;
+  }
+
 }

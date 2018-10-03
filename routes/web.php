@@ -14,7 +14,16 @@ use Illuminate\Http\Request;
 Route::get('/', 'IndexController@index' );
 
 Route::get('/corporas/','CorporaController@index');
+Route::get('/corporas/sobre','CorporaController@sobre');
 Route::resource('corporas','CorporaController');
+
+Route::get('/corporas/{disciplina_id}/corpus/create','CorporaController@createCorpus');
+
+Route::post('/corporas/{corpora}/corpus','CorporaController@storeCorpus');
+Route::get('/corporas/{corpora}/corpus','CorporaController@indexCorpus');
+Route::get('/corporas/{corpora}/corpus/{corpus}/edit','CorporaController@editCorpus');
+Route::post('/corporas/{corpora}/corpus/{corpus}','CorporaController@updateCorpus');
+Route::delete('/corporas/{corpora}/corpus/{corpus}','CorporaController@destroyCorpus');
 
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');

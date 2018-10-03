@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use TextAnalysis\Tokenizers\RegexTokenizer;
+use TextAnalysis\Tokenizers\GeneralTokenizer;
+use TextAnalysis\Analysis\FreqDist;
+
 class Corpora extends Model
 {
   public function corpuses()
@@ -24,15 +28,17 @@ class Corpora extends Model
 
   public function countTokens()
   {
-    //inserir remover acentos
+    //return Counts::tokens($this->getAllCorpus());
+    //$token = new RegexTokenizer;
+    //dd($token->tokenize($this->getAllCorpus()));
 
-    $palavras = preg_replace('/(\\[a-z])/i', '', $this->getAllCorpus());
+    $tokenizer = new GeneralTokenizer();
+    $tokens = $tokenizer->tokenize($this->getAllCorpus());
+    $freqDist = new FreqDist($tokens);
+    dd($freqDist);
+    //return $freqDist;
 
-    preg_match_all('/([A-Z|-])+/i', $this->getAllCorpus(), $matches);
-
-    $palavras_count = array_count_values($matches[0]);
-
-    return $palavras_count;
+    //return $token->tokenize($this->getAllCorpus());
   }
 
 }

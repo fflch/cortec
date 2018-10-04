@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Corpora::class, 30)
           ->create()
           ->each(function($c) {
-                $c->corpuses()->save(factory('App\Corpus')->make());
+                $c->corpuses()->saveMany(factory(App\Corpus::class, 5)->make());
             });
 
     }

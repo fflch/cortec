@@ -15,13 +15,13 @@
         <tbody>
           <tr>
             <th scope="row">Ocorrências/tokens</th>
-            <td class="text-center"></td>
             <td class="text-center">{{$corpora->getTokensCount()}}</td>
+            <td class="text-center"></td>
           </tr>
           <tr>
             <th scope="row">Formas/types</th>
-            <td class="text-center"></td>
             <td class="text-center">{{$corpora->getTypesCount()}}</td>
+            <td class="text-center"></td>
           </tr>
           <tr>
             <th scope="row">T/T ratio</th>
@@ -32,4 +32,16 @@
       </table>
     </div>
   </div>
+
+  <h2>Contagem de Tokens</h2>
+  @foreach ($corpora->getTokensFrequency() as $token => $count)
+    <div class="row">
+      <div class="col">
+        {{$token}}
+      </div>
+      <div class="col">
+        {{$count}}
+      </div>
+    </div>
+  @endforeach
 @endsection

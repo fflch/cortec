@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\GeneralTokenizer;
+use TextAnalysis\Tokenizers\PennTreeBankTokenizer;
 
 class Corpora extends Model
 {
@@ -25,7 +26,7 @@ class Corpora extends Model
 
   public function getTokensFrequency()
   {
-    $tokenizer = new GeneralTokenizer();
+    $tokenizer = new PennTreeBankTokenizer();
     return freq_dist(tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
   }
 

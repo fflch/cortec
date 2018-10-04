@@ -126,7 +126,7 @@ class CorporaController extends Controller
      */
     public function indexCorpus(Corpora $corpora)
     {
-      $corpora->corpuses = \App\Corpus::paginate(10);
+      $corpora->corpuses = \App\Corpus::where('corpora_id', '=', $corpora->id)->paginate(10);
       return view('corporas.corpuses.index', compact('corpora'));
     }
 

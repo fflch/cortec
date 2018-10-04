@@ -11,6 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Corpora::class, 30)->create();
+        factory(App\Corpora::class, 30)
+          ->create()
+          ->each(function($c) {
+                $c->corpuses()->save(factory('App\Corpus')->make());
+            });
+
     }
 }

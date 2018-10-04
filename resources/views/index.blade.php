@@ -19,8 +19,8 @@
           @foreach ($corporas as $corpora)
               <form name="passo1" action="" method="post">
                 <li class="corpora">
-                  <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" onchange="somacont(this)" onuncheck="subcont()">
-                  <a href="/corporas/sobre#{{ $corpora->id }}">{{ $corpora->titulo }}</a>
+                  <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}">
+                  <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
                 </li>
               </form>
           @endforeach

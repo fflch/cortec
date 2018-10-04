@@ -3,10 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
-use TextAnalysis\Tokenizers\RegexTokenizer;
 use TextAnalysis\Tokenizers\GeneralTokenizer;
-use TextAnalysis\Analysis\FreqDist;
 
 class Corpora extends Model
 {
@@ -28,17 +25,8 @@ class Corpora extends Model
 
   public function countTokens()
   {
-    //return Counts::tokens($this->getAllCorpus());
-    //$token = new RegexTokenizer;
-    //dd($token->tokenize($this->getAllCorpus()));
-
     $tokenizer = new GeneralTokenizer();
-    $tokens = $tokenizer->tokenize($this->getAllCorpus());
-    $freqDist = new FreqDist($tokens);
-    dd($freqDist);
-    //return $freqDist;
-
-    //return $token->tokenize($this->getAllCorpus());
+    return freq_dist(tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
   }
 
 }

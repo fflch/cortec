@@ -23,10 +23,22 @@ class Corpora extends Model
     return $t_corpus;
   }
 
-  public function countTokens()
+  public function getTokensFrequency()
   {
     $tokenizer = new GeneralTokenizer();
     return freq_dist(tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
+  }
+
+  public function getTokensCount()
+  {
+    $tokenizer = new GeneralTokenizer();
+    return freq_dist(tokenize($this->getAllCorpus()))->getTotalTokens();
+  }
+
+  public function getTypesCount()
+  {
+    $tokenizer = new GeneralTokenizer();
+    return freq_dist(tokenize($this->getAllCorpus()))->getTotalUniqueTokens();
   }
 
 }

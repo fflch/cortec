@@ -15,13 +15,13 @@
         <tbody>
           <tr>
             <th scope="row">Ocorrências/tokens</th>
-            <td class="text-center">{{$corpora->getTokensCount()}}</td>
             <td class="text-center"></td>
+            <td class="text-center">{{$corpora->getTokensCount()}}</td>
           </tr>
           <tr>
             <th scope="row">Formas/types</th>
-            <td class="text-center">{{$corpora->getTypesCount()}}</td>
             <td class="text-center"></td>
+            <td class="text-center">{{$corpora->getTypesCount()}}</td>
           </tr>
           <tr>
             <th scope="row">T/T ratio</th>

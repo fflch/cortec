@@ -23,23 +23,27 @@ class Corpora extends Model
     return $t_corpus;
   }
 
-  private function tokenizer(){
-    return new RegexTokenizer('/([a-zà-ú]+[\S]?[a-zà-ú]+)+|[a-zà-ú]+/');
+  private function getAllCorpusTokens(){
+    return (new RegexTokenizer('/([\u0061-\u007A\u00E0-\u00FA]+[\S]?[\u0061-\u007A\u00E0-\u00FA]+)+|[\u0061-\u007A\u00E0-\u00FA]+/i'))->tokenize($this->getAllCorpus());
   }
 
   public function getTokensFrequency()
   {
-    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
+    print_r(freq_dist($this->getAllCorpusTokens())->getKeyValuesByFrequency());
   }
 
   public function getTokensCount()
   {
-    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getTotalTokens();
+    return freq_dist($this->getAllCorpusTokens())->getTotalTokens();
   }
 
   public function getTypesCount()
   {
-    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getTotalUniqueTokens();
+    return freq_dist($this->getAllCorpusTokens())->getTotalUniqueTokens();
+  }
+
+  public function ngrams(){
+    dd(array_count_values(ngrams($this->getAllCorpusTokens())));
   }
 
 }

@@ -3,8 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use TextAnalysis\Tokenizers\GeneralTokenizer;
-use TextAnalysis\Tokenizers\PennTreeBankTokenizer;
+use TextAnalysis\Tokenizers\RegexTokenizer;
 
 class Corpora extends Model
 {
@@ -18,28 +17,29 @@ class Corpora extends Model
     $t_corpus = '';
     foreach ($this->corpuses as $corpus)
     {
-      $t_corpus .= $corpus->conteudo;
+      $t_corpus .= $corpus->conteudo . ' ';
     }
 
     return $t_corpus;
   }
 
+  private function tokenizer(){
+    return new RegexTokenizer('/([a-zà-ú]+[\S]?[a-zà-ú]+)+|[a-zà-ú]+/');
+  }
+
   public function getTokensFrequency()
   {
-    $tokenizer = new PennTreeBankTokenizer();
-    return freq_dist(tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
+    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getKeyValuesByFrequency();
   }
 
   public function getTokensCount()
   {
-    $tokenizer = new GeneralTokenizer();
-    return freq_dist(tokenize($this->getAllCorpus()))->getTotalTokens();
+    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getTotalTokens();
   }
 
   public function getTypesCount()
   {
-    $tokenizer = new GeneralTokenizer();
-    return freq_dist(tokenize($this->getAllCorpus()))->getTotalUniqueTokens();
+    return freq_dist($this->tokenizer()->tokenize($this->getAllCorpus()))->getTotalUniqueTokens();
   }
 
 }

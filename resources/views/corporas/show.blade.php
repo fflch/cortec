@@ -26,7 +26,7 @@
           <tr>
             <th scope="row">T/T ratio</th>
             <td class="text-center"></td>
-            <td class="text-center"></td>
+            <td class="text-center">{{round($corpora->getTypesCount()/$corpora->getTokensCount(),2)}}</td>
           </tr>
         </tbody>
       </table>

@@ -12,6 +12,11 @@ class Corpora extends Model
     return $this->hasMany('App\Corpus');
   }
 
+  public function categoria()
+  {
+    return $this->belongsTo('App\Categoria');
+  }
+
   public function getAllCorpus()
   {
     $t_corpus = '';

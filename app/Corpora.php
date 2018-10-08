@@ -24,12 +24,12 @@ class Corpora extends Model
   }
 
   private function getAllCorpusTokens(){
-    return (new RegexTokenizer('/([\u0061-\u007A\u00E0-\u00FA]+[\S]?[\u0061-\u007A\u00E0-\u00FA]+)+|[\u0061-\u007A\u00E0-\u00FA]+/i'))->tokenize($this->getAllCorpus());
+    return (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($this->getAllCorpus());
   }
 
   public function getTokensFrequency()
   {
-    print_r(freq_dist($this->getAllCorpusTokens())->getKeyValuesByFrequency());
+    return freq_dist($this->getAllCorpusTokens())->getKeyValuesByFrequency();
   }
 
   public function getTokensCount()
@@ -43,7 +43,7 @@ class Corpora extends Model
   }
 
   public function ngrams(){
-    dd(array_count_values(ngrams($this->getAllCorpusTokens())));
+    return array_count_values(ngrams($this->getAllCorpusTokens()));
   }
 
 }

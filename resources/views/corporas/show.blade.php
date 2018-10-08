@@ -32,16 +32,4 @@
       </table>
     </div>
   </div>
-
-  <h2>Contagem de Tokens</h2>
-  @foreach ($corpora->getTokensFrequency() as $token => $count)
-    <div class="row">
-      <div class="col">
-        {{$token}}
-      </div>
-      <div class="col">
-        {{$count}}
-      </div>
-    </div>
-  @endforeach
 @endsection

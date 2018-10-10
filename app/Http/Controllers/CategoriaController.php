@@ -29,7 +29,7 @@ class CategoriaController extends Controller
       $categoria = new Categoria;
       $categoria->nome = $request->nome;
       $categoria->save();
-      return redirect('/categorias');
+      return redirect('/corporas/');
     }
 
     /**

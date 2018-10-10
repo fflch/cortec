@@ -16,7 +16,7 @@ class CreateCorporasTable extends Migration
         Schema::create('corporas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('categoria_id')->unsigned();
-            $table->foreign('categoria_id')->references('id')->on('categorias');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');;
             $table->string('titulo');
             $table->text('descricao');
             $table->timestamps();

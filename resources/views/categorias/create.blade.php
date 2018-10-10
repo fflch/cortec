@@ -3,9 +3,8 @@
 @section('content')
   <div class="row">
     <div class="col">
-      <form method="POST" action="/categorias/">
+      <form method="POST" action="/categorias">
         {{ csrf_field() }}
-        {{ method_field('patch') }}
         <div class="form-group mt-2">
           <label for="titulo">Nome</label>
           <input type="text" class="form-control" name="nome" id="nome" value="">

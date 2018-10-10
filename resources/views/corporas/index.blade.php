@@ -3,7 +3,10 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <a class="btn btn-success" href="/corporas/create" >Criar Corpora</a>
+      <div class="col">
+        <a class="btn btn-success" href="/categorias/create" >Criar Categoria</a>
+        <a class="btn btn-success" href="/corporas/create" >Criar Corpora</a>
+      </div>
     </div>
     <div class="row align-items-center row-header-lista px-1 mt-4">
       <div class="col-xs-1 text-center">
@@ -17,7 +20,7 @@
             <div class="card-header">
               {{ $categoria->nome }}
               <span>
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Editar</button>
+                <a href="/categorias/{{ $categoria->id }}/edit" class="btn btn-sm btn-outline-secondary">Editar</a>
               </span>
               <span>
                 <form class="delete" method="POST" action="/categorias/{{ $categoria->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">

@@ -12,6 +12,24 @@
       <form method="POST" action="/corporas/{{ $corpora->id  }}">
         {{ csrf_field() }}
         {{ method_field('patch') }}
+        <div class="form-group">
+          <label for="categoria_id">Categoria</label>
+          <select name="categoria_id" class="custom-select">
+            @php
+              $sel = '';
+            @endphp
+            @foreach ($categorias as $categoria)
+              @php
+                if($categoria->id == $corpora->categoria_id){
+                  $sel = 'selected';
+                }else{
+                  $sel = '';
+                }
+              @endphp
+              <option value="{{$categoria->id}}" {{$sel}}>{{$categoria->nome}}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="form-group mt-2">
           <label for="titulo">Nome</label>
           <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $corpora->titulo }}">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Corpora;
 use App\Corpus;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class CorporaController extends Controller
@@ -26,7 +27,9 @@ class CorporaController extends Controller
      */
     public function create()
     {
-        return view('corporas.create');
+      $categorias = Categoria::all();
+
+      return view('corporas.create', compact('categorias'));
     }
 
     /**
@@ -38,6 +41,7 @@ class CorporaController extends Controller
     public function store(Request $request)
     {
       $corpora = new Corpora;
+      $corpora->categoria_id = $request->categoria_id;
       $corpora->titulo = $request->titulo;
       $corpora->descricao = $request->descricao;
       $corpora->save();
@@ -63,7 +67,9 @@ class CorporaController extends Controller
      */
     public function edit(Corpora $corpora)
     {
-        return view('corporas.edit',compact('corpora'));
+        $categorias = Categoria::all();
+
+        return view('corporas.edit',compact('corpora','categorias'));
     }
 
     /**
@@ -75,6 +81,7 @@ class CorporaController extends Controller
      */
     public function update(Request $request, Corpora $corpora)
     {
+      $corpora->categoria_id = $request->categoria_id;
       $corpora->titulo = $request->titulo;
       $corpora->descricao = $request->descricao;
       $corpora->save();

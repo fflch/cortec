@@ -25,11 +25,11 @@
                   {{$categoria->nome}}
                 </div>
               </label>
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush" id="list_corp">
                 @foreach ($categoria->corporas as $corpora)
-                  <label for="check_{{$corpora->id}}" style="margin-bottom: 0;">
+                  <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action">
-                    <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$corpora->id}}">
+                    <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
                       <a href="/corporas/{{ $corpora->id }}">
                         {{ $corpora->titulo }}
                       </a>
@@ -61,4 +61,16 @@
     </div>
 
   </div>
+@endsection
+
+@section('javascripts')
+  <script>
+    function test()
+    {
+      
+      document.getElementById("checkbox").checked = true;
+    }
+
+  </script>
+
 @endsection

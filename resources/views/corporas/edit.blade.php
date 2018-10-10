@@ -12,7 +12,7 @@
       <form method="POST" action="/corporas/{{ $corpora->id  }}">
         {{ csrf_field() }}
         {{ method_field('patch') }}
-        <div class="form-group">
+        <div class="form-group mt-2">
           <label for="categoria_id">Categoria</label>
           <select name="categoria_id" class="custom-select">
             @php
@@ -30,7 +30,7 @@
             @endforeach
           </select>
         </div>
-        <div class="form-group mt-2">
+        <div class="form-group">
           <label for="titulo">Nome</label>
           <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $corpora->titulo }}">
         </div>

@@ -3,7 +3,7 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <div class="col">
+      <div class="col pl-0">
         <a class="btn btn-success" href="/categorias/create" >Criar Categoria</a>
         <a class="btn btn-success" href="/corporas/create" >Criar Corpora</a>
       </div>
@@ -13,7 +13,7 @@
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
       </div>
     </div>
-    <div class="row" >
+    <div class="row bg-gray" >
       <div class="col">
         @foreach ($categorias as $categoria)
           <div class="card mt-3">

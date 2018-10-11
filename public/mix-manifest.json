@@ -1,5 +1,6 @@
 {
-    "/js/corpuses/form.js": "/js/corpuses/form.js",
+    "/js/corpuses/analise_form.js": "/js/corpuses/analise_form.js",
     "/css/app.css": "/css/app.css",
-    "/js/script.js": "/js/script.js"
+    "/js/script.js": "/js/script.js",
+    "/js/corpuses/form.js": "/js/corpuses/form.js"
 }

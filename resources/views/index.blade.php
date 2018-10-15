@@ -22,7 +22,7 @@
               <label for="check_cat_{{$categoria->id}}" style="margin-bottom: 0;">
                 <div class="card-header list-group-item-action">
                   <input type="checkbox" id="check_cat_{{$categoria->id}}" value="{{$categoria->id}}">
-                  {{$categoria->nome}}
+                  <a href="/categorias/{{$categoria->id}}"/>{{$categoria->nome}}</a>
                 </div>
               </label>
               <ul class="list-group list-group-flush" id="list_corp">
@@ -30,7 +30,7 @@
                   <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action">
                     <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
-                      <a href="/corporas/{{ $corpora->id }}">
+                      <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}">
                         {{ $corpora->titulo }}
                       </a>
                     </li>

@@ -69,4 +69,16 @@ class CategoriaController extends Controller
       return redirect('/corporas/');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Categoria  $categoria
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Categoria $categoria)
+    {
+        return view('categorias.show',compact('categoria'));
+    }
+
+
 }

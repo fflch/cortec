@@ -16,17 +16,17 @@
           <tr>
             <th scope="row">Ocorrências/tokens</th>
             <td class="text-center"></td>
-            <td class="text-center">{{$corpora->getTokensCount()}}</td>
+            <td class="text-center">{{$corpora->getAnalysis('count-tokens')}}</td>
           </tr>
           <tr>
             <th scope="row">Formas/types</th>
             <td class="text-center"></td>
-            <td class="text-center">{{$corpora->getTypesCount()}}</td>
+            <td class="text-center">{{$corpora->getAnalysis('count-types')}}</td>
           </tr>
           <tr>
             <th scope="row">T/T ratio</th>
             <td class="text-center"></td>
-            <td class="text-center">{{round($corpora->getTypesCount()/$corpora->getTokensCount(),2)}}</td>
+            <td class="text-center">{{round($corpora->getAnalysis('count-tokens')/$corpora->getAnalysis('count-types'),2)}}</td>
           </tr>
         </tbody>
       </table>

@@ -185,15 +185,4 @@ class CorporaController extends Controller
       return null;
     }
 
-    /**
-     * Display a listing of the corpus and their descriptions.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sobre()
-    {
-        $corporas = Corpora::all();
-        return view('corporas.sobre', compact('corporas'));
-    }
-
 }

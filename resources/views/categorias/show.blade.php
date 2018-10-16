@@ -7,8 +7,8 @@
         <div class="col">
           <div class="row">
             <div class="col">
-              <h1>Sobre os Corpora {{$categoria->nome}}</h1>
-              <p>Esta categoria de Corpora é constituída de {{count($categoria->corporas)}} corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:</p>
+              <h1>{!! __('texts.categorias.texto1') !!} {{$categoria->nome}}</h1>
+              <p>{!! __('texts.categorias.texto2', ['count' => count($categoria->corporas)]) !!}</p>
             </div>
           </div>
 
@@ -24,12 +24,12 @@
 
           <div class="row mt-3">
             <div class="col">
-              <p>Cada corpus técnico é composto por aproximadamente 200.000 palavras em cada língua.</p>
-              <p>Estão disponíveis três ferramentas que podem ser aplicadas a um ou mais corpora ao mesmo tempo. São elas:</p>
+              <p>{!! __('texts.categorias.texto3') !!}</p>
+              <p>{!! __('texts.categorias.texto4') !!}</p>
               <ul>
-                <li>Concordanceador</li>
-                <li>Gerador de Lista de Palavras</li>
-                <li>Gerador de N-Gramas</li>
+                <li>{!! __('texts.categorias.concordanceador') !!}</li>
+                <li>{!! __('texts.categorias.gerador1') !!}</li>
+                <li>{!! __('texts.categorias.gerador2') !!}</li>
               </ul>
             </div>
           </div>

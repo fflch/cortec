@@ -30,7 +30,7 @@
                   <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action">
                     <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
-                      <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}">
+                      <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}" style="font-weight:normal;">
                         {{ $corpora->titulo }}
                       </a>
                     </li>

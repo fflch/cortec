@@ -174,15 +174,4 @@ class CorporaController extends Controller
       return redirect("/corporas/$corpora->id/corpus");
     }
 
-    public function uploadCorpus(Request $request){
-      $file_info = $request->file;
-      $file = $file_info->openFile();
-
-      while (!$file->eof()) {
-          echo $file->fgets();
-      }
-
-      return null;
-    }
-
 }

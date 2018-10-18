@@ -44,6 +44,9 @@ class Corpora extends Model
       return null;
     }
 
+    //normalize
+    $tokens = normalize_tokens($tokens);
+
     switch ($type) {
       case 'frequency-tokens':
         $this->analysis['tokens'] = (!isset($this->analysis['tokens'])) ? freq_dist($tokens)->getKeyValuesByFrequency() : $this->analysis['tokens'];

@@ -26,7 +26,12 @@
                 </div>
               </label>
               <ul class="list-group list-group-flush" id="list_corp">
-                @foreach ($categoria->corporas as $corpora)
+                @php
+                  $corporas = $categoria->corporas->filter(function ($corpora, $key) {
+                      return (count($corpora->corpuses) > 0);
+                  });
+                @endphp
+                @foreach ($corporas as $corpora)
                   <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action">
                     <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">

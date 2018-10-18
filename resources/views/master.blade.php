@@ -1,7 +1,7 @@
 @extends('laravel-comet-theme::master')
 
 @section('header')
-    <img src="/img/logo.png" alt="logo" class="align-middle">
+    <img src="/img/logo.png" alt="logo" class="align-middle img-fluid">
 @endsection
 
 @section('language')

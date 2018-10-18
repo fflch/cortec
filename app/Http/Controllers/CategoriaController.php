@@ -77,7 +77,11 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        return view('categorias.show',compact('categoria'));
+      $corporas = $categoria->corporas->filter(function ($corpora, $key) {
+          return (count($corpora->corpuses) > 0);
+      });
+
+      return view('categorias.show',compact('categoria','corporas'));
     }
 
 

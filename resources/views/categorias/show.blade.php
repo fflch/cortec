@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col">
               <div id="list-example" class="list-group">
-                @foreach ($categoria->corporas as $corpora)
+                @foreach ($corporas as $corpora)
                   <a class="list-group-item list-group-item-action" href="#{{ $corpora->id }}">{{ $corpora->titulo }}</a>
                 @endforeach
               </div>
@@ -48,7 +48,6 @@
               </div>
               <div class="card-body">
                 <p>{{ $corpora->descricao }}</p>
-
                 <div class="row justify-content-md-center">
                   <div class="col-xs-4">
                     <table class="table">
@@ -79,13 +78,12 @@
                     </table>
                   </div>
                 </div>
-
               </div>
             </div>
-
-
           @endforeach
         </div>
+
+
       </div>
     </div>
 

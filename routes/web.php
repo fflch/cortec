@@ -14,8 +14,8 @@ use Illuminate\Http\Request;
 Route::get('/', 'IndexController@index' );
 
 Route::get('/corporas/','CorporaController@index');
-Route::get('/corporas/sobre','CorporaController@sobre');
 Route::resource('corporas','CorporaController');
+Route::resource('categorias','CategoriaController');
 
 Route::get('/corporas/{disciplina_id}/corpus/create','CorporaController@createCorpus');
 
@@ -28,5 +28,5 @@ Route::delete('/corporas/{corpora}/corpus/{corpus}','CorporaController@destroyCo
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');
     Session::put('locale', $locale);
-    return redirect('/corporas');
+    return back();
 });

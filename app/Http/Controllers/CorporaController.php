@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Corpora;
 use App\Corpus;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class CorporaController extends Controller
@@ -15,8 +16,8 @@ class CorporaController extends Controller
      */
     public function index()
     {
-        $corporas = Corpora::paginate(10);
-        return view('corporas.index', compact('corporas'));
+        $categorias = Categoria::paginate(10);
+        return view('corporas.index', compact('categorias'));
     }
 
     /**
@@ -26,7 +27,9 @@ class CorporaController extends Controller
      */
     public function create()
     {
-        return view('corporas.create');
+      $categorias = Categoria::all();
+
+      return view('corporas.create', compact('categorias'));
     }
 
     /**
@@ -38,6 +41,7 @@ class CorporaController extends Controller
     public function store(Request $request)
     {
       $corpora = new Corpora;
+      $corpora->categoria_id = $request->categoria_id;
       $corpora->titulo = $request->titulo;
       $corpora->descricao = $request->descricao;
       $corpora->save();
@@ -63,7 +67,9 @@ class CorporaController extends Controller
      */
     public function edit(Corpora $corpora)
     {
-        return view('corporas.edit',compact('corpora'));
+        $categorias = Categoria::all();
+
+        return view('corporas.edit',compact('corpora','categorias'));
     }
 
     /**
@@ -75,6 +81,7 @@ class CorporaController extends Controller
      */
     public function update(Request $request, Corpora $corpora)
     {
+      $corpora->categoria_id = $request->categoria_id;
       $corpora->titulo = $request->titulo;
       $corpora->descricao = $request->descricao;
       $corpora->save();
@@ -126,7 +133,7 @@ class CorporaController extends Controller
      */
     public function indexCorpus(Corpora $corpora)
     {
-      $corpora->corpuses = \App\Corpus::paginate(10);
+      $corpora->corpuses = \App\Corpus::where('corpora_id', '=', $corpora->id)->paginate(10);
       return view('corporas.corpuses.index', compact('corpora'));
     }
 
@@ -165,28 +172,6 @@ class CorporaController extends Controller
     {
       $corpus->delete();
       return redirect("/corporas/$corpora->id/corpus");
-    }
-
-    public function uploadCorpus(Request $request){
-      $file_info = $request->file;
-      $file = $file_info->openFile();
-
-      while (!$file->eof()) {
-          echo $file->fgets();
-      }
-
-      return null;
-    }
-
-    /**
-     * Display a listing of the corpus and their descriptions.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function sobre()
-    {
-        $corporas = Corpora::all();
-        return view('corporas.sobre', compact('corporas'));
     }
 
 }

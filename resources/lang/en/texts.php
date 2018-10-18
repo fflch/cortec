@@ -8,5 +8,9 @@
         'lingua' => 'Language',
         'lingua1' => 'Portuguese',
         'lingua2' => 'English',
+      ],
+      'categorias' => [
+        'texto1' => 'Corpora in',
+        'texto2' => 'This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',
       ]
   ];

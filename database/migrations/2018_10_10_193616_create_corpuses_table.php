@@ -16,7 +16,7 @@ class CreateCorpusesTable extends Migration
         Schema::create('corpuses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('corpora_id')->unsigned();
-            $table->foreign('corpora_id')->references('id')->on('corporas');
+            $table->foreign('corpora_id')->references('id')->on('corporas')->onDelete('cascade');;
             $table->longText('conteudo');
             $table->timestamps();
         });

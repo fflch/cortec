@@ -19,14 +19,7 @@
               $sel = '';
             @endphp
             @foreach ($categorias as $categoria)
-              @php
-                if($categoria->id == $corpora->categoria_id){
-                  $sel = 'selected';
-                }else{
-                  $sel = '';
-                }
-              @endphp
-              <option value="{{$categoria->id}}" {{$sel}}>{{$categoria->nome}}</option>
+              <option value="{{$categoria->id}}" {{($categoria->id == $corpora->categoria_id) ? 'selected' : ''}}>{{$categoria->nome}}</option>
             @endforeach
           </select>
         </div>

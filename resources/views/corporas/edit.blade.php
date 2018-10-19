@@ -15,18 +15,8 @@
         <div class="form-group mt-2">
           <label for="categoria_id">Categoria</label>
           <select name="categoria_id" class="custom-select">
-            @php
-              $sel = '';
-            @endphp
             @foreach ($categorias as $categoria)
-              @php
-                if($categoria->id == $corpora->categoria_id){
-                  $sel = 'selected';
-                }else{
-                  $sel = '';
-                }
-              @endphp
-              <option value="{{$categoria->id}}" {{$sel}}>{{$categoria->nome}}</option>
+              <option value="{{$categoria->id}}" {{($categoria->id == $corpora->categoria_id) ? 'selected' : ''}}>{{$categoria->nome}}</option>
             @endforeach
           </select>
         </div>

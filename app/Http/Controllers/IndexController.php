@@ -10,9 +10,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-      $categorias = Categoria::whereHas('corporas.corpuses', function ($query) {
-          $query->where('corpuses.id', '>', 0);
-      })->get();
+      $categorias = Categoria::whereHas('corporas.corpuses')->get();
 
       return view('index', compact('categorias'));
     }

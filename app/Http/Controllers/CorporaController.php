@@ -118,7 +118,7 @@ class CorporaController extends Controller
      */
     public function storeCorpus(Request $request, Corpora $corpora)
     {
-      $corpus = new \App\Corpus;
+      $corpus = new Corpus;
       $corpus->conteudo = $request->conteudo;
       $corpus->corpora_id = $corpora->id;
 
@@ -133,7 +133,7 @@ class CorporaController extends Controller
      */
     public function indexCorpus(Corpora $corpora)
     {
-      $corpora->corpuses = \App\Corpus::where('corpora_id', '=', $corpora->id)->paginate(10);
+      $corpora->corpuses = Corpus::where('corpora_id', '=', $corpora->id)->paginate(10);
       return view('corporas.corpuses.index', compact('corpora'));
     }
 

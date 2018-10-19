@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Corpora;
+use App\Categoria;
 
 class CorporaCrudTest extends TestCase
 {
@@ -27,7 +28,7 @@ class CorporaCrudTest extends TestCase
     public function testReadCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $response = $this->get('/corporas/' . $corpora->id);
+        $response = $this->get('/categorias/' . $corpora->categoria_id);
         $response->assertStatus(200);
         $response->assertSeeText($corpora->titulo);
     }
@@ -67,7 +68,7 @@ class CorporaCrudTest extends TestCase
     public function testIndexCorpora()
     {
         $corpora = factory(Corpora::class)->create();
-        $response = $this->get('corporas');
+        $response = $this->get('corporas?page=' . Categoria::paginate(10)->lastPage());
         $response->assertStatus(200);
         $response->assertSeeText($corpora->titulo);
     }

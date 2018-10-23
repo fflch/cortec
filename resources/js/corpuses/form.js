@@ -1,4 +1,4 @@
-// 
+//
     var radios = document.forms["corpus"].modo;
     for(radio in radios) {
         radios[radio].onclick = function() {
@@ -16,6 +16,9 @@
         var reader  = new FileReader();
         reader.addEventListener("load", function () {
           insertResult(reader.result);
+        }, false);
+        reader.addEventListener("error", function () {
+          alert('Erro!');
         }, false);
         if (file) {
           reader.readAsText(file);

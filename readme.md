@@ -37,9 +37,9 @@ Clicando-se sobre o nome do corpus abre-se uma janela com detalhes sobre sua aut
 		-   igual a, começando com, terminando com ou contendo;
 		-   tamanho do contexto reduzido a ser exibido na listagem: 20, 30, 40, 50 ou 60 caracteres.        
   -   Compilação das ocorrências do termo encontradas com o respectivo contexto ajustado para o tamanho escolhido.
-	  - Opção para download?
+	  - Opção para download
   -   Compilação das ocorrências do termo encontradas com o respectivo contexto ampliado (150 caracteres).
-	  - Opção para download?
+	  - Opção para download
 
 -   **Gerador de Lista de Palavras**:
 	-   Tabela com todos os types dos corporas selecionados e os respectivos números de ocorrência (frequência).       

@@ -31,6 +31,7 @@ class CorporaCrudTest extends TestCase
         $response = $this->get('/categorias/' . $corpora->categoria_id);
         $response->assertStatus(200);
         $response->assertSeeText($corpora->titulo);
+        $response->assertSeeText($corpora->descricao);
     }
 
     /**

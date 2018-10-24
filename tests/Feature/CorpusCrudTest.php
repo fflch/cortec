@@ -46,7 +46,9 @@ class CorpusCrudTest extends TestCase
     // edit
     $corpus->conteudo = $corpus->conteudo . ' Edited';
     $response = $this->post('/corporas/'.$corpus->corpora_id.'/corpus/'.$corpus->id, $corpus->toArray());
-    $this->assertDatabaseHas('corpuses', $corpus->toArray());
+    $response_template = $this->get('corporas/'.$corpus->corpora_id.'/corpus/'.$corpus->id.'/edit');
+    $response_template->assertStatus(200);
+    $response_template->assertSeeText($corpus->conteudo);
   }
 
   /**

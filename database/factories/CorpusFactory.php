@@ -8,6 +8,6 @@
             return factory(App\Corpora::class)->create()->id;
         },
         'conteudo' => $faker->unique()->text(50000),
-        'conteudo_en' => $faker->unique()->text(50000),
+        'idioma' => $faker->randomElement($array = array ('pt','en')) ,
     ];
 });

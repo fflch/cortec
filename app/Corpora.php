@@ -23,7 +23,11 @@ class Corpora extends Model
 
   public function getAllCorpus(String $lang = "pt")
   {
-    if(empty($this->all_corpus[$lang]) && !empty($this->corpuses))
+    $filtered_corpus = $this->all_corpus->filter(function ($corpus, $key) {
+        return $corpus->idioma == $lang;
+    });
+
+    if(empty($this->all_corpus[$lang]) && !empty($filtered_corpus))
     {
       $this->all_corpus[$lang] = '';
       foreach ($this->corpuses as $corpus)

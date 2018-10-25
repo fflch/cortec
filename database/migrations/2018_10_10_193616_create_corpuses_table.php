@@ -18,6 +18,7 @@ class CreateCorpusesTable extends Migration
             $table->integer('corpora_id')->unsigned();
             $table->foreign('corpora_id')->references('id')->on('corporas')->onDelete('cascade');;
             $table->longText('conteudo');
+            $table->longText('conteudo_en')->nullable();
             $table->timestamps();
         });
     }

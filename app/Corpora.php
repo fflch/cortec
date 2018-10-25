@@ -8,7 +8,7 @@ use TextAnalysis\Tokenizers\RegexTokenizer;
 class Corpora extends Model
 {
 
-  protected $all_corpus = '';
+  protected $all_corpus = array();
   protected $analysis = array();
 
   public function corpuses()
@@ -21,22 +21,24 @@ class Corpora extends Model
     return $this->belongsTo('App\Categoria');
   }
 
-  public function getAllCorpus()
+  public function getAllCorpus(String $lang = "pt")
   {
-    if(empty($this->all_corpus) && !empty($this->corpuses))
+    if(empty($this->all_corpus[$lang]) && !empty($this->corpuses))
     {
+      $this->all_corpus[$lang] = '';
       foreach ($this->corpuses as $corpus)
       {
-        $this->all_corpus .= $corpus->conteudo . ' ';
+        $this->all_corpus[$lang] .= ($lang == "pt" ) ? $corpus->conteudo : $corpus->conteudo_en;
+        $this->all_corpus[$lang] .= ' ';
       }
     }
 
-    return $this->all_corpus;
+    return $this->all_corpus[$lang];
   }
 
-  public function getAnalysis(String $type)
+  public function getAnalysis(String $type, String $lang = 'pt')
   {
-    $all_corpus = $this->getAllCorpus();
+    $all_corpus = $this->getAllCorpus($lang);
 
     $tokens = (!empty($all_corpus)) ? (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($all_corpus) : null;
     if(empty($tokens)){

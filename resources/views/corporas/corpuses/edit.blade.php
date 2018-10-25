@@ -14,7 +14,7 @@
         </div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="modo" id="upload" value="upload" data-show="#div_upload">
-          <label class="form-check-label" for="exampleRadios1">
+          <label class="form-check-label" for="upload">
             Upload de arquivo de texto (.txt)
           </label>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group d-none" id="div_upload">
           <label for="upload_field">Upload</label>
-          <input type="file" class="form-control-file" id="upload_field" name="upload_field">
+          <input type="file" class="form-control-file" id="upload_field" name="upload_field" accept=".txt">
         </div>
       </div>
 

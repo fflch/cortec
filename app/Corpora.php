@@ -9,7 +9,7 @@ class Corpora extends Model
 {
 
   protected $all_corpus= array('pt' => '', 'en' => '');
-  protected $analysis = array();
+  protected $analysis = array('pt' => array(), 'en' => array());
 
   public function corpuses()
   {
@@ -23,15 +23,19 @@ class Corpora extends Model
 
   public function getAllCorpus(String $lang = "pt")
   {
-    $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang){
-        return $value->idioma == $lang;
-    });
-
-    if(empty($this->all_corpus[$lang]) && !empty($corpuses))
+    //verifica se o atributo já não foi setado e carrega os corpus caso não
+    if(empty($this->all_corpus[$lang]))
     {
-      foreach ($this->corpuses as $corpus)
+      $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang){
+          return $value->idioma == $lang;
+      });
+
+      if(!empty($corpuses))
       {
-        $this->all_corpus[$corpus->idioma] .= $corpus->conteudo;
+        foreach ($corpuses as $corpus)
+        {
+          $this->all_corpus[$lang] .= $corpus->conteudo;
+        }
       }
     }
 
@@ -43,7 +47,6 @@ class Corpora extends Model
     $all_corpus = $this->getAllCorpus($lang);
     $tokens = (!empty($all_corpus)) ? (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($all_corpus) : null;
     if(empty($tokens)){
-      $this->analysis = array();
       return null;
     }
 
@@ -52,28 +55,28 @@ class Corpora extends Model
 
     switch ($type) {
       case 'frequency-tokens':
-        $this->analysis['tokens'] = (!isset($this->analysis['tokens'])) ? freq_dist($tokens)->getKeyValuesByFrequency() : $this->analysis['tokens'];
-        return $this->analysis['tokens'];
+        $this->analysis[$lang]['tokens'] = (!isset($this->analysis[$lang]['tokens'])) ? freq_dist($tokens)->getKeyValuesByFrequency() : $this->analysis[$lang]['tokens'];
+        return $this->analysis[$lang]['tokens'];
         break;
 
       case 'count-tokens':
-        $this->analysis['count-tokens'] = (!isset($this->analysis['count-tokens'])) ? freq_dist($tokens)->getTotalTokens() : $this->analysis['count-tokens'];
-        return $this->analysis['count-tokens'];
+        $this->analysis[$lang]['count-tokens'] = (!isset($this->analysis[$lang]['count-tokens'])) ? freq_dist($tokens)->getTotalTokens() : $this->analysis[$lang]['count-tokens'];
+        return $this->analysis[$lang]['count-tokens'];
         break;
 
       case 'count-types':
-        $this->analysis['count-types'] = (!isset($this->analysis['count-types'])) ? freq_dist($tokens)->getTotalUniqueTokens() : $this->analysis['count-types'];
-        return $this->analysis['count-types'];
+        $this->analysis[$lang]['count-types'] = (!isset($this->analysis[$lang]['count-types'])) ? freq_dist($tokens)->getTotalUniqueTokens() : $this->analysis[$lang]['count-types'];
+        return $this->analysis[$lang]['count-types'];
         break;
 
       case 'ratio':
-        $this->analysis['ratio'] = (!isset($this->analysis['ratio'])) ? ($this->getAnalysis('count-types', $lang)/$this->getAnalysis('count-tokens', $lang)) : $this->analysis['ratio'];
-        return $this->analysis['ratio'];
+        $this->analysis[$lang]['ratio'] = (!isset($this->analysis[$lang]['ratio'])) ? ($this->getAnalysis('count-types', $lang)/$this->getAnalysis('count-tokens', $lang)) : $this->analysis[$lang]['ratio'];
+        return $this->analysis[$lang]['ratio'];
         break;
 
       case 'ngrams':
-        $this->analysis['ngrams'] = (!isset($this->analysis['ngrams'])) ? array_count_values(freq_dist($all_corpus)->getAllCorpusTokens()) : $this->analysis['ngrams'];
-        return $this->analysis['ngrams'];
+        $this->analysis[$lang]['ngrams'] = (!isset($this->analysis[$lang]['ngrams'])) ? array_count_values(freq_dist($all_corpus)->getAllCorpusTokens()) : $this->analysis[$lang]['ngrams'];
+        return $this->analysis[$lang]['ngrams'];
         break;
 
       default:

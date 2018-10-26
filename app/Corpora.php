@@ -8,7 +8,7 @@ use TextAnalysis\Tokenizers\RegexTokenizer;
 class Corpora extends Model
 {
 
-  protected $all_corpus = array();
+  protected $all_corpus= array('pt' => '', 'en' => '');
   protected $analysis = array();
 
   public function corpuses()
@@ -23,17 +23,15 @@ class Corpora extends Model
 
   public function getAllCorpus(String $lang = "pt")
   {
-    $filtered_corpus = $this->all_corpus->filter(function ($corpus, $key) {
-        return $corpus->idioma == $lang;
+    $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang){
+        return $value->idioma == $lang;
     });
 
-    if(empty($this->all_corpus[$lang]) && !empty($filtered_corpus))
+    if(empty($this->all_corpus[$lang]) && !empty($corpuses))
     {
-      $this->all_corpus[$lang] = '';
       foreach ($this->corpuses as $corpus)
       {
-        $this->all_corpus[$lang] .= ($lang == "pt" ) ? $corpus->conteudo : $corpus->conteudo_en;
-        $this->all_corpus[$lang] .= ' ';
+        $this->all_corpus[$corpus->idioma] .= $corpus->conteudo;
       }
     }
 
@@ -43,7 +41,6 @@ class Corpora extends Model
   public function getAnalysis(String $type, String $lang = 'pt')
   {
     $all_corpus = $this->getAllCorpus($lang);
-
     $tokens = (!empty($all_corpus)) ? (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($all_corpus) : null;
     if(empty($tokens)){
       $this->analysis = array();
@@ -70,7 +67,7 @@ class Corpora extends Model
         break;
 
       case 'ratio':
-        $this->analysis['ratio'] = (!isset($this->analysis['ratio'])) ? ($this->getAnalysis('count-types')/$this->getAnalysis('count-tokens')) : $this->analysis['ratio'];
+        $this->analysis['ratio'] = (!isset($this->analysis['ratio'])) ? ($this->getAnalysis('count-types', $lang)/$this->getAnalysis('count-tokens', $lang)) : $this->analysis['ratio'];
         return $this->analysis['ratio'];
         break;
 

@@ -21,9 +21,15 @@ class Corpora extends Model
     return $this->belongsTo('App\Categoria');
   }
 
+  /**
+   * Set and return the compilation of corpus of a corpora
+   *
+   * @param  String  $lang
+   * @return String
+   */
   public function getAllCorpus(String $lang = "pt")
   {
-    //verifica se o atributo já não foi setado e carrega os corpus caso não
+    //verifica se o atributo já não foi setado e carrega os corpus caso não e o seta
     if(empty($this->all_corpus[$lang]))
     {
       $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang){
@@ -42,6 +48,13 @@ class Corpora extends Model
     return $this->all_corpus[$lang];
   }
 
+  /**
+   * Set and return a specific analysis of a corpora of a specific language
+   *
+   * @param  String  $type
+   * @param  String  $lang
+   * @return float|array|null
+   */
   public function getAnalysis(String $type, String $lang = 'pt')
   {
     $all_corpus = $this->getAllCorpus($lang);

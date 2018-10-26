@@ -3,14 +3,12 @@
 @section('content')
   <form method="POST" name="corpus" action="/corporas/{{ $corpora->id }}/corpus/{{ $corpus->id }}">
       {{ csrf_field() }}
-      <input type="hidden" name="conteudo_pt" id="conteudo_pt" value="{{ $corpus->conteudo }}">
-      <input type="hidden" name="conteudo_en" id="conteudo_en" value="{{ $corpus->conteudo_en }}">
 
       <div class="form-group">
         <legend class="col-form-label">Idioma</legend>
-        <select class="custom-select" id="idioma">
-          <option selected value="pt">Português</option>
-          <option value="en">Inglês</option>
+        <select class="custom-select" id="idioma" name="idioma">
+          <option {{($corpus->idioma == 'pt') ? 'selected' : ''}} value="pt">Português</option>
+          <option {{($corpus->idioma == 'en') ? 'selected' : ''}} value="en">Inglês</option>
         </select>
       </div>
 

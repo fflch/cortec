@@ -6,16 +6,6 @@
         }
     }
 
-//
-
-  //altera Idioma
-
-    document.getElementById('idioma').addEventListener('change', function(evt) {
-      let txt = document.getElementById('conteudo_'+this.value).value;
-      document.getElementById('conteudo').setAttribute('name', 'conteudo_'+this.value);
-      document.getElementById('conteudo').value = txt;
-    })
-
     document.getElementById('upload_field').addEventListener('change', function(evt) {
       var file = document.getElementById('upload_field').files[0];
 

@@ -6,7 +6,7 @@
 
       <div class="form-group">
         <legend class="col-form-label">Idioma</legend>
-        <select class="custom-select">
+        <select class="custom-select" id="idioma" name="idioma">
           <option selected value="pt">Português</option>
           <option value="en">Inglês</option>
         </select>

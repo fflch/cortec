@@ -6,8 +6,6 @@
         }
     }
 
-//
-
     document.getElementById('upload_field').addEventListener('change', function(evt) {
       var file = document.getElementById('upload_field').files[0];
 

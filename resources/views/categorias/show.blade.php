@@ -61,17 +61,17 @@
                       <tbody>
                         <tr>
                           <th scope="row">Ocorrências/tokens</th>
-                          <td class="text-center"></td>
+                          <td class="text-center">{{$corpora->getAnalysis('count-tokens', 'en')}}</td>
                           <td class="text-center">{{$corpora->getAnalysis('count-tokens')}}</td>
                         </tr>
                         <tr>
                           <th scope="row">Formas/types</th>
-                          <td class="text-center"></td>
+                          <td class="text-center">{{$corpora->getAnalysis('count-types','en')}}</td>
                           <td class="text-center">{{$corpora->getAnalysis('count-types')}}</td>
                         </tr>
                         <tr>
                           <th scope="row">T/T ratio</th>
-                          <td class="text-center"></td>
+                          <td class="text-center">{{round($corpora->getAnalysis('ratio', 'en'), 2)}}</td>
                           <td class="text-center">{{round($corpora->getAnalysis('ratio'), 2)}}</td>
                         </tr>
                       </tbody>

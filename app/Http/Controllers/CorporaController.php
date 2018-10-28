@@ -119,6 +119,7 @@ class CorporaController extends Controller
     public function storeCorpus(Request $request, Corpora $corpora)
     {
       $corpus = new Corpus;
+      $corpus->idioma = $request->idioma;
       $corpus->conteudo = $request->conteudo;
       $corpus->corpora_id = $corpora->id;
 
@@ -147,6 +148,7 @@ class CorporaController extends Controller
     public function updateCorpus(Request $request, Corpora $corpora, Corpus $corpus)
     {
       $corpus->conteudo = $request->conteudo;
+      $corpus->idioma = $request->idioma;
       $corpus->save();
       return redirect("/corporas/$corpora->id/corpus");
     }

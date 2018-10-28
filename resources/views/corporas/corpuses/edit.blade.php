@@ -5,6 +5,14 @@
       {{ csrf_field() }}
 
       <div class="form-group">
+        <legend class="col-form-label">Idioma</legend>
+        <select class="custom-select" id="idioma" name="idioma">
+          <option {{($corpus->idioma == 'pt') ? 'selected' : ''}} value="pt">Português</option>
+          <option {{($corpus->idioma == 'en') ? 'selected' : ''}} value="en">Inglês</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <legend class="col-form-label">Qual forma inserir o Corpus?</legend>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="modo" id="campo" value="campo" checked data-show="#div_conteudo">

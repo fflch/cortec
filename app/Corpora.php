@@ -10,6 +10,7 @@ class Corpora extends Model
 
   protected $all_corpus= array('pt' => '', 'en' => '');
   protected $analysis = array('pt' => array(), 'en' => array());
+  protected $idiomas = array();
 
   public function corpuses()
   {
@@ -96,6 +97,27 @@ class Corpora extends Model
         return null;
         break;
     }
+  }
+
+  public function hasCorpusLang($lang = 'pt')
+  {
+    return $this->corpuses->contains(function ($corpus, $key) use ($lang){
+        return $corpus->idioma == $lang;
+    });
+  }
+
+  public function getLanguages()
+  {
+    if(empty($this->idiomas))
+    {
+      $unique = $this->corpuses->unique(function ($corpus) {
+          return $corpus->idioma;
+      });
+
+      $this->idiomas = $unique->values()->pluck('idioma');
+    }
+
+    return $this->idiomas;
   }
 
 }

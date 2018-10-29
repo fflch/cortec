@@ -21,3 +21,26 @@ checks_cats.map(function (elm){
   }
 
 });
+
+function showCorpuses(evt){
+  let show = document.querySelector("input[name=check_lingua]:checked").value;
+
+  showElms = Array.from(document.querySelectorAll('li[data-lang*="'+show+'"]'));
+  hideFields = Array.from(document.querySelectorAll('li[data-lang]'));
+
+  hideFields.map( function( hideField ) {
+      hideField.classList.add("d-none");
+  } );
+
+  showElms.map( function( showElm ) {
+      showElm.classList.remove("d-none");
+  } );
+}
+
+var radios = document.getElementsByName('check_lingua');
+
+for(var i = radios.length; i--; ) {
+    radios[i].onchange = showCorpuses;
+}
+
+showCorpuses();

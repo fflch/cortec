@@ -27,7 +27,7 @@
               <p>{!! __('texts.categorias.texto3') !!}</p>
               <p>{!! __('texts.categorias.texto4') !!}</p>
               <ul>
-                <li>{!! __('texts.categorias.concordanceador') !!}</li>
+                <li>{!! __('texts.categorias.concordanciador') !!}</li>
                 <li>{!! __('texts.categorias.gerador1') !!}</li>
                 <li>{!! __('texts.categorias.gerador2') !!}</li>
               </ul>

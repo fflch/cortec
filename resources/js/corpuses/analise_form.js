@@ -23,7 +23,7 @@ checks_cats.map(function (elm){
 });
 
 function showCorpuses(evt){
-  let show = document.querySelector("input[name=check_lingua]:checked").value;
+  let show = document.querySelector("input[name=language]:checked").value;
 
   showElms = Array.from(document.querySelectorAll('li[data-lang*="'+show+'"]'));
   hideFields = Array.from(document.querySelectorAll('li[data-lang]'));

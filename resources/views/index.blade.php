@@ -9,7 +9,8 @@
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
 
-    <form name="passo1" action="" method="post">
+    <form name="step1" action="/analysis" method="post">
+      {{ csrf_field() }}
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
@@ -20,9 +21,10 @@
         <div class="col-lg-1-12">
           <ul class="corpora">
             <li class="corpora">
-              <input type="radio" name="check_lingua" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
+              <input type="radio" name="language" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
             </li>
-              <input type="radio" name="check_lingua" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
+            <li>
+              <input type="radio" name="language" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
             </li>
           </ul>
         </div>
@@ -52,7 +54,7 @@
                 @foreach ($corporas as $corpora)
                   <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpora->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpora->id}}">
-                    <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
+                    <input type="checkbox" name="corporas[]" value="{{ $corpora->id }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
                       <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}" style="font-weight:normal;">
                         {{ $corpora->titulo }}
                       </a>

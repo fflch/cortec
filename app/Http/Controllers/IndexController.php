@@ -8,7 +8,7 @@ use App\Categoria;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function step1()
     {
       $categorias = Categoria::whereHas('corporas.corpuses')->get();
 

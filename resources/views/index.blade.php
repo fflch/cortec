@@ -9,29 +9,30 @@
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
 
-    <div class="row align-items-center row-header-lista px-1">
-      <div class="col-xs-1 text-center">
-        <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
-      </div>
-    </div>
-    <div class="row bg-gray">
-      <div class="col-lg-1-12">
-        <ul class="corpora">
-          <li class="corpora">
-            <input type="radio" name="check_lingua" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
-          </li>
-            <input type="radio" name="check_lingua" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row align-items-center row-header-lista px-1 mt-4">
-      <div class="col-xs-1 text-center">
-        <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
-      </div>
-    </div>
     <form name="passo1" action="" method="post">
+
+      <div class="row align-items-center row-header-lista px-1">
+        <div class="col-xs-1 text-center">
+          <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
+        </div>
+      </div>
+      <div class="row bg-gray">
+        <div class="col-lg-1-12">
+          <ul class="corpora">
+            <li class="corpora">
+              <input type="radio" name="check_lingua" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
+            </li>
+              <input type="radio" name="check_lingua" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row align-items-center row-header-lista px-1 mt-4">
+        <div class="col-xs-1 text-center">
+          <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
+        </div>
+      </div>
       <div class="row bg-gray pb-4" id="div_corporas">
         @foreach ($categorias as $categoria)
           <div class="col-sm-3 mt-2" data-cat="{{$categoria->id}}">
@@ -66,8 +67,13 @@
           </div>
         @endforeach
       </div>
-    </form>
 
+      <div class="row">
+        <div class="col text-right mt-4 pr-0">
+          <button type="submit" class="btn btn-success text-right">Próximo Passo</button>
+        </div>
+      </div>
+    </form>
   </div>
 @endsection
 

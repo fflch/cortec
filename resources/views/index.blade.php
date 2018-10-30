@@ -8,12 +8,29 @@
     <div class="row mt-10">
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
+
     <div class="row align-items-center row-header-lista px-1">
+      <div class="col-xs-1 text-center">
+        <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
+      </div>
+    </div>
+    <div class="row bg-gray">
+      <div class="col-lg-1-12">
+        <ul class="corpora">
+          <li class="corpora">
+            <input type="radio" name="check_lingua" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
+          </li>
+            <input type="radio" name="check_lingua" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row align-items-center row-header-lista px-1 mt-4">
       <div class="col-xs-1 text-center">
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
       </div>
     </div>
-
     <form name="passo1" action="" method="post">
       <div class="row bg-gray pb-4" id="div_corporas">
         @foreach ($categorias as $categoria)
@@ -50,23 +67,6 @@
         @endforeach
       </div>
     </form>
-
-    <div class="row align-items-center row-header-lista mt-4 px-1">
-      <div class="col-xs-1 text-center">
-        <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
-      </div>
-    </div>
-    <div class="row bg-gray">
-      <div class="col-lg-1-12">
-        <ul class="corpora">
-          <li class="corpora">
-            <input type="radio" name="check_lingua" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
-          </li>
-            <input type="radio" name="check_lingua" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
-          </li>
-        </ul>
-      </div>
-    </div>
 
   </div>
 @endsection

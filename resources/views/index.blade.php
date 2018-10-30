@@ -15,9 +15,9 @@
     </div>
 
     <form name="passo1" action="" method="post">
-      <div class="row bg-gray pb-4" >
+      <div class="row bg-gray pb-4" id="div_corporas">
         @foreach ($categorias as $categoria)
-          <div class="col-sm-3 mt-2">
+          <div class="col-sm-3 mt-2" data-cat="{{$categoria->id}}">
             <div class="card">
               <label for="check_cat_{{$categoria->id}}" style="margin-bottom: 0;">
                 <div class="card-header list-group-item-action">
@@ -33,7 +33,7 @@
                 @endphp
                 @foreach ($corporas as $corpora)
                   <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
-                    <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpora->getLanguages()->toArray())}}">
+                    <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpora->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpora->id}}">
                     <input type="checkbox" name="{{ $corpora->titulo }}" value="{{ $corpora->titulo }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
                       <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}" style="font-weight:normal;">
                         {{ $corpora->titulo }}

@@ -27,10 +27,20 @@ function showCorpuses(evt){
 
   showElms = Array.from(document.querySelectorAll('li[data-lang*="'+show+'"]'));
   hideFields = Array.from(document.querySelectorAll('li[data-lang]'));
+  cards_categoria = Array.from(document.getElementById("div_corporas").children);
+
+  cards_categoria.map( function( card ) {
+      let cat_id = card.getAttribute('data-cat');
+      let lis_card = Array.from(card.querySelectorAll('li[id*="li_'+cat_id+'"]'));
+
+      (lis_card.some(li => showElms.indexOf(li) > -1)) ? showElms.push(card) : hideFields.push(card);
+
+  } );
 
   hideFields.map( function( hideField ) {
       hideField.classList.add("d-none");
   } );
+
 
   showElms.map( function( showElm ) {
       showElm.classList.remove("d-none");

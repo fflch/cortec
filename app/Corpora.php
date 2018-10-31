@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\RegexTokenizer;
+use App\Utils;
 
 class Corpora extends Model
 {
@@ -20,6 +21,11 @@ class Corpora extends Model
   public function categoria()
   {
     return $this->belongsTo('App\Categoria');
+  }
+
+  public function setAllCorpus(String $corpus, String $lang)
+  {
+    $this->all_corpus[$lang] = $corpus;
   }
 
   /**
@@ -59,44 +65,20 @@ class Corpora extends Model
   public function getAnalysis(String $type, String $lang = 'pt')
   {
     $all_corpus = $this->getAllCorpus($lang);
-    $tokens = (!empty($all_corpus)) ? (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($all_corpus) : null;
-    if(empty($tokens)){
+
+    if(empty($all_corpus))
+    {
       return null;
     }
 
-    //normalize
-    $tokens = normalize_tokens($tokens);
-
-    switch ($type) {
-      case 'frequency-tokens':
-        $this->analysis[$lang]['tokens'] = (!isset($this->analysis[$lang]['tokens'])) ? freq_dist($tokens)->getKeyValuesByFrequency() : $this->analysis[$lang]['tokens'];
-        return $this->analysis[$lang]['tokens'];
-        break;
-
-      case 'count-tokens':
-        $this->analysis[$lang]['count-tokens'] = (!isset($this->analysis[$lang]['count-tokens'])) ? freq_dist($tokens)->getTotalTokens() : $this->analysis[$lang]['count-tokens'];
-        return $this->analysis[$lang]['count-tokens'];
-        break;
-
-      case 'count-types':
-        $this->analysis[$lang]['count-types'] = (!isset($this->analysis[$lang]['count-types'])) ? freq_dist($tokens)->getTotalUniqueTokens() : $this->analysis[$lang]['count-types'];
-        return $this->analysis[$lang]['count-types'];
-        break;
-
-      case 'ratio':
-        $this->analysis[$lang]['ratio'] = (!isset($this->analysis[$lang]['ratio'])) ? ($this->getAnalysis('count-types', $lang)/$this->getAnalysis('count-tokens', $lang)) : $this->analysis[$lang]['ratio'];
-        return $this->analysis[$lang]['ratio'];
-        break;
-
-      case 'ngrams':
-        $this->analysis[$lang]['ngrams'] = (!isset($this->analysis[$lang]['ngrams'])) ? array_count_values(freq_dist($all_corpus)->getAllCorpusTokens()) : $this->analysis[$lang]['ngrams'];
-        return $this->analysis[$lang]['ngrams'];
-        break;
-
-      default:
-        return null;
-        break;
+    if(empty($this->analysis[$lang]))
+    {
+      $analysis = new Utils($all_corpus);
+      $this->analysis[$lang] = $analysis->getAnalysis();
     }
+
+
+    return $this->analysis[$lang][$type];
   }
 
   public function hasCorpusLang($lang = 'pt')

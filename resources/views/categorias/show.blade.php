@@ -71,8 +71,8 @@
                         </tr>
                         <tr>
                           <th scope="row">T/T ratio</th>
-                          <td class="text-center">{{round($corpora->getAnalysis('ratio', 'en'), 2)}}</td>
-                          <td class="text-center">{{round($corpora->getAnalysis('ratio'), 2)}}</td>
+                          <td class="text-center">{{$corpora->getAnalysis('ratio', 'en')}}</td>
+                          <td class="text-center">{{$corpora->getAnalysis('ratio')}}</td>
                         </tr>
                       </tbody>
                     </table>

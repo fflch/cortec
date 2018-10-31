@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Corpora;
+use App\Utils;
 
 class AnalysisController extends Controller
 {
@@ -52,7 +53,16 @@ class AnalysisController extends Controller
 
   public function listaPalavras(Request $request)
   {
-    dd($request->session()->get('form_analysis'));
+    $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
+    $all_corpus = $corpora_ids->reduce(function ($carry, $id) {
+        $corpora_corpus = Corpora::find($id)->getAllCorpus();
+        return $carry . ' ' . $corpora_corpus;
+    });
+
+    $utils = new Utils($all_corpus);
+    $analysis = $utils->getAnalysis();
+
+    return view('analysis.lista_palavras', compact('analysis'));
   }
 
 }

@@ -4,16 +4,14 @@
   <div class="row">
 
     <div class="col-md-6">
-      <button type="button" name="button" onclick="sortTable()">sortTable</button>
-      <table class="table" id="lista-palavras">
+      <table class="table lista-palavras">
         <thead>
           <tr>
-            <th scope="col">Pos.</th>
+            <th scope="col" class="text-center">Pos.</th>
             <th scope="col" class="text-center">Palavra</th>
             <th scope="col" class="text-center">Freq.</th>
           </tr>
         </thead>
-        <tbody>
           @php
             $i = 1;
           @endphp
@@ -27,7 +25,6 @@
               $i++;
             @endphp
           @endforeach
-        </tbody>
       </table>
     </div>
 
@@ -47,8 +44,8 @@
 
     // do the work...
     document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-        const table = th.closest('table');
-        Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        const table = th.closest('table').tBodies[0];
+        Array.from(table.querySelectorAll('tr:nth-child(n+1)'))
             .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
             .forEach(tr => table.appendChild(tr) );
     })));

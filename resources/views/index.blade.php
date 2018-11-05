@@ -21,10 +21,10 @@
         <div class="col-lg-1-12">
           <ul class="corpora">
             <li class="corpora">
-              <input type="radio" name="language" id="check_pt" value="pt" checked><label for="check_pt">{!! __('texts.passo1.lingua1') !!}</label>
+              <input type="radio" name="language" id="radio_pt" value="pt" checked><label for="radio_pt">{!! __('texts.passo1.lingua1') !!}</label>
             </li>
             <li>
-              <input type="radio" name="language" id="check_en" value="en"><label for="check_en">{!! __('texts.passo1.lingua2') !!}</label>
+              <input type="radio" name="language" id="radio_en" value="en"><label for="radio_en">{!! __('texts.passo1.lingua2') !!}</label>
             </li>
           </ul>
         </div>

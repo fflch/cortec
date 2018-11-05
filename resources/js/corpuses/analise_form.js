@@ -47,10 +47,21 @@ function showCorpuses(evt){
   } );
 }
 
-var radios = document.getElementsByName('check_lingua');
+function uncheckAll(){
+  let checkboxes = Array.from(document.querySelectorAll('[id^="check_"]'));
+
+  checkboxes.map(function (checkbox) {
+    checkbox.checked = false;
+  });
+}
+
+var radios = document.getElementsByName('language');
 
 for(var i = radios.length; i--; ) {
-    radios[i].onchange = showCorpuses;
+    radios[i].onchange = function() {
+      showCorpuses();
+      uncheckAll();
+    };
 }
 
 showCorpuses();

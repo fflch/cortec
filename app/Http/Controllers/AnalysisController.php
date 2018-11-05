@@ -8,6 +8,11 @@ use App\Utils;
 
 class AnalysisController extends Controller
 {
+  /**
+   * Verifies the entry and display the second step for corpora analysis, the selection of tool.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function step2(Request $request)
   {
     $corporas_ids = collect($request->corporas);
@@ -29,6 +34,11 @@ class AnalysisController extends Controller
     return view('analysis.step2', compact('language'));
   }
 
+  /**
+   * Redirect to the selected tool.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function step3(Request $request)
   {
     $tool = $request->tool;
@@ -51,6 +61,11 @@ class AnalysisController extends Controller
     return redirect("/");
   }
 
+  /**
+   * Process the analysis and display it.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function listaPalavras(Request $request)
   {
     $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));

@@ -2,14 +2,77 @@
 
 @section('content')
   <div class="row">
-
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
           <tr>
-            <th scope="col" class="text-center">Pos. <i class="fas fa-sort"></i></th>
-            <th scope="col" class="text-center">Palavra <i class="fas fa-sort"></i></th>
-            <th scope="col" class="text-center">Freq. <i class="fas fa-sort"></i></th>
+            <th scope="col" class="text-center" colspan="2">Ocorrências (tokens)</th>
+          </tr>
+        </thead>
+          <tr>
+            <td class="text-center">Total de Ocorrências</td>
+            <td class="text-center">{{$analysis['count-tokens']}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Total de Ocorrências que aparecem uma vez</td>
+            <td class="text-center">{{null}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Total de Ocorrências que aparecem mais de uma vez</td>
+            <td class="text-center">{{null}}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table lista-palavras" id="tbl-lista-palavras">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center" colspan="2">Palavras únicas/formas (types)</th>
+          </tr>
+        </thead>
+          <tr>
+            <td class="text-center">Total de Palavras</td>
+            <td class="text-center">{{$analysis['count-types']}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Total de Palavras que aparecem uma vez</td>
+            <td class="text-center">{{null}}</td>
+          </tr>
+          <tr>
+            <td class="text-center">Total de Palavras que aparecem mais de uma vez</td>
+            <td class="text-center">{{null}}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table lista-palavras" id="tbl-lista-palavras">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center" colspan="2">Índice Vocabular (token/type ratio)</th>
+          </tr>
+        </thead>
+          <tr>
+            <td class="text-center">Token/Type</td>
+            <td class="text-center">{{$analysis['ratio']}}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table lista-palavras" id="tbl-lista-palavras">
+        <thead>
+          <tr>
+            <th scope="col" data-sort class="text-center">Pos. <i class="fas fa-sort"></i></th>
+            <th scope="col" data-sort class="text-center">Palavra <i class="fas fa-sort"></i></th>
+            <th scope="col" data-sort class="text-center">Freq. <i class="fas fa-sort"></i></th>
           </tr>
         </thead>
           @php
@@ -27,7 +90,6 @@
           @endforeach
       </table>
     </div>
-
   </div>
 @endsection
 
@@ -41,7 +103,7 @@
         v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
         )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-    document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', (() => {
       const table = th.closest('table').tBodies[0];
       table.parentElement.style.cursor = 'progress';
       setTimeout(function(){ sortTable(th, table); table.parentElement.style.cursor = ''; }, 400);

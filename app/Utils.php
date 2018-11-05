@@ -25,6 +25,11 @@ class Utils
     $this->setAnalysis();
   }
 
+  /**
+   * Sets analysis for a specified text.
+   *
+   * @return void
+   */
   private function setAnalysis()
   {
     $this->analysis['frequency-tokens'] = freq_dist($this->tokens)->getKeyValuesByFrequency();
@@ -35,6 +40,11 @@ class Utils
     //$this->analysis['ngrams'] = array_count_values(freq_dist($all_corpus)->getAllCorpusTokens());
   }
 
+  /**
+   * Return an Array of analysis of a specified text.
+   *
+   * @return array
+   */
   public function getAnalysis()
   {
     return $this->analysis;

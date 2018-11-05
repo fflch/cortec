@@ -23,13 +23,20 @@ class Corpora extends Model
     return $this->belongsTo('App\Categoria');
   }
 
+  /**
+   * Set the corpus for the corpora by text.
+   *
+   * @param  String  $corpus
+   * @param  String  $lang
+   * @return String
+   */
   public function setAllCorpus(String $corpus, String $lang)
   {
     $this->all_corpus[$lang] = $corpus;
   }
 
   /**
-   * Set and return the compilation of corpus of a corpora
+   * Set and return the compilation of corpus of a corpora by the registered corpus.
    *
    * @param  String  $lang
    * @return String
@@ -56,7 +63,7 @@ class Corpora extends Model
   }
 
   /**
-   * Set and return a specific analysis of a corpora of a specific language
+   * Set and return a specific analysis of a corpora of a specific language.
    *
    * @param  String  $type
    * @param  String  $lang
@@ -81,6 +88,12 @@ class Corpora extends Model
     return $this->analysis[$lang][$type];
   }
 
+  /**
+   * Verifies if the specified corpora has corpus of a certain language.
+   *
+   * @param  String  $lang
+   * @return boolean
+   */
   public function hasCorpusLang($lang = 'pt')
   {
     return $this->corpuses->contains(function ($corpus, $key) use ($lang){
@@ -88,6 +101,12 @@ class Corpora extends Model
     });
   }
 
+  /**
+   * Returns an array of languages of a specified corpora by its corpus.
+   *
+   * @param  String  $lang
+   * @return array
+   */
   public function getLanguages()
   {
     if(empty($this->idiomas))

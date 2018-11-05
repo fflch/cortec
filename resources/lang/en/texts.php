@@ -9,8 +9,16 @@
         'lingua1' => 'Portuguese',
         'lingua2' => 'English',
       ],
+      'passo2' => [
+        'passo' => 'Step 2/3: Select your tool.',
+        'texto1' => '',
+        'lista' => 'List of Tools'
+      ],
       'categorias' => [
         'texto1' => 'Corpora in',
         'texto2' => 'This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',
+        'concordanciador' => 'Concordancer',
+        'gerador1' => 'Frequency Counters',
+        'gerador2' => 'N-Gram Generator',
       ]
   ];

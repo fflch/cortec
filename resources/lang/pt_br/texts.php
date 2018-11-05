@@ -10,6 +10,11 @@
         'lingua1' => 'Português',
         'lingua2' => 'Inglês',
       ],
+      'passo2' => [
+        'passo' => 'Passo 2/3: Escolhendo a Ferramenta.',
+        'texto1' => 'Selecione abaixo a ferramenta a ser aplicada:',
+        'lista' => 'Lista de Ferramentas'
+      ],
       'categorias' => [
         'texto1' => 'Sobre os Corpora',
         'texto2' => 'Esta categoria de Corpora é constituída de :count corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:',

@@ -3,10 +3,10 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <h2>Passo 2/3: Escolhendo a Ferramenta.</h2>
+      <h2>{!! __('texts.passo2.passo') !!}</h2>
     </div>
     <div class="row mt-10">
-      <p>Selecione abaixo a ferramenta a ser aplicada:</p>
+      <p>{!! __('texts.passo2.texto1') !!}</p>
     </div>
 
     <form name="step2" action="/analysis/2" method="post">
@@ -14,7 +14,7 @@
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
-          <h3 class="h3 h3-lista">Lista de Ferramentas</h3>
+          <h3 class="h3 h3-lista">{!! __('texts.passo2.lista') !!}</h3>
         </div>
       </div>
       <div class="row bg-gray">

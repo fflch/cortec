@@ -10,6 +10,7 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+ mix.js('resources/js/corpuses/analise_lista_palavras.js', 'public/js/corpuses');
 mix.js('resources/js/corpuses/analise_form.js', 'public/js/corpuses');
 mix.js('resources/js/corpuses/form.js', 'public/js/corpuses');
 

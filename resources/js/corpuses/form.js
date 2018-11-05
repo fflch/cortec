@@ -1,4 +1,4 @@
-//
+//Exibe ou esconde campos para inserção de corpus
     var radios = document.forms["corpus"].modo;
     for(radio in radios) {
         radios[radio].onclick = function() {
@@ -39,6 +39,7 @@
 
     }, false);
 
+    //insere corpus no campo de digitação
     function insertResult(result){
         document.getElementById("campo").checked = true;
         document.getElementById('conteudo').value = result;

@@ -1,3 +1,4 @@
+//Funcões para marcar os corpora de acordo com a marcação na respectiva categoria de corpora
 checks_cats = Array.from(document.querySelectorAll('[id^="check_cat_"]'));
 
 checks_cats.map(function (elm){
@@ -22,6 +23,7 @@ checks_cats.map(function (elm){
 
 });
 
+//Função para exibir os corpora de acordo com a língua
 function showCorpuses(evt){
   let show = document.querySelector("input[name=language]:checked").value;
 
@@ -47,6 +49,7 @@ function showCorpuses(evt){
   } );
 }
 
+//Função para desmarcar todas categorias e corpora
 function uncheckAll(){
   let checkboxes = Array.from(document.querySelectorAll('[id^="check_"]'));
 
@@ -57,6 +60,7 @@ function uncheckAll(){
 
 var radios = document.getElementsByName('language');
 
+//Event handler para exibir e desmarcar de acordo com a lingua escolhida
 for(var i = radios.length; i--; ) {
     radios[i].onchange = function() {
       showCorpuses();

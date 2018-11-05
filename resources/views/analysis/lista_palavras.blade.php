@@ -68,7 +68,7 @@
   <div class="row">
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
-        <thead>
+        <thead style="cursor: pointer;">
           <tr>
             <th scope="col" data-sort class="text-center">Pos. <i class="fas fa-sort"></i></th>
             <th scope="col" data-sort class="text-center">Palavra <i class="fas fa-sort"></i></th>

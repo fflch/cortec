@@ -6,17 +6,19 @@ const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
 
 //adiciona o event handler para ordenar a tabela
 document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', (() => {
-  const table = th.closest('table').tBodies[0];
-  table.parentElement.style.cursor = 'progress';
-  setTimeout(function(){ sortTable(th, table); table.parentElement.style.cursor = ''; }, 400);
+  const tbody = th.closest('table').tBodies[0];
+  const thead = th.closest('table').tHead;
+  thead.style.cursor = '';
+  tbody.parentElement.style.cursor = 'progress';
+  setTimeout(function(){ sortTable(th, tbody); tbody.parentElement.style.cursor = ''; thead.style.cursor = 'pointer';}, 400);
 })));
 
 //Função para ordenar a table
-function sortTable(th, table){
+function sortTable(th, tbody){
   return new Promise(function(resolve, reject) {
-    Array.from(table.querySelectorAll('tr:nth-child(n+1)'))
+    Array.from(tbody.querySelectorAll('tr:nth-child(n+1)'))
         .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-        .forEach(tr => table.appendChild(tr) );
+        .forEach(tr => tbody.appendChild(tr) );
     resolve();
     });
 }

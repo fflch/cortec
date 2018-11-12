@@ -75,11 +75,27 @@
           <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <!-- Small modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm" id="button">Small modal</button>
+        </div>
+      </div>
+
+      <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="myModal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            ...
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 @endsection
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/analise_form.js') }}"></script>
 @endsection

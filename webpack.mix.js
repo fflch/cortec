@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/corpuses/analise_form.js', 'public/js/corpuses');
 mix.js('resources/js/corpuses/form.js', 'public/js/corpuses');
 
+//Modules and vendor
+mix.js('resources/js/app.js', 'public/js');
 
 // Vendor
 mix.js('vendor/uspdev/laravel-comet-theme/resources/assets/js/script.js', 'public/js')

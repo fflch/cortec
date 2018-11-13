@@ -79,19 +79,30 @@
       <div class="row">
         <div class="col">
           <!-- Small modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm" id="button">Small modal</button>
-        </div>
-      </div>
-
-      <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="myModal">
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-            ...
-          </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal" id="button">Small modal</button>
         </div>
       </div>
     </form>
   </div>
+
+  <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Aviso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Seleção incorreta de corpora</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('javascripts')

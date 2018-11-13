@@ -5,7 +5,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-const bsn = require('bootstrap.native');
+window.bsn = require('bootstrap.native/dist/bootstrap-native-v4');
 
 //window.Vue = require('vue');
 

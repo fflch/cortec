@@ -9,7 +9,7 @@
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
 
-    <form name="step1" action="/analysis" method="post" onsubmit="return validation();">
+    <form name="step1" action="/analysis" method="post" >
       {{ csrf_field() }}
 
       <div class="row align-items-center row-header-lista px-1">
@@ -82,13 +82,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Aviso</h5>
+        <h5 class="modal-title">{!! __('messages.validacao.modal_step1.header') !!}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Seleção incorreta de corpora</p>
+        <p>{!! __('messages.validacao.modal_step1.body') !!}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>

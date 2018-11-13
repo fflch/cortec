@@ -15,6 +15,11 @@ class AnalysisController extends Controller
    */
   public function step2(Request $request)
   {
+    $validatedData = $request->validate([
+        'language' => 'required',
+        'corporas' => 'required',
+    ]);
+
     $corporas_ids = collect($request->corporas);
     $request->session()->put('form_analysis.corporas_ids', $corporas_ids);
     $language = $request->language;
@@ -26,7 +31,7 @@ class AnalysisController extends Controller
         return $corpora->hasCorpusLang($language);
     });
 
-    if(!$has_language || $corporas_ids->isEmpty())
+    if(!$has_language)
     {
       return redirect("/");
     }

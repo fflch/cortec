@@ -9,7 +9,7 @@
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
 
-    <form name="step1" action="/analysis" method="post">
+    <form name="step1" action="/analysis" method="post" onsubmit="return validation();">
       {{ csrf_field() }}
 
       <div class="row align-items-center row-header-lista px-1">
@@ -75,17 +75,10 @@
           <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col">
-          <!-- Small modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal" id="button">Small modal</button>
-        </div>
-      </div>
     </form>
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal" tabindex="-1" role="dialog" id="modalWarning">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -109,4 +102,8 @@
   @parent
   <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/analise_form.js') }}"></script>
+  <script>
+    var modal = new bsn.Modal(document.getElementById('modalWarning'));
+    @if ($errors->any()) modal.show(); @endif
+  </script>
 @endsection

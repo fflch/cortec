@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-md-6">
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead style="cursor: pointer;">

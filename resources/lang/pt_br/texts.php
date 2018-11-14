@@ -15,6 +15,18 @@
         'texto1' => 'Selecione abaixo a ferramenta a ser aplicada:',
         'lista' => 'Lista de Ferramentas'
       ],
+      'lista_palavras' => [
+        'tabela' => [
+          'tokens' => 'Ocorrências (tokens)',
+          'types'  => 'Palavras únicas/formas (types)',
+          'total1' => 'Total de Ocorrências',
+          'total2' => 'Total de Palavras',
+          'header1' => 'que aparecem uma vez',
+          'header2' => 'que aparecem mais de uma vez',
+          'header3' => 'Índice Vocabular (token/type ratio)',
+          'ratio' => 'Token/Type',
+        ],
+      ],
       'categorias' => [
         'texto1' => 'Sobre os Corpora',
         'texto2' => 'Esta categoria de Corpora é constituída de :count corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:',

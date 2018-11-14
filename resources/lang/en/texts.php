@@ -14,6 +14,18 @@
         'texto1' => '',
         'lista' => 'List of Tools'
       ],
+      'lista_palavras' => [
+        'tabela' => [
+          'tokens' => 'Tokens',
+          'types'  => 'Types',
+          'total1' => 'Total',
+          'total2' => 'Total',
+          'header1' => 'which occur only once',
+          'header2' => 'which occur more than once',
+          'header3' => 'Type/token ratio',
+          'ratio' => 'Type/token ratio',
+        ],
+      ],
       'categorias' => [
         'texto1' => 'Corpora in',
         'texto2' => 'This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',

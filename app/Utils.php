@@ -48,7 +48,7 @@ class Utils
 
     //Unique
     $countMore = $f_tokens->reduce(function ($carry, $item) {
-        return ($item > 1) ? ($carry+1) : ($carry);
+        return ($item == 1) ? ($carry+1) : ($carry);
     });
 
     return $countMore;

@@ -6,19 +6,19 @@
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
           <tr>
-            <th scope="col" class="text-center" colspan="2">Ocorrências (tokens)</th>
+            <th scope="col" class="text-center" colspan="2">{!! __('texts.lista_palavras.tabela.tokens') !!}</th>
           </tr>
         </thead>
           <tr>
-            <td class="">Total de Ocorrências</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.total1') !!}</td>
             <td class="text-center">{{$analysis['count-tokens']}}</td>
           </tr>
           <tr>
-            <td class="">Total de Ocorrências que aparecem uma vez</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.tokens') !!} {!! __('texts.lista_palavras.tabela.header1') !!}</td>
             <td class="text-center">{{$analysis['count-once-tokens']}}</td>
           </tr>
           <tr>
-            <td class="">Total de Ocorrências que aparecem mais de uma vez</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.tokens') !!} {!! __('texts.lista_palavras.tabela.header2') !!}</td>
             <td class="text-center">{{$analysis['count-tokens'] - $analysis['count-once-tokens']}}</td>
           </tr>
       </table>
@@ -27,19 +27,19 @@
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
           <tr>
-            <th scope="col" class="text-center" colspan="2">Palavras únicas/formas (types)</th>
+            <th scope="col" class="text-center" colspan="2">{!! __('texts.lista_palavras.tabela.types') !!}</th>
           </tr>
         </thead>
           <tr>
-            <td class="">Total de Palavras</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.total2') !!}</td>
             <td class="text-center">{{$analysis['count-types']}}</td>
           </tr>
           <tr>
-            <td class="">Total de Palavras que aparecem uma vez</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.types') !!} {!! __('texts.lista_palavras.tabela.header1') !!}</td>
             <td class="text-center">{{$analysis['count-once-tokens']}}</td>
           </tr>
           <tr>
-            <td class="">Total de Palavras que aparecem mais de uma vez</td>
+            <td class="">{!! __('texts.lista_palavras.tabela.types') !!} {!! __('texts.lista_palavras.tabela.header2') !!}</td>
             <td class="text-center">{{$analysis['count-types'] - $analysis['count-once-tokens']}}</td>
           </tr>
       </table>
@@ -55,7 +55,7 @@
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead>
           <tr>
-            <th scope="col" class="text-center" colspan="2">Índice Vocabular (token/type ratio)</th>
+            <th scope="col" class="text-center" colspan="2">{!! __('texts.lista_palavras.tabela.header3') !!}</th>
           </tr>
         </thead>
           <tr>

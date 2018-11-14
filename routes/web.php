@@ -30,5 +30,5 @@ Route::delete('/corporas/{corpora}/corpus/{corpus}','CorporaController@destroyCo
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');
     Session::put('locale', $locale);
-    return back();
+    return redirect('/');
 });

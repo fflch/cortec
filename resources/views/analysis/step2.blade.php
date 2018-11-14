@@ -35,7 +35,7 @@
 
       <div class="row">
         <div class="col text-right mt-4 pr-0">
-          <button type="submit" class="btn btn-success text-right">Próximo Passo</button>
+          <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
     </form>

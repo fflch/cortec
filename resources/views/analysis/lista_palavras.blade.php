@@ -11,15 +11,15 @@
         </thead>
           <tr>
             <td class="">Total de Ocorrências</td>
-            <td class="text-center">{{$analysis['count-tokens']['count']}}</td>
+            <td class="text-center">{{$analysis['count-tokens']}}</td>
           </tr>
           <tr>
             <td class="">Total de Ocorrências que aparecem uma vez</td>
-            <td class="text-center">{{$analysis['count-tokens']['once']}}</td>
+            <td class="text-center">{{$analysis['count-once-tokens']}}</td>
           </tr>
           <tr>
             <td class="">Total de Ocorrências que aparecem mais de uma vez</td>
-            <td class="text-center">{{$analysis['count-tokens']['morethanonce']}}</td>
+            <td class="text-center">{{$analysis['count-tokens'] - $analysis['count-once-tokens']}}</td>
           </tr>
       </table>
     </div>
@@ -32,15 +32,15 @@
         </thead>
           <tr>
             <td class="">Total de Palavras</td>
-            <td class="text-center">{{$analysis['count-types']['count']}}</td>
+            <td class="text-center">{{$analysis['count-types']}}</td>
           </tr>
           <tr>
             <td class="">Total de Palavras que aparecem uma vez</td>
-            <td class="text-center">{{$analysis['count-types']['once']}}</td>
+            <td class="text-center">{{$analysis['count-once-tokens']}}</td>
           </tr>
           <tr>
             <td class="">Total de Palavras que aparecem mais de uma vez</td>
-            <td class="text-center">{{$analysis['count-types']['morethanonce']}}</td>
+            <td class="text-center">{{$analysis['count-types'] - $analysis['count-once-tokens']}}</td>
           </tr>
       </table>
     </div>

@@ -74,8 +74,11 @@ class AnalysisController extends Controller
   public function listaPalavras(Request $request)
   {
     $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
-    $all_corpus = $corpora_ids->reduce(function ($carry, $id) {
-        $corpora_corpus = Corpora::find($id)->getAllCorpus();
+    $language = $request->session()->get('form_analysis.language');
+
+    //gather all corpus in one string
+    $all_corpus = $corpora_ids->reduce(function ($carry, $id) use ($language) {
+        $corpora_corpus = Corpora::find($id)->getAllCorpus($language);
         return $carry . ' ' . $corpora_corpus;
     });
 

@@ -9,8 +9,16 @@ class Utils
   private $text = array();
   private $analysis = array(
     'frequency-tokens' => null,
-    'count-tokens'=> null,
-    'count-types'=> null,
+    'count-tokens'=> array(
+      'count' => null,
+      'once' => null,
+      'morethanonce' => null
+    ),
+    'count-types'=> array(
+      'count' => null,
+      'once' => null,
+      'morethanonce' => null
+    ),
     'ratio'=> null,
     'ngrams'=> null
     );
@@ -33,11 +41,27 @@ class Utils
   private function setAnalysis()
   {
     $this->analysis['frequency-tokens'] = freq_dist($this->tokens)->getKeyValuesByFrequency();
-    $this->analysis['count-tokens'] = freq_dist($this->tokens)->getTotalTokens();
-    $this->analysis['count-types'] = freq_dist($this->tokens)->getTotalUniqueTokens();
-    $ratio = $this->analysis['count-types'] / $this->analysis['count-tokens'];
+    $this->analysis['count-tokens']['count'] = freq_dist($this->tokens)->getTotalTokens();
+    $this->analysis['count-tokens']['once'] = $this->getCountedOnce();
+    $this->analysis['count-tokens']['morethanonce'] = $this->analysis['count-tokens']['count'] - $this->analysis['count-tokens']['once'];
+    $this->analysis['count-types']['count'] = freq_dist($this->tokens)->getTotalUniqueTokens();
+    $this->analysis['count-types']['once'] = $this->analysis['count-tokens']['once'];
+    $this->analysis['count-types']['morethanonce'] = $this->analysis['count-types']['count'] - $this->analysis['count-types']['once'];
+    $ratio = $this->analysis['count-types']['count'] / $this->analysis['count-tokens']['count'];
     $this->analysis['ratio'] = ($ratio > 0) ? round($ratio, 2) : null;
     //$this->analysis['ngrams'] = array_count_values(freq_dist($all_corpus)->getAllCorpusTokens());
+  }
+
+  public function getCountedOnce()
+  {
+    $f_tokens = collect($this->analysis['frequency-tokens']);
+
+    //Unique
+    $countMore = $f_tokens->reduce(function ($carry, $item) {
+        return ($item > 1) ? ($carry+1) : ($carry);
+    });
+
+    return $countMore;
   }
 
   /**

@@ -19,16 +19,25 @@
       </div>
       <div class="row bg-gray">
         <div class="col-lg-1-12">
-          <ul class="corpora">
-            <li class="corpora">
-              <input type="radio" name="tool" id="concordanciador" value="concordanciador" checked><label for="concordanciador">{!! __('texts.categorias.concordanciador') !!}</label>
-            </li>
-            <li>
-              <input type="radio" name="tool" id="lista_palavras" value="lista_palavras"><label for="lista_palavras">{!! __('texts.categorias.gerador1') !!}</label>
-            </li>
-            <li>
-              <input type="radio" name="tool" id="n_grams" value="n_grams"><label for="n_grams">{!! __('texts.categorias.gerador2') !!}</label>
-            </li>
+          <ul class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="concordanciador" value="concordanciador" checked>
+              <label class="form-check-label" for="concordanciador">
+                {!! __('texts.categorias.concordanciador') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="lista_palavras" value="lista_palavras">
+              <label class="form-check-label" for="lista_palavras">
+                {!! __('texts.categorias.gerador1') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="n_grams" value="n_grams">
+              <label class="form-check-label" for="n_grams">
+                {!! __('texts.categorias.gerador2') !!}
+              </label>
+            </div>
           </ul>
         </div>
       </div>

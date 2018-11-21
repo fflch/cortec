@@ -19,13 +19,19 @@
       </div>
       <div class="row bg-gray">
         <div class="col-lg-1-12">
-          <ul class="corpora">
-            <li class="corpora">
-              <input type="radio" name="language" id="radio_pt" value="pt" checked><label for="radio_pt">{!! __('texts.passo1.lingua1') !!}</label>
-            </li>
-            <li>
-              <input type="radio" name="language" id="radio_en" value="en"><label for="radio_en">{!! __('texts.passo1.lingua2') !!}</label>
-            </li>
+          <ul class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="language" id="radio_pt" value="pt" checked>
+              <label class="form-check-label" for="radio_pt">
+                {!! __('texts.passo1.lingua1') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="language" id="radio_en" value="en">
+              <label class="form-check-label" for="radio_en">
+                {!! __('texts.passo1.lingua2') !!}
+              </label>
+            </div>
           </ul>
         </div>
       </div>

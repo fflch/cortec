@@ -85,7 +85,30 @@ class AnalysisController extends Controller
     $utils = new Utils($all_corpus);
     $analysis = $utils->getAnalysis();
 
+    $request->session()->put('form_analysis.frequency_tokens', $analysis['frequency-tokens']);
+
     return view('analysis.lista_palavras', compact('analysis'));
+  }
+
+  public function downloadTable(Request $request)
+  {
+
+    $freq_array = $request->session()->get('form_analysis.frequency_tokens');
+    $csv_temp = fopen('php://temp', 'rw');
+
+    # write out the data
+    foreach ($freq_array as $key => $value) {
+      $line = array($key,$value);
+      fputcsv($csv_temp, $line);
+    }
+
+    rewind($csv_temp);
+    $csv = stream_get_contents($csv_temp);
+    fclose($csv_temp);
+
+    return response($csv)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-disposition', 'attachment; filename = frequencia.csv');
   }
 
 }

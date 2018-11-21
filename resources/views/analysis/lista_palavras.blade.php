@@ -66,6 +66,12 @@
     </div>
   </div>
 
+  <div class="row mb-2">
+    <div class="col-2">
+      <a href="/download" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
+    </div>
+  </div>
+
   <div class="row justify-content-center">
     <div class="col-md-12">
       <table class="table lista-palavras" id="tbl-lista-palavras">

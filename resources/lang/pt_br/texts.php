@@ -28,6 +28,7 @@
           'header2_1' => 'Posição',
           'header2_2' => 'Palavra',
           'header2_3' => 'Frequência',
+          'download' => 'Download da Tabela',
         ],
       ],
       'categorias' => [

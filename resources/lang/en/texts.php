@@ -27,6 +27,7 @@
           'header2_1' => 'Position',
           'header2_2' => 'Word',
           'header2_3' => 'Frequency',
+          'download' => 'Download Table',
         ],
       ],
       'categorias' => [

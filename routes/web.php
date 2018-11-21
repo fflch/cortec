@@ -32,3 +32,5 @@ Route::get('/locale/{locale}', function ($locale, Request $request) {
     Session::put('locale', $locale);
     return redirect('/');
 });
+
+Route::get('/download', 'AnalysisController@downloadTable' );

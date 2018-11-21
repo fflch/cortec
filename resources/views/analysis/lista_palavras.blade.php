@@ -59,7 +59,7 @@
           </tr>
         </thead>
           <tr>
-            <td class="text-center">Token/Type</td>
+            <td class="text-center">{!! __('texts.lista_palavras.tabela.ratio') !!}</td>
             <td class="text-center">{{$analysis['ratio']}}</td>
           </tr>
       </table>
@@ -71,9 +71,9 @@
       <table class="table lista-palavras" id="tbl-lista-palavras">
         <thead style="cursor: pointer;">
           <tr>
-            <th scope="col" data-sort class="text-center">Pos. <i class="fas fa-sort"></i></th>
-            <th scope="col" data-sort class="text-center">Palavra <i class="fas fa-sort"></i></th>
-            <th scope="col" data-sort class="text-center">Freq. <i class="fas fa-sort"></i></th>
+            <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_1') !!} <i class="fas fa-sort"></i></th>
+            <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_2') !!} <i class="fas fa-sort"></i></th>
+            <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_3') !!} <i class="fas fa-sort"></i></th>
           </tr>
         </thead>
           @php

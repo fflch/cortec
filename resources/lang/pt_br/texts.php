@@ -25,6 +25,9 @@
           'header2' => 'que aparecem mais de uma vez',
           'header3' => 'Índice Vocabular (token/type ratio)',
           'ratio' => 'Token/Type',
+          'header2_1' => 'Posição',
+          'header2_2' => 'Palavra',
+          'header2_3' => 'Frequência',
         ],
       ],
       'categorias' => [
@@ -35,5 +38,8 @@
         'concordanciador' => 'Concordanciador',
         'gerador1' => 'Gerador de Lista de Palavras',
         'gerador2' => 'Gerador de N-Gramas',
+        'ocorrencias' => 'Ocorrências/tokens',
+        'formas' => 'Formas/types',
+        'ratio' => 'T/T ratio',
       ]
   ];

@@ -54,23 +54,23 @@
                       <thead>
                         <tr>
                           <th scope="col">{{ $corpora->titulo }}</th>
-                          <th scope="col" class="text-center">Inglês</th>
-                          <th scope="col" class="text-center">Português</th>
+                          <th scope="col" class="text-center">{!! __('texts.passo1.lingua2') !!}</th>
+                          <th scope="col" class="text-center">{!! __('texts.passo1.lingua1') !!}</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <th scope="row">Ocorrências/tokens</th>
+                          <th scope="row">{!! __('texts.categorias.ocorrencias') !!}</th>
                           <td class="text-center">{{$corpora->getAnalysis('count-tokens', 'en')}}</td>
                           <td class="text-center">{{$corpora->getAnalysis('count-tokens')}}</td>
                         </tr>
                         <tr>
-                          <th scope="row">Formas/types</th>
+                          <th scope="row">{!! __('texts.categorias.formas') !!}</th>
                           <td class="text-center">{{$corpora->getAnalysis('count-types','en')}}</td>
                           <td class="text-center">{{$corpora->getAnalysis('count-types')}}</td>
                         </tr>
                         <tr>
-                          <th scope="row">T/T ratio</th>
+                          <th scope="row">{!! __('texts.categorias.ratio') !!}</th>
                           <td class="text-center">{{$corpora->getAnalysis('ratio', 'en')}}</td>
                           <td class="text-center">{{$corpora->getAnalysis('ratio')}}</td>
                         </tr>

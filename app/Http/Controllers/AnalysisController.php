@@ -67,7 +67,7 @@ class AnalysisController extends Controller
   }
 
   /**
-   * Process the analysis and display it.
+   * Process the analysis, store it in the session and display it.
    *
    * @return \Illuminate\Http\Response
    */
@@ -90,6 +90,11 @@ class AnalysisController extends Controller
     return view('analysis.lista_palavras', compact('analysis'));
   }
 
+  /**
+   * Process the analysis, store it in the session and display it.
+   *
+   * @return \Illuminate\Http\Response
+   */
   public function downloadTable(Request $request)
   {
 

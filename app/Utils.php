@@ -42,6 +42,12 @@ class Utils
     //$this->analysis['ngrams'] = array_count_values(freq_dist($all_corpus)->getAllCorpusTokens());
   }
 
+  /**
+   * Returns the count pf tokens which appers only once.
+   *
+   * @return int
+   */
+
   public function getCountedOnce()
   {
     $f_tokens = collect($this->analysis['frequency-tokens']);

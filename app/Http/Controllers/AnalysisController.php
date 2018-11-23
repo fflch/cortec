@@ -99,20 +99,24 @@ class AnalysisController extends Controller
     $count_more_once_tokens = $analysis['count-tokens'] - $analysis['count-once-tokens'];
     $count_more_once_types = $analysis['count-types'] - $analysis['count-once-tokens'];
 
+    # insere no CSV Header Tokens
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.tokens')));
     # insere no CSV Total de Ocorrências
-    fputcsv($csv_temp, array('Total de Ocorrências:', $analysis['count-tokens']));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.total1'), $analysis['count-tokens']));
     # insere no CSV Total de Ocorrências que aparecem uma vez
-    fputcsv($csv_temp, array('Total de Ocorrências que aparecem uma vez:', $analysis['count-once-tokens']));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.tokens') . ' '. __('texts.lista_palavras.tabela.header1'), $analysis['count-once-tokens']));
     # insere no CSV Total de Ocorrências que aparecem mais de uma vez
-    fputcsv($csv_temp, array('Total de Ocorrências que aparecem mais de uma vez:', $count_more_once_tokens));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.tokens') . ' '. __('texts.lista_palavras.tabela.header2'), $count_more_once_tokens));
+    # insere no CSV Header Palavras
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.types')));
     # insere no CSV Total de Palavras
-    fputcsv($csv_temp, array('Total de Palavras:', $analysis['count-types']));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.total2'), $analysis['count-types']));
     # insere no CSV Total de Palavras que aparecem uma vez
-    fputcsv($csv_temp, array('Total de Palavras que aparecem uma vez:', $analysis['count-once-tokens']));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.types') . ' ' . __('texts.lista_palavras.tabela.header1'), $analysis['count-once-tokens']));
     # insere no CSV Total de Palavras que aparecem mais de uma vez
-    fputcsv($csv_temp, array('Total de Palavras que aparecem mais de uma vez:', $count_more_once_types));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.types') . ' ' . __('texts.lista_palavras.tabela.header2'), $count_more_once_types));
     # insere no CSV Índice Vocabular (Token/Type)
-    fputcsv($csv_temp, array('Índice Vocabular (Token/Type):', $analysis['ratio']));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.ratio'), $analysis['ratio']));
 
     # insere tabela de frequência
     fputcsv($csv_temp, array('Tabela de Frequência'));
@@ -130,7 +134,7 @@ class AnalysisController extends Controller
 
     return response($csv)
             ->header('Content-Type', 'text/csv')
-            ->header('Content-disposition', 'attachment; filename = frequencia.csv');
+            ->header('Content-disposition', 'attachment; filename = '.__('texts.lista_palavras.tabela.header2_3').'.csv');
   }
 
 }

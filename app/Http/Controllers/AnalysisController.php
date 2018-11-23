@@ -85,7 +85,7 @@ class AnalysisController extends Controller
     $utils = new Utils($all_corpus);
     $analysis = $utils->getAnalysis();
 
-    $request->session()->put('form_analysis.frequency_tokens', $analysis['frequency-tokens']);
+    $request->session()->put('form_analysis.analysis', $analysis);
 
     return view('analysis.lista_palavras', compact('analysis'));
   }
@@ -93,12 +93,34 @@ class AnalysisController extends Controller
   public function downloadTable(Request $request)
   {
 
-    $freq_array = $request->session()->get('form_analysis.frequency_tokens');
+    $analysis = $request->session()->get('form_analysis.analysis');
     $csv_temp = fopen('php://temp', 'rw');
 
-    # write out the data
-    foreach ($freq_array as $key => $value) {
-      $line = array($key,$value);
+    $count_more_once_tokens = $analysis['count-tokens'] - $analysis['count-once-tokens'];
+    $count_more_once_types = $analysis['count-types'] - $analysis['count-once-tokens'];
+
+    # insere no CSV Total de Ocorrências
+    fputcsv($csv_temp, array('Total de Ocorrências:', $analysis['count-tokens']));
+    # insere no CSV Total de Ocorrências que aparecem uma vez
+    fputcsv($csv_temp, array('Total de Ocorrências que aparecem uma vez:', $analysis['count-once-tokens']));
+    # insere no CSV Total de Ocorrências que aparecem mais de uma vez
+    fputcsv($csv_temp, array('Total de Ocorrências que aparecem mais de uma vez:', $count_more_once_tokens));
+    # insere no CSV Total de Palavras
+    fputcsv($csv_temp, array('Total de Palavras:', $analysis['count-types']));
+    # insere no CSV Total de Palavras que aparecem uma vez
+    fputcsv($csv_temp, array('Total de Palavras que aparecem uma vez:', $analysis['count-once-tokens']));
+    # insere no CSV Total de Palavras que aparecem mais de uma vez
+    fputcsv($csv_temp, array('Total de Palavras que aparecem mais de uma vez:', $count_more_once_types));
+    # insere no CSV Índice Vocabular (Token/Type)
+    fputcsv($csv_temp, array('Índice Vocabular (Token/Type):', $analysis['ratio']));
+
+    # insere tabela de frequência
+    fputcsv($csv_temp, array('Tabela de Frequência'));
+    fputcsv($csv_temp, array('Posição', 'Palavra', 'Frequência'));
+    $i = 0;
+    foreach ($analysis['frequency-tokens'] as $key => $value) {
+      $i++;
+      $line = array($i,$key,$value);
       fputcsv($csv_temp, $line);
     }
 

@@ -10,9 +10,12 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-mix.js('resources/js/corpuses/analise_form.js', 'public/js/corpuses');
-mix.js('resources/js/corpuses/form.js', 'public/js/corpuses');
+ mix.js('resources/assets/js/corpuses/analise_lista_palavras.js', 'public/js/corpuses');
+mix.js('resources/assets/js/corpuses/analise_form.js', 'public/js/corpuses');
+mix.js('resources/assets/js/corpuses/form.js', 'public/js/corpuses');
 
+//Modules and vendor
+mix.js('resources/assets/js/app.js', 'public/js');
 
 // Vendor
 mix.js('vendor/uspdev/laravel-comet-theme/resources/assets/js/script.js', 'public/js')

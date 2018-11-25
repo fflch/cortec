@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\RegexTokenizer;
+use App\Utils;
 
 class Corpora extends Model
 {
 
   protected $all_corpus= array('pt' => '', 'en' => '');
   protected $analysis = array('pt' => array(), 'en' => array());
+  protected $idiomas = array();
 
   public function corpuses()
   {
@@ -22,7 +24,19 @@ class Corpora extends Model
   }
 
   /**
-   * Set and return the compilation of corpus of a corpora
+   * Set the corpus for the corpora by text.
+   *
+   * @param  String  $corpus
+   * @param  String  $lang
+   * @return String
+   */
+  public function setAllCorpus(String $corpus, String $lang)
+  {
+    $this->all_corpus[$lang] = $corpus;
+  }
+
+  /**
+   * Set and return the compilation of corpus of a corpora by the registered corpus.
    *
    * @param  String  $lang
    * @return String
@@ -49,7 +63,7 @@ class Corpora extends Model
   }
 
   /**
-   * Set and return a specific analysis of a corpora of a specific language
+   * Set and return a specific analysis of a corpora of a specific language.
    *
    * @param  String  $type
    * @param  String  $lang
@@ -58,44 +72,53 @@ class Corpora extends Model
   public function getAnalysis(String $type, String $lang = 'pt')
   {
     $all_corpus = $this->getAllCorpus($lang);
-    $tokens = (!empty($all_corpus)) ? (new RegexTokenizer('/([A-ZÁ-Ú]+[\S]?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/i'))->tokenize($all_corpus) : null;
-    if(empty($tokens)){
+
+    if(empty($all_corpus))
+    {
       return null;
     }
 
-    //normalize
-    $tokens = normalize_tokens($tokens);
-
-    switch ($type) {
-      case 'frequency-tokens':
-        $this->analysis[$lang]['tokens'] = (!isset($this->analysis[$lang]['tokens'])) ? freq_dist($tokens)->getKeyValuesByFrequency() : $this->analysis[$lang]['tokens'];
-        return $this->analysis[$lang]['tokens'];
-        break;
-
-      case 'count-tokens':
-        $this->analysis[$lang]['count-tokens'] = (!isset($this->analysis[$lang]['count-tokens'])) ? freq_dist($tokens)->getTotalTokens() : $this->analysis[$lang]['count-tokens'];
-        return $this->analysis[$lang]['count-tokens'];
-        break;
-
-      case 'count-types':
-        $this->analysis[$lang]['count-types'] = (!isset($this->analysis[$lang]['count-types'])) ? freq_dist($tokens)->getTotalUniqueTokens() : $this->analysis[$lang]['count-types'];
-        return $this->analysis[$lang]['count-types'];
-        break;
-
-      case 'ratio':
-        $this->analysis[$lang]['ratio'] = (!isset($this->analysis[$lang]['ratio'])) ? ($this->getAnalysis('count-types', $lang)/$this->getAnalysis('count-tokens', $lang)) : $this->analysis[$lang]['ratio'];
-        return $this->analysis[$lang]['ratio'];
-        break;
-
-      case 'ngrams':
-        $this->analysis[$lang]['ngrams'] = (!isset($this->analysis[$lang]['ngrams'])) ? array_count_values(freq_dist($all_corpus)->getAllCorpusTokens()) : $this->analysis[$lang]['ngrams'];
-        return $this->analysis[$lang]['ngrams'];
-        break;
-
-      default:
-        return null;
-        break;
+    if(empty($this->analysis[$lang]))
+    {
+      $analysis = new Utils($all_corpus);
+      $this->analysis[$lang] = $analysis->getAnalysis();
     }
+
+
+    return $this->analysis[$lang][$type];
+  }
+
+  /**
+   * Verifies if the specified corpora has corpus of a certain language.
+   *
+   * @param  String  $lang
+   * @return boolean
+   */
+  public function hasCorpusLang($lang = 'pt')
+  {
+    return $this->corpuses->contains(function ($corpus, $key) use ($lang){
+        return $corpus->idioma == $lang;
+    });
+  }
+
+  /**
+   * Returns an array of languages of a specified corpora by its corpus.
+   *
+   * @param  String  $lang
+   * @return array
+   */
+  public function getLanguages()
+  {
+    if(empty($this->idiomas))
+    {
+      $unique = $this->corpuses->unique(function ($corpus) {
+          return $corpus->idioma;
+      });
+
+      $this->idiomas = $unique->values()->pluck('idioma');
+    }
+
+    return $this->idiomas;
   }
 
 }

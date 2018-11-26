@@ -15,6 +15,18 @@
         'texto1' => 'Selecione abaixo a ferramenta a ser aplicada:',
         'lista' => 'Lista de Ferramentas'
       ],
+      'passo3' => [
+        'passo' => 'Passo 3/3: Aplicando a Ferramenta sobre o Corpus.',
+        'texto1' => 'Configure a ferramenta usando as opções abaixo:',
+        'ferramenta' => 'Concordanciador',
+        'campo1' => 'Expressão ou Palavra',
+        'campo1_1' => 'Igual a',
+        'campo1_2' => 'Começando com',
+        'campo1_3' => 'Terminando com',
+        'campo1_4' => 'Contendo',
+        'campo2' => 'Diferenciar maiúsculas e minúsculas',
+        'campo3' => 'Tamanho do contexto reduzido (caracteres):',
+      ],
       'lista_palavras' => [
         'tabela' => [
           'tokens' => 'Ocorrências (tokens)',

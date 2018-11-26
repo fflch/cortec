@@ -30,6 +30,18 @@
           'download' => 'Download Table',
         ],
       ],
+      'passo3' => [
+        'passo' => 'Step 3/3: Applying Tool to Corpus.',
+        'texto1' => 'Select the tool according to the options below:',
+        'ferramenta' => 'Concordancer',
+        'campo1' => 'Expression or word',
+        'campo1_1' => 'Same as',
+        'campo1_2' => 'Starting with',
+        'campo1_3' => 'Ending in',
+        'campo1_4' => 'Containing',
+        'campo2' => 'Case sensitive',
+        'campo3' => 'Size of reduced context (in characters):',
+      ],
       'categorias' => [
         'texto1' => 'Corpora in',
         'texto2' => 'This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Corpora;
 use App\Utils;
+use TextAnalysis\Corpus\TextCorpus;
 
 class AnalysisController extends Controller
 {
@@ -59,7 +60,7 @@ class AnalysisController extends Controller
 
     switch ($tool) {
       case 'concordanciador':
-        return $this->concordanciador($request);
+        return view('analysis.conc_form', compact('analysis'));
         break;
       case 'lista_palavras':
         return $this->listaPalavras($request);
@@ -77,7 +78,10 @@ class AnalysisController extends Controller
 
   public function concordanciador(Request $request)
   {
-
+    // $all_corpus = $request->session()->get('form_analysis.all_corpus');
+    // $corpus = new TextCorpus($all_corpus);
+    //
+    // dd($corpus->getTokens());
   }
 
   /**

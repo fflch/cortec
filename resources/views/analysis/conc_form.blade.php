@@ -9,7 +9,7 @@
       <p>{!! __('texts.passo3.texto1') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/2" method="post">
+    <form name="step2" action="/analysis/concordanciador" method="post">
       {{ csrf_field() }}
 
       <div class="row align-items-center row-header-lista px-1">
@@ -32,7 +32,7 @@
                 </select>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="termo">
               </div>
             </div>
             <div class="form-group row align-items-center">

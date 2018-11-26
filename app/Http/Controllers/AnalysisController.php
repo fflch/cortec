@@ -78,10 +78,14 @@ class AnalysisController extends Controller
 
   public function concordanciador(Request $request)
   {
-    // $all_corpus = $request->session()->get('form_analysis.all_corpus');
-    // $corpus = new TextCorpus($all_corpus);
-    //
-    // dd($corpus->getTokens());
+    $all_corpus = $request->session()->get('form_analysis.all_corpus');
+    $posicao =  $request->posicao;
+    $termo =  $request->termo;
+    $contexto =  $request->contexto;
+    $case =  $request->case;
+    $corpus = new TextCorpus($all_corpus);
+
+    dd($corpus->concordance($termo, $contexto));
   }
 
   /**

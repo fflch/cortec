@@ -48,9 +48,18 @@ class AnalysisController extends Controller
   {
     $tool = $request->tool;
 
+    //gather all corpus in one string and put in the session
+    $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
+    $language = $request->session()->get('form_analysis.language');
+    $all_corpus = $corpora_ids->reduce(function ($carry, $id) use ($language) {
+        $corpora_corpus = Corpora::find($id)->getAllCorpus($language);
+        return $carry . ' ' . $corpora_corpus;
+    });
+    $request->session()->put('form_analysis.all_corpus', $all_corpus);
+
     switch ($tool) {
       case 'concordanciador':
-        // code...
+        return $this->concordanciador($request);
         break;
       case 'lista_palavras':
         return $this->listaPalavras($request);
@@ -66,6 +75,11 @@ class AnalysisController extends Controller
     return redirect("/");
   }
 
+  public function concordanciador(Request $request)
+  {
+
+  }
+
   /**
    * Process the analysis, store it in the session and display it.
    *
@@ -73,14 +87,7 @@ class AnalysisController extends Controller
    */
   public function listaPalavras(Request $request)
   {
-    $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
-    $language = $request->session()->get('form_analysis.language');
-
-    //gather all corpus in one string
-    $all_corpus = $corpora_ids->reduce(function ($carry, $id) use ($language) {
-        $corpora_corpus = Corpora::find($id)->getAllCorpus($language);
-        return $carry . ' ' . $corpora_corpus;
-    });
+    $all_corpus = $request->session()->get('form_analysis.all_corpus');
 
     $utils = new Utils($all_corpus);
     $analysis = $utils->getAnalysis();

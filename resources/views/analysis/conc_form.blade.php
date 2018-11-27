@@ -25,10 +25,10 @@
               <label for="posicao" class="col-md-4 col-form-label">{!! __('texts.passo3.campo1') !!}</label>
               <div class="col-md-4">
                 <select class="form-control" id="posicao" name="posicao">
-                  <option>{!! __('texts.passo3.campo1_1') !!}</option>
-                  <option>{!! __('texts.passo3.campo1_2') !!}</option>
-                  <option>{!! __('texts.passo3.campo1_3') !!}</option>
-                  <option>{!! __('texts.passo3.campo1_4') !!}</option>
+                  <option value="igual">{!! __('texts.passo3.campo1_1') !!}</option>
+                  <option value="comeco">{!! __('texts.passo3.campo1_2') !!}</option>
+                  <option value="final">{!! __('texts.passo3.campo1_3') !!}</option>
+                  <option value="contem">{!! __('texts.passo3.campo1_4') !!}</option>
                 </select>
               </div>
               <div class="col-md-4">

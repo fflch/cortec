@@ -83,9 +83,30 @@ class AnalysisController extends Controller
     $termo =  $request->termo;
     $contexto =  $request->contexto;
     $case =  $request->case;
-    $corpus = new TextCorpus($all_corpus);
+    $pattern = '';
 
-    dd($corpus->concordance($termo, $contexto));
+    switch ($posicao) {
+      case 'igual':
+        $pattern = '/[^A-ZÁ-Ú\/\-_\']('.$termo.')[^A-ZÁ-Ú\/\-_\']/';
+        break;
+      case 'comeco':
+        $pattern = '/([^A-ZÁ-Ú\/\-_\']('.$termo.')[\/\-_\']?[A-ZÁ-Ú]*)|^('.$termo.')/';
+        break;
+      case 'final':
+        $pattern = '/[A-ZÁ-Ú]*[\/\-_\']?[A-ZÁ-Ú]*('.$termo.')[^A-ZÁ-Ú\/\-_\']/';
+        break;
+      case 'contem':
+        $pattern = '/('.$termo.')/';
+        break;
+
+      default:
+        // code...
+        break;
+    }
+
+    preg_match_all($pattern.'iu', $all_corpus, $matches, PREG_OFFSET_CAPTURE);
+
+    dd($matches);
   }
 
   /**

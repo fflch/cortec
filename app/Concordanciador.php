@@ -59,24 +59,23 @@ class Concordanciador
     preg_match_all($this->getPattern().'u'.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
     $ocorrencias = collect($matches[1]);
 
-    $ocorrencias->transform(function ($item, $key) {
-      $needlePosition = $item[1];
-      $left = max($needlePosition - $this->contextLength, 0);
-      if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
-        return substr($this->text, $left);
-      } else {
-        return $this->highlight($needlePosition, $left);
-      }
-    });
+    $ocorrencias->transform(\Closure::fromCallable([$this, 'highlight']));
 
     return $ocorrencias;
   }
 
-  private function highlight($needlePosition, $left)
+  private function highlight($item)
   {
+    $needlePosition = $item[1];
+    $left = max($needlePosition - $this->contextLength - 4, 0);
     $txt = substr_replace($this->text, '<b>', $needlePosition, 0);
-    $txt = substr_replace($txt, '</b>', $needlePosition+$this->needleLength+3, 0);
-    $txt = substr($txt, max(($left-4),0), $this->bufferLength+3);
+    $txt = substr_replace($txt, '</b>', $needlePosition + $this->needleLength + 3, 0);
+
+    if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
+      $txt = substr($txt, $left);
+    }else{
+      $txt = substr($txt, $left, $this->bufferLength+3);
+    }
     return $txt;
   }
 

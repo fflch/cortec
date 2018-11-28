@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Corpora;
 use App\Utils;
+use App\Concordanciador;
 use TextAnalysis\Corpus\TextCorpus;
 
 class AnalysisController extends Controller
@@ -82,31 +83,11 @@ class AnalysisController extends Controller
     $posicao =  $request->posicao;
     $termo =  $request->termo;
     $contexto =  $request->contexto;
-    $case =  $request->case;
-    $pattern = '';
+    $case =  boolval($request->case);
+    $concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
+    $ocorrencias = $concordanciador->concordance();
 
-    switch ($posicao) {
-      case 'igual':
-        $pattern = '/[^A-ZÁ-Ú\/\-_\']('.$termo.')[^A-ZÁ-Ú\/\-_\']/';
-        break;
-      case 'comeco':
-        $pattern = '/([^A-ZÁ-Ú\/\-_\']('.$termo.')[\/\-_\']?[A-ZÁ-Ú]*)|^('.$termo.')/';
-        break;
-      case 'final':
-        $pattern = '/[A-ZÁ-Ú]*[\/\-_\']?[A-ZÁ-Ú]*('.$termo.')[^A-ZÁ-Ú\/\-_\']/';
-        break;
-      case 'contem':
-        $pattern = '/('.$termo.')/';
-        break;
-
-      default:
-        // code...
-        break;
-    }
-
-    preg_match_all($pattern.'iu', $all_corpus, $matches, PREG_OFFSET_CAPTURE);
-
-    dd($matches);
+    return view('analysis.concord', compact('ocorrencias'));
   }
 
   /**

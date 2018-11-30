@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row align-items-center ">
       <div class="col">
-        <p>Foram encontradas {{$ocorrencias->count()}} ocorrências!! Fazer <a href="#">DOWNLOAD</a> do resultado.</p>
+        <p>Foram encontradas {{$ocorrencias->count()}} ocorrências!! Fazer <a href="/download/concord">DOWNLOAD</a> do resultado.</p>
         <p>Clique na palavra de busca para obter um contexto expandido com 150 caracteres</p>
       </div>
     </div>

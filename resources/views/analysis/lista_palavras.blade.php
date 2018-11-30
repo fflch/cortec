@@ -68,7 +68,7 @@
 
   <div class="row mb-2">
     <div class="col-2">
-      <a href="/download" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
+      <a href="/download/frequencia" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
     </div>
   </div>
 

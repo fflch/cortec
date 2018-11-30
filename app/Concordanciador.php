@@ -66,8 +66,9 @@ class Concordanciador
   {
     $needlePosition = $item[1];
     $left = max($needlePosition - $this->contextLength, 0);
+
+    //insere bold para o termo
     $txt = substr_replace($this->text, '<b>', $needlePosition, 0);
-    //dd(implode(array($txt[2213],$txt[2214])));
     $txt = substr_replace($txt, '</b>', $needlePosition + $this->needleLength + 3, 0);
 
     //Verifica se o primeiro caractere é válido (encode)

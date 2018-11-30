@@ -85,7 +85,9 @@ class AnalysisController extends Controller
     $contexto =  $request->contexto;
     $case =  boolval($request->case);
     $concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
+
     $ocorrencias = $concordanciador->concordance();
+    $request->session()->put('form_analysis.concord', $ocorrencias);
 
     return view('analysis.concord', compact('ocorrencias'));
   }
@@ -112,7 +114,7 @@ class AnalysisController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function downloadTable(Request $request)
+  public function freqTable(Request $request)
   {
 
     $analysis = $request->session()->get('form_analysis.analysis');
@@ -157,6 +159,29 @@ class AnalysisController extends Controller
     return response($csv)
             ->header('Content-Type', 'text/csv')
             ->header('Content-disposition', 'attachment; filename = '.__('texts.lista_palavras.tabela.header2_3').'.csv');
+  }
+
+  public function concordTable(Request $request)
+  {
+    $findings = $request->session()->get('form_analysis.concord');
+    $csv_temp = fopen('php://temp', 'rw');
+
+    # insere tabela de ocorrências encontradas
+    fputcsv($csv_temp, array('#', 'Ocorrência'));
+    $i = 0;
+    foreach ($findings as $finding) {
+      $i++;
+      $line = array($i,strip_tags($finding));
+      fputcsv($csv_temp, $line);
+    }
+
+    rewind($csv_temp);
+    $csv = stream_get_contents($csv_temp);
+    fclose($csv_temp);
+
+    return response($csv)
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-disposition', 'attachment; filename = teste.csv');
   }
 
 }

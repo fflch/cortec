@@ -22,7 +22,7 @@ class Concordanciador
     $this->needleLength = strlen($this->needle);
     $this->contextLength = $contextLength;
     $this->case = $case;
-    $this->bufferLength = $this->needleLength + 2 * $this->contextLength;
+    $this->setBufferLength();
   }
 
   /**
@@ -59,6 +59,7 @@ class Concordanciador
     $ocorrencias = collect($matches[1]);
 
     $ocorrencias->transform(\Closure::fromCallable([$this, 'highlight']));
+    // ($this->contextLength == 160) ? dd($ocorrencias) : null;
     return $ocorrencias;
   }
 
@@ -80,11 +81,23 @@ class Concordanciador
     }else{
       //Verifica se o último caractere é válido (encode)
       $last_char = $txt[$left+$this->bufferLength+3];
-      $right_count = (mb_check_encoding($last_char)) ? $this->bufferLength+4 : $this->bufferLength+6;
+      // ($this->contextLength == 160) ? var_dump($last_char) : null;
+      $right_count = (mb_check_encoding($last_char)) ? $this->bufferLength+4 : $this->bufferLength+5;
 
       $txt = substr($txt, $left, $right_count);
     }
     return $txt;
+  }
+
+  public function setContextLength(int $size)
+  {
+    $this->contextLength = $size;
+    $this->setBufferLength();
+  }
+
+  private function setBufferLength()
+  {
+    $this->bufferLength = $this->needleLength + 2 * $this->contextLength;
   }
 
 }

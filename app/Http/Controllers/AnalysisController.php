@@ -87,9 +87,13 @@ class AnalysisController extends Controller
     $concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
 
     $ocorrencias = $concordanciador->concordance();
+
+    //expandido
+    $concordanciador->setContextLength(160);
+    $ocorrencias_exp = $concordanciador->concordance();
     $request->session()->put('form_analysis.concord', $ocorrencias);
 
-    return view('analysis.concord', compact('ocorrencias'));
+    return view('analysis.concord', compact('ocorrencias', 'ocorrencias_exp'));
   }
 
   /**

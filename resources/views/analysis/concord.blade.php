@@ -30,7 +30,11 @@
             <tr class="collapse" id="occrExp{{$i}}">
               <td colspan="2">
                 <div class="card card-body">
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  @php
+                    $ocorrencias_exp[$i-1] = str_replace ( '{{' , '<b>' , $ocorrencias_exp[$i-1]);
+                    $ocorrencias_exp[$i-1] = str_replace ( '}}' ,  '</b>' , $ocorrencias_exp[$i-1]);
+                  @endphp
+                    {!! $ocorrencias_exp[$i-1] !!}
                   </div>
               </td>
             </tr>

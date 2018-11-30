@@ -68,8 +68,8 @@ class Concordanciador
     $left = max($needlePosition - $this->contextLength, 0);
 
     //insere bold para o termo
-    $txt = substr_replace($this->text, '<b>', $needlePosition, 0);
-    $txt = substr_replace($txt, '</b>', $needlePosition + $this->needleLength + 3, 0);
+    $txt = substr_replace($this->text, '{{', $needlePosition, 0);
+    $txt = substr_replace($txt, '}}', $needlePosition + $this->needleLength + 2, 0);
 
     //Verifica se o primeiro caractere é válido (encode)
     $first_char = $this->text[$left];
@@ -79,8 +79,8 @@ class Concordanciador
       $txt = substr($txt, $left);
     }else{
       //Verifica se o último caractere é válido (encode)
-      $last_char = $txt[$left+$this->bufferLength+6];
-      $right_count = (mb_check_encoding($last_char)) ? $this->bufferLength+7 : $this->bufferLength+8;
+      $last_char = $txt[$left+$this->bufferLength+3];
+      $right_count = (mb_check_encoding($last_char)) ? $this->bufferLength+4 : $this->bufferLength+6;
 
       $txt = substr($txt, $left, $right_count);
     }

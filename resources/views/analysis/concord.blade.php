@@ -19,10 +19,24 @@
             $i = 1;
           @endphp
           @foreach ($ocorrencias as $ocorrencia)
-            <tr>
-              <td class="text-center">{{$i++}}</td>
+            <tr class="ocrr">
+              <td class="text-center">{{$i}}</td>
+              @php
+                $ocorrencia = str_replace ( '{{' , '<a data-toggle="collapse" href="#occrExp'.$i.'" role="button" aria-expanded="false" aria-controls="occrExp1">' , $ocorrencia);
+                $ocorrencia = str_replace ( '}}' ,  '</a>' , $ocorrencia);
+              @endphp
               <td class="text-center">{!! $ocorrencia !!}</td>
             </tr>
+            <tr class="collapse" id="occrExp{{$i}}">
+              <td colspan="2">
+                <div class="card card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                  </div>
+              </td>
+            </tr>
+            @php
+              $i++;
+            @endphp
           @endforeach
         </table>
       </div>
@@ -34,5 +48,6 @@
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/analise_lista_palavras.js') }}"></script>
 @endsection

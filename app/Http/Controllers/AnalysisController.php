@@ -38,7 +38,7 @@ class AnalysisController extends Controller
       return redirect("/");
     }
 
-    return view('analysis.toolSelection', compact('language'));
+    return view('analysis.tool_selection', compact('language'));
   }
 
   /**
@@ -46,7 +46,7 @@ class AnalysisController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function step3(Request $request)
+  public function process(Request $request)
   {
     $tool = $request->tool;
 

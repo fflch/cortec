@@ -4,8 +4,16 @@
   <div class="container">
     <div class="row align-items-center ">
       <div class="col">
-        <p>Foram encontradas {{$ocorrencias->count()}} ocorrências!! Fazer <a href="/download/concord">DOWNLOAD</a> do resultado.</p>
+        <p>Foram encontradas {{$ocorrencias->count()}} ocorrências!!</p>
         <p>Clique na palavra de busca para obter um contexto expandido com 150 caracteres</p>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <a href="/download/concord" target="_blank" class="btn btn-success">DOWNLOAD</a> com contexto reduzido
+      </div>
+      <div class="col">
+        <a href="/download/concord/?exp=1" target="_blank" class="btn btn-success">DOWNLOAD</a> com contexto expandido
       </div>
     </div>
     <div class="row align-items-center mt-3">
@@ -18,7 +26,7 @@
           @php
             $i = 1;
           @endphp
-          @foreach ($ocorrencias as $ocorrencia)
+          @foreach ($ocorrencias->combine($ocorrencias_exp) as $ocorrencia => $ocorrencia_exp)
             <tr class="ocrr">
               <td class="text-center">{{$i}}</td>
               @php
@@ -31,10 +39,10 @@
               <td colspan="2">
                 <div class="card card-body">
                   @php
-                    $ocorrencias_exp[$i-1] = str_replace ( '{{' , '<b>' , $ocorrencias_exp[$i-1]);
-                    $ocorrencias_exp[$i-1] = str_replace ( '}}' ,  '</b>' , $ocorrencias_exp[$i-1]);
+                    $ocorrencia_exp = str_replace ( '{{' , '<b>' , $ocorrencia_exp);
+                    $ocorrencia_exp = str_replace ( '}}' ,  '</b>' , $ocorrencia_exp);
                   @endphp
-                    {!! $ocorrencias_exp[$i-1] !!}
+                    {!! $ocorrencia_exp !!}
                   </div>
               </td>
             </tr>

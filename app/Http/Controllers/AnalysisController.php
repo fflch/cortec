@@ -95,12 +95,14 @@ class AnalysisController extends Controller
     $case =  boolval($request->case);
     $concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
 
+    //reduzido
     $ocorrencias = $concordanciador->concordance();
 
     //expandido
-    $concordanciador->setContextLength(160);
+    $concordanciador->setContextLength(150);
     $ocorrencias_exp = $concordanciador->concordance();
     $request->session()->put('form_analysis.concord', $ocorrencias);
+    $request->session()->put('form_analysis.concord_exp', $ocorrencias_exp);
 
     return view('analysis.concord', compact('ocorrencias', 'ocorrencias_exp'));
   }
@@ -176,7 +178,8 @@ class AnalysisController extends Controller
 
   public function concordTable(Request $request)
   {
-    $findings = $request->session()->get('form_analysis.concord');
+    $exp = $request->exp;
+    $findings = (!$exp) ? $request->session()->get('form_analysis.concord') : $request->session()->get('form_analysis.concord_exp');
     $csv_temp = fopen('php://temp', 'rw');
 
     # insere tabela de ocorrências encontradas

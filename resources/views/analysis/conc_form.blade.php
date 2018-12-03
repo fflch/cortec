@@ -11,6 +11,7 @@
 
     <form name="step2" action="/analysis/concordanciador" method="post">
       {{ csrf_field() }}
+      <input type="hidden" name="tool" value="concordanciador">
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">

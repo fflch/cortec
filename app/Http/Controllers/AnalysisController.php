@@ -15,7 +15,7 @@ class AnalysisController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function step2(Request $request)
+  public function toolSelection(Request $request)
   {
     $validatedData = $request->validate([
         'language' => 'required',
@@ -38,7 +38,7 @@ class AnalysisController extends Controller
       return redirect("/");
     }
 
-    return view('analysis.step2', compact('language'));
+    return view('analysis.toolSelection', compact('language'));
   }
 
   /**
@@ -79,6 +79,10 @@ class AnalysisController extends Controller
 
   public function concordanciador(Request $request)
   {
+    $validatedData = $request->validate([
+        'termo' => 'required',
+    ]);
+
     $all_corpus = $request->session()->get('form_analysis.all_corpus');
     $posicao =  $request->posicao;
     $termo =  $request->termo;

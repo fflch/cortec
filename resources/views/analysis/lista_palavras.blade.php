@@ -74,7 +74,7 @@
 
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <table class="table lista-palavras" id="tbl-lista-palavras">
+      <table class="table lista-palavras tbl-striped" id="tbl-lista-palavras">
         <thead style="cursor: pointer;">
           <tr>
             <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_1') !!} <i class="fas fa-sort"></i></th>

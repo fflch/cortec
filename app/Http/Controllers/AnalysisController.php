@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 use App\Corpora;
 use App\Utils;
@@ -49,7 +50,6 @@ class AnalysisController extends Controller
   public function process(Request $request)
   {
     $tool = $request->tool;
-
     //gather all corpus in one string and put in the session
     $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
     $language = $request->session()->get('form_analysis.language');
@@ -58,7 +58,6 @@ class AnalysisController extends Controller
         return $carry . ' ' . $corpora_corpus;
     });
     $request->session()->put('form_analysis.all_corpus', $all_corpus);
-
     switch ($tool) {
       case 'concordanciador':
         return view('analysis.conc_form', compact('analysis'));
@@ -70,7 +69,7 @@ class AnalysisController extends Controller
         // code...
         break;
       default:
-        return redirect("/");
+        return view('analysis.conc_form', compact('analysis'));
         break;
     }
 
@@ -79,9 +78,15 @@ class AnalysisController extends Controller
 
   public function concordanciador(Request $request)
   {
-    $validatedData = $request->validate([
+    $validator = Validator::make($request->all(), [
         'termo' => 'required',
     ]);
+
+    if ($validator->fails()) {
+      return redirect('/analysis/process')
+        ->withErrors($validator)
+        ->withInput();
+    }
 
     $all_corpus = $request->session()->get('form_analysis.all_corpus');
     $posicao =  $request->posicao;

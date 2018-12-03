@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', 'IndexController@step1' );
 Route::post('/analysis/tool', 'AnalysisController@toolSelection' );
-Route::post('/analysis/process', 'AnalysisController@process' );
+Route::match(['get', 'post'], '/analysis/process', 'AnalysisController@process' );
 Route::post('/analysis/concordanciador', 'AnalysisController@concordanciador' );
 
 Route::get('/corporas/','CorporaController@index');

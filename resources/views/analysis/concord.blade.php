@@ -35,15 +35,17 @@
               @endphp
               <td class="text-center">{!! $ocorrencia !!}</td>
             </tr>
-            <tr class="collapse" id="occrExp{{$i}}">
+            <tr>
               <td colspan="2">
-                <div class="card card-body">
-                  @php
-                    $ocorrencia_exp = str_replace ( '{{' , '<b>' , $ocorrencia_exp);
-                    $ocorrencia_exp = str_replace ( '}}' ,  '</b>' , $ocorrencia_exp);
-                  @endphp
+                <div class="collapse" id="occrExp{{$i}}">
+                  <div class="card card-body">
+                    @php
+                      $ocorrencia_exp = str_replace ( '{{' , '<b>' , $ocorrencia_exp);
+                      $ocorrencia_exp = str_replace ( '}}' ,  '</b>' , $ocorrencia_exp);
+                    @endphp
                     {!! $ocorrencia_exp !!}
                   </div>
+                </div>
               </td>
             </tr>
             @php

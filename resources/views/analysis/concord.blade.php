@@ -16,27 +16,31 @@
         <a href="/download/concord/?exp=1" target="_blank" class="btn btn-success">DOWNLOAD</a> com contexto expandido
       </div>
     </div>
-    <div class="row align-items-center mt-3">
+  </div>
+  <div class="container mt-3">
+    <div class="row align-items-center">
       <div class="col">
-        <table class="table lista-palavras" id="tbl-lista-palavras">
+        <table class="table lista-palavras tbl-striped mx-3" id="tbl-lista-palavras">
           <thead>
-            <th class="text-center">#</th>
-            <th class="text-center">Ocorrência</th>
+            <tr class="row">
+              <th class="text-center col-2">#</th>
+              <th class="text-center col-10">Ocorrência</th>
+            </tr>
           </thead>
           @php
             $i = 1;
           @endphp
           @foreach ($ocorrencias->combine($ocorrencias_exp) as $ocorrencia => $ocorrencia_exp)
-            <tr class="ocrr">
-              <td class="text-center">{{$i}}</td>
+            <tr class="row align-middle">
+              <td class="text-center align-self-center col-2" style="border-top: none;">
+                {{$i}}
+              </td>
               @php
                 $ocorrencia = str_replace ( '{{' , '<a data-toggle="collapse" href="#occrExp'.$i.'" role="button" aria-expanded="false" aria-controls="occrExp1">' , $ocorrencia);
                 $ocorrencia = str_replace ( '}}' ,  '</a>' , $ocorrencia);
               @endphp
-              <td class="text-center">{!! $ocorrencia !!}</td>
-            </tr>
-            <tr>
-              <td colspan="2">
+              <td class="text-center col-10">
+                {!! $ocorrencia !!}
                 <div class="collapse" id="occrExp{{$i}}">
                   <div class="card card-body">
                     @php

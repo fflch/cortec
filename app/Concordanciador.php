@@ -15,10 +15,10 @@ class Concordanciador
 
   public function __construct(String $text, String $position, String $needle, int $contextLength, bool $case)
   {
-    $this->text = $text . ' ';
+    $this->text = utf8_decode($text) . ' ';
     $this->textLength = strlen($this->text);
     $this->position = $position;
-    $this->needle = $needle;
+    $this->needle = utf8_decode($needle);
     $this->needleLength = strlen($this->needle);
     $this->contextLength = $contextLength;
     $this->case = $case;
@@ -55,7 +55,7 @@ class Concordanciador
   public function concordance()
   {
     $case = ($this->case) ? '' : 'i';
-    preg_match_all($this->getPattern().'u'.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
+    preg_match_all($this->getPattern().''.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
     $ocorrencias = collect($matches[1]);
 
     $ocorrencias->transform(\Closure::fromCallable([$this, 'highlight']));
@@ -69,24 +69,17 @@ class Concordanciador
     $left = max($needlePosition - $this->contextLength, 0);
 
     //insere bold para o termo
-    $txt = substr_replace($this->text, '{{', $needlePosition, 0);
+    $txt = $this->text;
+    $txt = substr_replace($txt, '{{', $needlePosition, 0);
     $txt = substr_replace($txt, '}}', $needlePosition + $this->needleLength + 2, 0);
-
-    //Verifica se o primeiro caractere é válido (encode)
-    $first_char = $this->text[$left];
-    $left = (mb_check_encoding($first_char)) ? $left : $left-1;
 
     if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
       $txt = substr($txt, $left);
     }else{
-      //Verifica se o último caractere é válido (encode)
-      $last_char = $txt[$left+$this->bufferLength+3];
-      // ($this->contextLength == 160) ? var_dump($last_char) : null;
-      $right_count = (mb_check_encoding($last_char)) ? $this->bufferLength+4 : $this->bufferLength+5;
-
-      $txt = substr($txt, $left, $right_count);
+      $txt = substr($txt, $left, $this->bufferLength+4);
     }
-    return $txt;
+
+    return utf8_encode($txt);
   }
 
   public function setContextLength(int $size)

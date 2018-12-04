@@ -158,8 +158,8 @@ class AnalysisController extends Controller
     fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.ratio'), $analysis['ratio']));
 
     # insere tabela de frequência
-    fputcsv($csv_temp, array('Tabela de Frequência'));
-    fputcsv($csv_temp, array('Posição', 'Palavra', 'Frequência'));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.header3')));
+    fputcsv($csv_temp, array(__('texts.lista_palavras.tabela.header2_1'), __('texts.lista_palavras.tabela.header2_2'), __('texts.lista_palavras.tabela.header2_3')));
     $i = 0;
     foreach ($analysis['frequency-tokens'] as $key => $value) {
       $i++;
@@ -183,7 +183,7 @@ class AnalysisController extends Controller
     $csv_temp = fopen('php://temp', 'rw');
 
     # insere tabela de ocorrências encontradas
-    fputcsv($csv_temp, array('#', 'Ocorrência'));
+    fputcsv($csv_temp, array('#', __('texts.concord.thead1')));
     $i = 0;
     foreach ($findings as $finding) {
       $i++;
@@ -197,7 +197,7 @@ class AnalysisController extends Controller
 
     return response($csv)
             ->header('Content-Type', 'text/csv')
-            ->header('Content-disposition', 'attachment; filename = teste.csv');
+            ->header('Content-disposition', 'attachment; filename = '.__('texts.concord.ferramenta').'.csv');
   }
 
 }

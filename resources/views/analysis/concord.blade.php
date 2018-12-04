@@ -4,16 +4,16 @@
   <div class="container">
     <div class="row align-items-center ">
       <div class="col">
-        <p>Foram encontradas {{$ocorrencias->count()}} ocorrências!!</p>
-        <p>Clique na palavra de busca para obter um contexto expandido com 150 caracteres</p>
+        <p>{!! __('texts.concord.texto1', ['count' => $ocorrencias->count()]) !!}</p>
+        <p>{!! __('texts.concord.texto2') !!}</p>
       </div>
     </div>
     <div class="row mt-2">
       <div class="col">
-        <a href="/download/concord" target="_blank" class="btn btn-success">DOWNLOAD</a> com contexto reduzido
+        <a href="/download/concord" target="_blank" class="btn btn-success">DOWNLOAD</a> {!! __('texts.concord.download1') !!}
       </div>
       <div class="col">
-        <a href="/download/concord/?exp=1" target="_blank" class="btn btn-success">DOWNLOAD</a> com contexto expandido
+        <a href="/download/concord/?exp=1" target="_blank" class="btn btn-success">DOWNLOAD</a> {!! __('texts.concord.download2') !!}
       </div>
     </div>
   </div>
@@ -24,7 +24,7 @@
           <thead>
             <tr class="row">
               <th class="text-center col-2">#</th>
-              <th class="text-center col-10">Ocorrência</th>
+              <th class="text-center col-10">{!! __('texts.concord.thead1') !!}</th>
             </tr>
           </thead>
           @php

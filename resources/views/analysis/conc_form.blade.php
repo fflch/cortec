@@ -3,10 +3,10 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <h2>{!! __('texts.passo3.passo') !!}</h2>
+      <h2>{!! __('texts.passo3.concord.passo') !!}</h2>
     </div>
     <div class="row mt-10">
-      <p>{!! __('texts.passo3.texto1') !!}</p>
+      <p>{!! __('texts.passo3.concord.texto1') !!}</p>
     </div>
 
     <form name="step2" action="/analysis/concordanciador" method="post">
@@ -15,7 +15,7 @@
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
-          <h3 class="h3 h3-lista">{!! __('texts.passo3.ferramenta') !!}</h3>
+          <h3 class="h3 h3-lista">{!! __('texts.passo3.concord.ferramenta') !!}</h3>
         </div>
       </div>
 
@@ -23,13 +23,13 @@
         <div class="col">
           <div class="container">
             <div class="form-group row align-items-center">
-              <label for="posicao" class="col-md-4 col-form-label">{!! __('texts.passo3.campo1') !!}</label>
+              <label for="posicao" class="col-md-4 col-form-label">{!! __('texts.passo3.concord.campo1') !!}</label>
               <div class="col-md-4">
                 <select class="form-control" id="posicao" name="posicao">
-                  <option value="igual">{!! __('texts.passo3.campo1_1') !!}</option>
-                  <option value="comeco">{!! __('texts.passo3.campo1_2') !!}</option>
-                  <option value="final">{!! __('texts.passo3.campo1_3') !!}</option>
-                  <option value="contem">{!! __('texts.passo3.campo1_4') !!}</option>
+                  <option value="igual">{!! __('texts.passo3.concord.campo1_1') !!}</option>
+                  <option value="comeco">{!! __('texts.passo3.concord.campo1_2') !!}</option>
+                  <option value="final">{!! __('texts.passo3.concord.campo1_3') !!}</option>
+                  <option value="contem">{!! __('texts.passo3.concord.campo1_4') !!}</option>
                 </select>
               </div>
               <div class="col-md-4">
@@ -37,13 +37,13 @@
               </div>
             </div>
             <div class="form-group row align-items-center">
-              <label for="case" class="col-md-4 col-form-label">{!! __('texts.passo3.campo2') !!}</label>
+              <label for="case" class="col-md-4 col-form-label">{!! __('texts.passo3.concord.campo2') !!}</label>
               <div class="col-md-8">
                 <input class="" type="checkbox" name="case" id="case">
               </div>
             </div>
             <div class="form-group row align-items-center">
-              <label for="contexto" class="col-md-4 col-form-label">{!! __('texts.passo3.campo3') !!}</label>
+              <label for="contexto" class="col-md-4 col-form-label">{!! __('texts.passo3.concord.campo3') !!}</label>
               <div class="col-3 col-sm-3 col-md-2">
                 <select class="form-control" id="contexto" name="contexto">
                   <option>20</option>

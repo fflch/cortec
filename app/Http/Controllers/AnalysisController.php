@@ -49,7 +49,8 @@ class AnalysisController extends Controller
    */
   public function process(Request $request)
   {
-    $tool = $request->tool;
+    $tool = isset($request->tool) ? $request->tool : $request->old('tool');
+
     //gather all corpus in one string and put in the session
     $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
     $language = $request->session()->get('form_analysis.language');
@@ -69,7 +70,7 @@ class AnalysisController extends Controller
         // code...
         break;
       default:
-        return view('analysis.conc_form', compact('analysis'));
+        redirect("/");
         break;
     }
 

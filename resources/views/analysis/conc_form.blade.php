@@ -33,7 +33,7 @@
                 </select>
               </div>
               <div class="col-md-4">
-                <input type="text" class="form-control" name="termo">
+                <input type="text" class="form-control" name="termo" required>
               </div>
             </div>
             <div class="form-group row align-items-center">
@@ -64,9 +64,33 @@
         </div>
       </div>
     </form>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modalWarning">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{!! __('messages.validacao.modal_concord.header') !!}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>{!! __('messages.validacao.modal_concord.body') !!}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 @endsection
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+  <script>
+    var modal = new bsn.Modal(document.getElementById('modalWarning'));
+    @if ($errors->any()) modal.show(); @endif
+  </script>
 @endsection

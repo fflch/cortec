@@ -43,11 +43,13 @@
                 {!! $ocorrencia !!}
                 <div class="collapse" id="occrExp{{$i}}">
                   <div class="card card-body">
-                    @php
-                      $ocorrencia_exp = str_replace ( '{{' , '<b>' , $ocorrencia_exp);
-                      $ocorrencia_exp = str_replace ( '}}' ,  '</b>' , $ocorrencia_exp);
-                    @endphp
-                    {!! $ocorrencia_exp !!}
+                    <div class="card-text">
+                      @php
+                      $ocorrencia_exp = str_replace ( '{{' , '<strong>' , $ocorrencia_exp);
+                      $ocorrencia_exp = str_replace ( '}}' ,  '</strong>' , $ocorrencia_exp);
+                      @endphp
+                      {!! $ocorrencia_exp !!}
+                    </div>
                   </div>
                 </div>
               </td>

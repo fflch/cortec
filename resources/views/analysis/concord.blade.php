@@ -20,7 +20,7 @@
   <div class="container mt-3">
     <div class="row align-items-center">
       <div class="col">
-        <table class="table lista-palavras tbl-striped mx-3" id="tbl-lista-palavras">
+        <table class="table lista-palavras tbl-striped mx-3 table-borderless" id="tbl-lista-palavras">
           <thead>
             <tr class="row">
               <th class="text-center col-2">#</th>
@@ -32,7 +32,7 @@
           @endphp
           @foreach ($ocorrencias->combine($ocorrencias_exp) as $ocorrencia => $ocorrencia_exp)
             <tr class="row align-middle">
-              <td class="text-center align-self-center col-2" style="border-top: none;">
+              <td class="text-center align-self-center col-2" >
                 {{$i}}
               </td>
               @php

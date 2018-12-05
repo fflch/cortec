@@ -15,7 +15,7 @@ class Concordanciador
 
   public function __construct(String $text, String $position, String $needle, int $contextLength, bool $case)
   {
-    $this->text = utf8_decode($text) . ' ';
+    $this->text = $this->processText($text) . ' ';
     $this->textLength = strlen($this->text);
     $this->position = $position;
     $this->needle = utf8_decode($needle);
@@ -50,6 +50,14 @@ class Concordanciador
         return '/('.$this->needle.')/';
         break;
     }
+  }
+
+  public function processText(String $text)
+  {
+    $text = trim(preg_replace('/\s\s+/', ' ', $text));
+    $text = utf8_decode($text);
+
+    return $text;
   }
 
   public function concordance()

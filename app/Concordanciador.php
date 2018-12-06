@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Cortec\Concordanciador as Aux;
+
 class Concordanciador
 {
   private $text;
@@ -25,33 +27,6 @@ class Concordanciador
     $this->setBufferLength();
   }
 
-  /**
-   * Get Regex Pattern
-   *
-   * @return void
-   */
-  private function getPattern()
-  {
-    switch ($this->position) {
-      case 'igual':
-        return '/[^A-ZÁ-Úa-zá-ú\/\-_\']('.$this->needle.')[^A-ZÁ-Úa-zá-ú\/\-_\']/';
-        break;
-      case 'comeco':
-        return '/[^A-ZÁ-Úa-zá-ú\/\-_\']('.$this->needle.')[\/\-_\']?[A-ZÁ-Úa-zá-ú]*|^('.$this->needle.')/';
-        break;
-      case 'final':
-        return '/[A-ZÁ-Úa-zá-ú]*[\/\-_\']?[A-ZÁ-Úa-zá-ú]*('.$this->needle.')[^A-ZÁ-Úa-zá-ú\/\-_\']/';
-        break;
-      case 'contem':
-        return '/('.$this->needle.')/';
-        break;
-
-      default:
-        return '/('.$this->needle.')/';
-        break;
-    }
-  }
-
   public function processText(String $text)
   {
     $text = trim(preg_replace('/\s\s+/', ' ', $text));
@@ -63,7 +38,7 @@ class Concordanciador
   public function concordance()
   {
     $case = ($this->case) ? '' : 'i';
-    preg_match_all($this->getPattern().''.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
+    preg_match_all(Aux::getStringPattern($this->needle,$this->position).''.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
     $ocorrencias = collect($matches[1]);
 
     $ocorrencias->transform(\Closure::fromCallable([$this, 'highlight']));

@@ -17,6 +17,7 @@ class CorporaController extends Controller
     public function index()
     {
         $categorias = Categoria::paginate(10);
+
         return view('corporas.index', compact('categorias'));
     }
 
@@ -45,6 +46,7 @@ class CorporaController extends Controller
         $corpora->titulo = $request->titulo;
         $corpora->descricao = $request->descricao;
         $corpora->save();
+
         return redirect('/corporas');
     }
 
@@ -85,6 +87,7 @@ class CorporaController extends Controller
         $corpora->titulo = $request->titulo;
         $corpora->descricao = $request->descricao;
         $corpora->save();
+
         return redirect("/corporas/");
     }
 
@@ -97,6 +100,7 @@ class CorporaController extends Controller
     public function destroy(Corpora $corpora)
     {
         $corpora->delete();
+
         return redirect('/corporas/');
     }
 
@@ -124,6 +128,7 @@ class CorporaController extends Controller
         $corpus->corpora_id = $corpora->id;
 
         $corpora->corpuses()->save($corpus);
+
         return redirect("/corporas/$corpora->id/corpus");
     }
 
@@ -135,6 +140,7 @@ class CorporaController extends Controller
     public function indexCorpus(Corpora $corpora)
     {
         $corpora->corpuses = Corpus::where('corpora_id', '=', $corpora->id)->paginate(10);
+
         return view('corporas.corpuses.index', compact('corpora'));
     }
 
@@ -150,6 +156,7 @@ class CorporaController extends Controller
         $corpus->conteudo = $request->conteudo;
         $corpus->idioma = $request->idioma;
         $corpus->save();
+
         return redirect("/corporas/$corpora->id/corpus");
     }
 
@@ -173,6 +180,7 @@ class CorporaController extends Controller
     public function destroyCorpus(Corpora $corpora, Corpus $corpus)
     {
         $corpus->delete();
+        
         return redirect("/corporas/$corpora->id/corpus");
     }
 

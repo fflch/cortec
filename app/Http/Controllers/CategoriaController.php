@@ -29,6 +29,7 @@ class CategoriaController extends Controller
         $categoria = new Categoria;
         $categoria->nome = $request->nome;
         $categoria->save();
+
         return redirect('/corporas/');
     }
 
@@ -54,6 +55,7 @@ class CategoriaController extends Controller
     {
         $categoria->nome = $request->nome;
         $categoria->save();
+
         return redirect("/corporas/");
     }
 
@@ -66,6 +68,7 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         $categoria->delete();
+        
         return redirect('/corporas/');
     }
 

@@ -29,13 +29,12 @@ class AnalysisController extends Controller
         $request->session()->put('form_analysis.language', $language);
 
         //verifica se todos os corpora estão disponíveis no idioma selecionado
-        $has_language = $corporas_ids->every(function ($corpora_id) use ($language){
+        $has_language = $corporas_ids->every(function ($corpora_id) use ($language) {
             $corpora = Corpora::find($corpora_id);
             return $corpora->hasCorpusLang($language);
         });
 
-        if(!$has_language)
-        {
+        if(!$has_language) {
             return redirect("/");
         }
 
@@ -62,17 +61,16 @@ class AnalysisController extends Controller
 
         switch ($tool) {
             case 'concordanciador':
-            return view('analysis.conc_form', compact('analysis'));
-            break;
+                return view('analysis.conc_form', compact('analysis'));
+                break;
             case 'lista_palavras':
-            return $this->listaPalavras($request);
-            break;
+                return $this->listaPalavras($request);
+                break;
             case 'n_grams':
-            // code...
-            break;
+                break;
             default:
-            redirect("/");
-            break;
+                redirect("/");
+                break;
         }
 
         return redirect("/");
@@ -86,8 +84,8 @@ class AnalysisController extends Controller
 
         if ($validator->fails()) {
             return redirect('/analysis/process')
-            ->withErrors($validator)
-            ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $all_corpus = $request->session()->get('form_analysis.all_corpus');
@@ -117,10 +115,8 @@ class AnalysisController extends Controller
     public function listaPalavras(Request $request)
     {
         $all_corpus = $request->session()->get('form_analysis.all_corpus');
-
         $utils = new Utils($all_corpus);
         $analysis = $utils->getAnalysis();
-
         $request->session()->put('form_analysis.analysis', $analysis);
 
         return view('analysis.lista_palavras', compact('analysis'));
@@ -197,8 +193,8 @@ class AnalysisController extends Controller
         fclose($csv_temp);
 
         return response($csv)
-        ->header('Content-Type', 'text/csv')
-        ->header('Content-disposition', 'attachment; filename = '.__('texts.concord.ferramenta').'.csv');
+            ->header('Content-Type', 'text/csv')
+            ->header('Content-disposition', 'attachment; filename = '.__('texts.concord.ferramenta').'.csv');
     }
 
 }

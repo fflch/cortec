@@ -44,16 +44,13 @@ class Corpora extends Model
     public function getAllCorpus(String $lang = "pt")
     {
         //verifica se o atributo já não foi setado e carrega os corpus caso não e o seta
-        if(empty($this->all_corpus[$lang]))
-        {
-            $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang){
+        if(empty($this->all_corpus[$lang])) {
+            $corpuses = $this->corpuses->filter(function ($value, $key) use ($lang) {
                 return $value->idioma == $lang;
             });
 
-            if(!empty($corpuses))
-            {
-                foreach ($corpuses as $corpus)
-                {
+            if(!empty($corpuses)) {
+                foreach ($corpuses as $corpus) {
                     $this->all_corpus[$lang] .= $corpus->conteudo;
                 }
             }
@@ -73,13 +70,11 @@ class Corpora extends Model
     {
         $all_corpus = $this->getAllCorpus($lang);
 
-        if(empty($all_corpus))
-        {
+        if(empty($all_corpus)) {
           return null;
         }
 
-        if(empty($this->analysis[$lang]))
-        {
+        if(empty($this->analysis[$lang])) {
             $analysis = new Utils($all_corpus);
             $this->analysis[$lang] = $analysis->getAnalysis();
         }
@@ -95,7 +90,7 @@ class Corpora extends Model
     */
     public function hasCorpusLang($lang = 'pt')
     {
-        return $this->corpuses->contains(function ($corpus, $key) use ($lang){
+        return $this->corpuses->contains(function ($corpus, $key) use ($lang) {
             return $corpus->idioma == $lang;
         });
     }
@@ -108,12 +103,10 @@ class Corpora extends Model
     */
     public function getLanguages()
     {
-        if(empty($this->idiomas))
-        {
+        if(empty($this->idiomas)) {
             $unique = $this->corpuses->unique(function ($corpus) {
                 return $corpus->idioma;
             });
-
             $this->idiomas = $unique->values()->pluck('idioma');
         }
 

@@ -56,7 +56,7 @@ class Concordanciador
 
         if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
             $txt = substr($txt, $left);
-        }else{
+        } else {
             $txt = substr($txt, $left, $this->bufferLength);
         }
 

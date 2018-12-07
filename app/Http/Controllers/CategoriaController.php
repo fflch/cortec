@@ -15,7 +15,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-      return view('categorias.create');
+        return view('categorias.create');
     }
 
     /**
@@ -26,10 +26,10 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-      $categoria = new Categoria;
-      $categoria->nome = $request->nome;
-      $categoria->save();
-      return redirect('/corporas/');
+        $categoria = new Categoria;
+        $categoria->nome = $request->nome;
+        $categoria->save();
+        return redirect('/corporas/');
     }
 
     /**
@@ -40,7 +40,7 @@ class CategoriaController extends Controller
      */
     public function edit(Categoria $categoria)
     {
-      return view('categorias.edit', compact('categoria'));
+        return view('categorias.edit', compact('categoria'));
     }
 
     /**
@@ -49,12 +49,12 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
-     */
+    */
     public function update(Request $request, Categoria $categoria)
     {
-      $categoria->nome = $request->nome;
-      $categoria->save();
-      return redirect("/corporas/");
+        $categoria->nome = $request->nome;
+        $categoria->save();
+        return redirect("/corporas/");
     }
 
     /**
@@ -65,8 +65,8 @@ class CategoriaController extends Controller
      */
     public function destroy(Categoria $categoria)
     {
-      $categoria->delete();
-      return redirect('/corporas/');
+        $categoria->delete();
+        return redirect('/corporas/');
     }
 
     /**
@@ -77,12 +77,11 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-      $corporas = $categoria->corporas->filter(function ($corpora, $key) {
-          return (count($corpora->corpuses) > 0);
-      });
+        $corporas = $categoria->corporas->filter(function ($corpora, $key) {
+            return (count($corpora->corpuses) > 0);
+        });
 
-      return view('categorias.show',compact('categoria','corporas'));
+        return view('categorias.show',compact('categoria','corporas'));
     }
-
 
 }

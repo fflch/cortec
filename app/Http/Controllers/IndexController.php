@@ -15,8 +15,8 @@ class IndexController extends Controller
    */
     public function step1()
     {
-      $categorias = Categoria::whereHas('corporas.corpuses')->get();
+        $categorias = Categoria::whereHas('corporas.corpuses')->get();
 
-      return view('index', compact('categorias'));
+        return view('index', compact('categorias'));
     }
 }

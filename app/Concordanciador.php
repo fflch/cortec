@@ -51,10 +51,8 @@ class Concordanciador
     $needlePosition = $item[1];
     $left = max($needlePosition - $this->contextLength, 0);
 
-    //insere bold para o termo
-    $txt = $this->text;
-    $txt = substr_replace($txt, '{{', $needlePosition, 0);
-    $txt = substr_replace($txt, '}}', $needlePosition + $this->needleLength + 2, 0);
+    //insere marcação para o termo
+    $txt = Aux::markString($this->text, $needlePosition, $this->needleLength, ['{{','}}']);
 
     if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
       $txt = substr($txt, $left);

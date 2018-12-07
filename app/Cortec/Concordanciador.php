@@ -31,6 +31,15 @@ class Concordanciador
         return '/('.$part.')/';
         break;
     }
+
   }
+
+    public static function markString(String $text, int $position, int $length, Array $mark)
+    {
+      $text = substr_replace($text, $mark[0], $position, 0);
+      $text = substr_replace($text, $mark[1], $position + $length + strlen($mark[0]), 0);
+
+      return $text;
+    }
 
 }

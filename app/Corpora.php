@@ -71,7 +71,7 @@ class Corpora extends Model
         $all_corpus = $this->getAllCorpus($lang);
 
         if(empty($all_corpus)) {
-          return null;
+            return null;
         }
 
         if(empty($this->analysis[$lang])) {

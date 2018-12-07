@@ -8,13 +8,13 @@ class Utils
 {
     private $text = array();
     private $analysis = array(
-    'frequency-tokens' => null,
-    'count-tokens'=> null,
-    'count-once-tokens'=> null,
-    'count-types'=> null,
-    'ratio'=> null,
-    'ngrams'=> null
-    );
+        'frequency-tokens' => null,
+        'count-tokens'=> null,
+        'count-once-tokens'=> null,
+        'count-types'=> null,
+        'ratio'=> null,
+        'ngrams'=> null
+        );
     private $tokenizer;
     private $tokens;
 

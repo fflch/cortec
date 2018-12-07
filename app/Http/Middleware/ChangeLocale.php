@@ -26,6 +26,7 @@ class ChangeLocale
         if (!empty($locale) && in_array($locale, $this->locales)) {
           App::setLocale($locale);
         }
+        
         return $next($request);
     }
 }

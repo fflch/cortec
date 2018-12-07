@@ -13,7 +13,6 @@ class Concordanciador
     private $needleLength;
     private $contextLength;
     private $case;
-    private $bufferLength;
 
     public function __construct(String $text, String $position, String $needle, int $contextLength, bool $case)
     {
@@ -24,9 +23,13 @@ class Concordanciador
         $this->needleLength = strlen($this->needle);
         $this->contextLength = $contextLength;
         $this->case = $case;
-        $this->setBufferLength();
     }
 
+    /**
+    * Process string for analyze
+    *
+    * @return String
+    */
     public function processText(String $text)
     {
         $text = trim(preg_replace('/\s\s+/', ' ', $text));
@@ -35,44 +38,48 @@ class Concordanciador
         return $text;
     }
 
+    /**
+    * Find occurences of a neddle and returns with its context
+    *
+    * @return String
+    */
     public function concordance()
     {
         $case = ($this->case) ? '' : 'i';
         preg_match_all(Aux::getStringPattern($this->needle,$this->position).''.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
         $ocorrencias = collect($matches[1]);
 
-        $ocorrencias->transform(\Closure::fromCallable([$this, 'highlight']));
+        $ocorrencias->transform(\Closure::fromCallable([$this, 'extractExcerptTerm']));
 
         return $ocorrencias;
     }
 
-    private function highlight($item)
+    /**
+    * Mark the neddle and get its context
+    *
+    * @return String
+    */
+    private function extractExcerptTerm($needle)
     {
-        $needlePosition = $item[1];
-        $left = max($needlePosition - $this->contextLength, 0);
+        $needlePosition = $needle[1];
 
         //insere marcação para o termo
         $txt = Aux::markString($this->text, $needlePosition, $this->needleLength, ['{{','}}']);
 
-        if($this->needleLength + $this->contextLength + $needlePosition > $this->textLength) {
-            $txt = substr($txt, $left);
-        } else {
-            $txt = substr($txt, $left, $this->bufferLength);
-        }
+        //recorta o texto, conta com os caracteres de marcação
+        $txt = Aux::getExcerpt($txt, $needlePosition, $this->needleLength+4, $this->contextLength);
 
         return utf8_encode($txt);
     }
 
+    /**
+    * Set the context length
+    *
+    * @return String
+    */
     public function setContextLength(int $size)
     {
         $this->contextLength = $size;
-        $this->setBufferLength();
-    }
-
-    private function setBufferLength()
-    {
-        //acrescido da marcação
-        $this->bufferLength = $this->needleLength + 4 + (2 * $this->contextLength);
     }
 
 }

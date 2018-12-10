@@ -11,24 +11,26 @@ class Concordanciador
     */
     public static function getStringPattern($part, $position)
     {
-        $word_part = "A-ZÁ-Úa-zá-ú\/\-_\'";
+        $letter_chars = "A-ZÁ-Úa-zá-ú";
+        $special_chars = "\/\-_\'";
+        $word_part = $letter_chars.$special_chars;
 
         switch ($position) {
             case 'igual':
-                return "/[^$word_part](" . $part. ")[^$word_part]/";
+                return "/[^$word_part]($part)[^$word_part]/";
                 break;
             case 'comeco':
-                return '/[^A-ZÁ-Úa-zá-ú\/\-_\']('.$part.')[\/\-_\']?[A-ZÁ-Úa-zá-ú]*|^('.$part.')/';
+                return "/[^$word_part]($part)[$special_chars]?[$letter_chars]*|^($part)/";
                 break;
             case 'final':
-                return '/[A-ZÁ-Úa-zá-ú]*[\/\-_\']?[A-ZÁ-Úa-zá-ú]*('.$part.')[^A-ZÁ-Úa-zá-ú\/\-_\']/';
+                return "/[$letter_chars]*[$special_chars]?[$letter_chars]*($part)[^$word_part]/";
                 break;
             case 'contem':
-                return '/('.$part.')/';
+                return "/($part)/";
                 break;
 
             default:
-                return '/('.$part.')/';
+                return "/($part)/";
                 break;
         }
 

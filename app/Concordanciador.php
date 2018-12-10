@@ -16,7 +16,7 @@ class Concordanciador
 
     public function __construct(String $text, String $position, String $needle, int $contextLength, bool $case)
     {
-        $this->text = $this->processText($text) . ' ';
+        $this->text = ' ' . $this->processText($text) . ' ';
         $this->textLength = strlen($this->text);
         $this->position = $position;
         $this->needle = utf8_decode($needle);
@@ -46,9 +46,10 @@ class Concordanciador
     public function concordance()
     {
         $case = ($this->case) ? '' : 'i';
-        preg_match_all(Aux::getStringPattern($this->needle,$this->position).''.$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
-        $ocorrencias = collect($matches[1]);
+        preg_match_all(Aux::getStringPattern($this->needle,$this->position).$case, $this->text, $matches, PREG_OFFSET_CAPTURE);
+        dd(Aux::getStringPattern($this->needle,$this->position));
 
+        $ocorrencias = collect($matches[1]);
         $ocorrencias->transform(\Closure::fromCallable([$this, 'extractExcerptTerm']));
 
         return $ocorrencias;
@@ -65,7 +66,6 @@ class Concordanciador
 
         //insere marcação para o termo
         $txt = Aux::markString($this->text, $needlePosition, $this->needleLength, ['{{','}}']);
-
         //recorta o texto, conta com os caracteres de marcação
         $txt = Aux::getExcerpt($txt, $needlePosition, $this->needleLength+4, $this->contextLength);
 

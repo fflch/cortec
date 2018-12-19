@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Cortec\Concordanciador as Aux;
+use TextAnalysis\Corpus\TextCorpus;
 
 class Concordanciador
 {

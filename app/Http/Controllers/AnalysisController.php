@@ -93,14 +93,17 @@ class AnalysisController extends Controller
         $termo =  $request->termo;
         $contexto =  $request->contexto;
         $case =  boolval($request->case);
-        $concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
+        //$concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
+        $conc = new TextCorpus($all_corpus);
 
         //reduzido
-        $ocorrencias = $concordanciador->concordance();
+        // $ocorrencias = $concordanciador->concordance();
+        $ocorrencias = collect($conc->concordance($termo, $contexto, !$case, $posicao));
 
         //expandido
-        $concordanciador->setContextLength(150);
-        $ocorrencias_exp = $concordanciador->concordance();
+        // $concordanciador->setContextLength(150);
+        // $ocorrencias_exp = $concordanciador->concordance();
+        $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao));
         $request->session()->put('form_analysis.concord', $ocorrencias);
         $request->session()->put('form_analysis.concord_exp', $ocorrencias_exp);
 

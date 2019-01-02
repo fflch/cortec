@@ -98,12 +98,12 @@ class AnalysisController extends Controller
 
         //reduzido
         // $ocorrencias = $concordanciador->concordance();
-        $ocorrencias = collect($conc->concordance($termo, $contexto, !$case, $posicao));
+        $ocorrencias = collect($conc->occurrences($termo, $contexto, !$case, $posicao, true));
 
         //expandido
         // $concordanciador->setContextLength(150);
         // $ocorrencias_exp = $concordanciador->concordance();
-        $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao));
+        $ocorrencias_exp = collect($conc->occurrences($termo, 150, !$case, $posicao, true));
         $request->session()->put('form_analysis.concord', $ocorrencias);
         $request->session()->put('form_analysis.concord_exp', $ocorrencias_exp);
 

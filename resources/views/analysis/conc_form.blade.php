@@ -28,7 +28,7 @@
                 <select class="form-control" id="posicao" name="posicao">
                   <option value="equal">{!! __('texts.passo3.concord.campo1_1') !!}</option>
                   <option value="begin">{!! __('texts.passo3.concord.campo1_2') !!}</option>
-                  <option value="final">{!! __('texts.passo3.concord.campo1_3') !!}</option>
+                  <option value="end">{!! __('texts.passo3.concord.campo1_3') !!}</option>
                   <option value="contain">{!! __('texts.passo3.concord.campo1_4') !!}</option>
                 </select>
               </div>

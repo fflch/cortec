@@ -75,7 +75,9 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>{!! __('messages.validacao.modal_concord.body') !!}</p>
+            @foreach ($errors->all() as $error)
+                <p>{!! $error !!}</p>
+            @endforeach
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>

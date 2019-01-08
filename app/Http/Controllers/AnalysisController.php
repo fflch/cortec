@@ -84,7 +84,7 @@ class AnalysisController extends Controller
 
         if ($validator->fails()) {
             return redirect('/analysis/process')
-                ->withErrors($validator)
+                ->withErrors(__('messages.validacao.modal_concord.error1'))
                 ->withInput();
         }
 
@@ -98,6 +98,11 @@ class AnalysisController extends Controller
 
         //reduzido
         $ocorrencias = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
+        if ($ocorrencias->isEmpty()) {
+            return redirect('/analysis/process')
+                ->withErrors(__('messages.validacao.modal_concord.error2'))
+                ->withInput();
+        }
 
         //expandido
         // $concordanciador->setContextLength(150);

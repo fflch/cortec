@@ -9,7 +9,8 @@
             ],
             'modal_concord' => [
                 'header' => 'Error!',
-                'body' => 'Incorrect expression or word'
+                'error1' => 'Incorrect expression or word',
+                'error2' => 'No occurrences were found'
             ]
         ]
     ];

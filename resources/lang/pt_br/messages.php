@@ -9,7 +9,8 @@
             ],
             'modal_concord' => [
                 'header' => 'Erro!',
-                'body' => 'Expressão ou Palavra inserida incorretamente'
+                'error1' => 'Expressão ou Palavra inserida incorretamente',
+                'error2' => 'Não foram encontradas ocorrências com o termo inserido'
             ]
         ]
     ];

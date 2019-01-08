@@ -10,7 +10,7 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "uspdev/laravel-comet-theme": "dev-master",
-        "yooper/php-text-analysis": "^1.4"
+        "yooper/php-text-analysis": "dev-master"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

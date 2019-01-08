@@ -9,7 +9,7 @@
       <p>{!! __('texts.passo2.texto1') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/2" method="post">
+    <form name="step2" action="/analysis/process" method="post">
       {{ csrf_field() }}
 
       <div class="row align-items-center row-header-lista px-1">

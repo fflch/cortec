@@ -12,8 +12,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', 'IndexController@step1' );
-Route::post('/analysis/', 'AnalysisController@step2' );
-Route::post('/analysis/2', 'AnalysisController@step3' );
+Route::post('/analysis/tool', 'AnalysisController@toolSelection' );
+Route::match(['get', 'post'], '/analysis/process', 'AnalysisController@process' );
+Route::post('/analysis/concordanciador', 'AnalysisController@concordanciador' );
 
 Route::get('/corporas/','CorporaController@index');
 Route::resource('corporas','CorporaController');
@@ -33,4 +34,5 @@ Route::get('/locale/{locale}', function ($locale, Request $request) {
     return redirect('/');
 });
 
-Route::get('/download', 'AnalysisController@downloadTable' );
+Route::get('/download/frequencia', 'AnalysisController@freqTable' );
+Route::get('/download/concord', 'AnalysisController@concordTable' );

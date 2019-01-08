@@ -68,13 +68,13 @@
 
   <div class="row mb-2">
     <div class="col-2">
-      <a href="/download" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
+      <a href="/download/frequencia" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
     </div>
   </div>
 
   <div class="row justify-content-center">
     <div class="col-md-12">
-      <table class="table lista-palavras" id="tbl-lista-palavras">
+      <table class="table lista-palavras tbl-striped" id="tbl-lista-palavras">
         <thead style="cursor: pointer;">
           <tr>
             <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_1') !!} <i class="fas fa-sort"></i></th>

@@ -12,7 +12,7 @@ use TextAnalysis\Corpus\TextCorpus;
 class AnalysisController extends Controller
 {
     /**
-    * Verifies the entry and display the second step for corpora analysis, the selection of tool.
+    * Verifies the entry and display the second step for corpus analysis, the selection of tool.
     *
     * @return \Illuminate\Http\Response
     */

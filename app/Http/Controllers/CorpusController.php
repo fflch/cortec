@@ -129,7 +129,7 @@ class CorpusController extends Controller
 
         $corpus->texts()->save($text);
 
-        return redirect("/corpus/$corpora->id/text");
+        return redirect("/corpus/$corpus->id/text");
     }
 
     /**
@@ -176,7 +176,7 @@ class CorpusController extends Controller
     /**
      * Remove the specified corpus from storage.
      *
-     * @param  \App\Corpora  $corpora
+     * @param  \App\Corpus  $corpus
      * @param  \App\Text $text
      * @return \Illuminate\Http\Response
      */

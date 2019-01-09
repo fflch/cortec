@@ -9,7 +9,7 @@ use App\Categoria;
 class IndexController extends Controller
 {
   /**
-   * Display the first step for corpora analysis, the selection of languange and corporas.
+   * Display the first step for corpus analysis, the selection of languange and corpuses.
    *
    * @return \Illuminate\Http\Response
    */

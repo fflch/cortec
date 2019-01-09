@@ -6,71 +6,71 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use App\Corpora;
+use App\Corpus;
 use App\Categoria;
 
-class CorporaCrudTest extends TestCase
+class CorpusCrudTest extends TestCase
 {
 
     /**
      * @test create
      */
-    public function testCreateCorpora()
+    public function testCreateCorpus()
     {
-        $corpora = factory(Corpora::class)->make();
-        $response = $this->post('corporas', $corpora->toArray());
-        $this->assertDatabaseHas('corporas', $corpora->toArray());
+        $corpus = factory(Corpus::class)->make();
+        $response = $this->post('corpus', $corpus->toArray());
+        $this->assertDatabaseHas('corpuses', $corpus->toArray());
     }
 
     /**
      * @test read
      */
-    public function testReadCorpora()
+    public function testReadCorpus()
     {
-        $corpora = factory(Corpora::class)->create();
-        $response = $this->get('/categorias/' . $corpora->categoria_id);
+        $corpus = factory(Corpus::class)->create();
+        $response = $this->get('/categorias/' . $corpus->categoria_id);
         $response->assertStatus(200);
-        $response->assertSeeText($corpora->titulo);
-        $response->assertSeeText($corpora->descricao);
+        $response->assertSeeText($corpus->titulo);
+        $response->assertSeeText($corpus->descricao);
     }
 
     /**
      * @test update
      */
 
-    public function testUpdateCorpora()
+    public function testUpdateCorpus()
     {
-        $corpora = factory(Corpora::class)->create();
+        $corpus = factory(Corpus::class)->create();
 
         // Edit page exists?
-        $response = $this->get('corporas/' . $corpora->id . '/edit');
+        $response = $this->get('corpus/' . $corpus->id . '/edit');
         $response->assertStatus(200);
 
         // edit
-        $corpora->titulo = $corpora->titulo . ' Edited';
-        $response = $this->patch('/corporas/' . $corpora->id, $corpora->toArray());
-        $this->assertDatabaseHas('corporas', $corpora->toArray());
+        $corpus->titulo = $corpus->titulo . ' Edited';
+        $response = $this->patch('/corpus/' . $corpus->id, $corpus->toArray());
+        $this->assertDatabaseHas('corpuses', $corpus->toArray());
     }
 
     /**
      * @test delete
      */
 
-    public function testDeleteCorpora()
+    public function testDeleteCorpus()
     {
-        $corpora = factory(Corpora::class)->create();
-        $response = $this->delete('/corporas/' . $corpora->id);
-        $this->assertNull(Corpora::find($corpora->id));
+        $corpus = factory(Corpus::class)->create();
+        $response = $this->delete('/corpus/' . $corpus->id);
+        $this->assertNull(Corpus::find($corpus->id));
     }
 
     /**
      * @test index
      */
-    public function testIndexCorpora()
+    public function testIndexCorpus()
     {
-        $corpora = factory(Corpora::class)->create();
-        $response = $this->get('corporas?page=' . Categoria::paginate(10)->lastPage());
+        $corpus = factory(Corpus::class)->create();
+        $response = $this->get('corpus?page=' . Categoria::paginate(10)->lastPage());
         $response->assertStatus(200);
-        $response->assertSeeText($corpora->titulo);
+        $response->assertSeeText($corpus->titulo);
     }
 }

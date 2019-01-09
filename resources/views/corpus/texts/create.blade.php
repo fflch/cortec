@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <form method="POST" name="corpus" action="/corpus/{{ $corpus_id }}/corpus">
+  <form method="POST" name="corpus" action="/corpus/{{ $corpus_id }}/text">
       {{ csrf_field() }}
 
       <div class="form-group">

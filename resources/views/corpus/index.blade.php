@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col pl-0">
         <a class="btn btn-success" href="/categorias/create" >Criar Categoria</a>
-        <a class="btn btn-success" href="/corpuses/create" >Criar Corpus</a>
+        <a class="btn btn-success" href="/corpus/create" >Criar Corpus</a>
       </div>
     </div>
     <div class="row align-items-center row-header-lista px-1 mt-4">

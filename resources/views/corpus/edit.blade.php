@@ -9,7 +9,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <form method="POST" action="/corpuses/{{ $corpus->id  }}">
+      <form method="POST" action="/corpus/{{ $corpus->id  }}">
         {{ csrf_field() }}
         {{ method_field('patch') }}
         <div class="form-group mt-2">

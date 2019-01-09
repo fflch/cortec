@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
-use App\Corpora;
+use App\Corpus;
 use App\Utils;
 use App\Concordanciador;
 use TextAnalysis\Corpus\TextCorpus;
@@ -20,18 +20,18 @@ class AnalysisController extends Controller
     {
         $validatedData = $request->validate([
             'language' => 'required',
-            'corporas' => 'required',
+            'corpuses' => 'required',
         ]);
 
-        $corporas_ids = collect($request->corporas);
-        $request->session()->put('form_analysis.corporas_ids', $corporas_ids);
+        $corpuses_ids = collect($request->corpuses);
+        $request->session()->put('form_analysis.corpuses_ids', $corpuses_ids);
         $language = $request->language;
         $request->session()->put('form_analysis.language', $language);
 
-        //verifica se todos os corpora estão disponíveis no idioma selecionado
-        $has_language = $corporas_ids->every(function ($corpora_id) use ($language) {
-            $corpora = Corpora::find($corpora_id);
-            return $corpora->hasCorpusLang($language);
+        //verifica se todos os corpuses estão disponíveis no idioma selecionado
+        $has_language = $corpuses_ids->every(function ($corpus_id) use ($language) {
+            $corpus = Corpus::find($corpus_id);
+            return $corpus->hasTextLang($language);
         });
 
         if(!$has_language) {
@@ -51,13 +51,13 @@ class AnalysisController extends Controller
         $tool = isset($request->tool) ? $request->tool : $request->old('tool');
 
         //gather all corpus in one string and put in the session
-        $corpora_ids = collect($request->session()->get('form_analysis.corporas_ids'));
+        $corpus_ids = collect($request->session()->get('form_analysis.corpuses_ids'));
         $language = $request->session()->get('form_analysis.language');
-        $all_corpus = $corpora_ids->reduce(function ($carry, $id) use ($language) {
-            $corpora_corpus = Corpora::find($id)->getAllCorpus($language);
-            return $carry . ' ' . $corpora_corpus;
+        $all_texts = $corpus_ids->reduce(function ($carry, $id) use ($language) {
+            $corpus_text = Corpus::find($id)->getAllTexts($language);
+            return $carry . ' ' . $corpus_text;
         });
-        $request->session()->put('form_analysis.all_corpus', $all_corpus);
+        $request->session()->put('form_analysis.all_texts', $all_texts);
 
         switch ($tool) {
             case 'concordanciador':
@@ -88,13 +88,13 @@ class AnalysisController extends Controller
                 ->withInput();
         }
 
-        $all_corpus = $request->session()->get('form_analysis.all_corpus');
+        $all_texts = $request->session()->get('form_analysis.all_texts');
         $posicao =  $request->posicao;
         $termo =  $request->termo;
         $contexto =  $request->contexto;
         $case =  boolval($request->case);
         //$concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
-        $conc = new TextCorpus($all_corpus);
+        $conc = new TextCorpus($all_texts);
 
         //reduzido
         $ocorrencias = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
@@ -120,8 +120,8 @@ class AnalysisController extends Controller
     */
     public function listaPalavras(Request $request)
     {
-        $all_corpus = $request->session()->get('form_analysis.all_corpus');
-        $utils = new Utils($all_corpus);
+        $all_texts = $request->session()->get('form_analysis.all_texts');
+        $utils = new Utils($all_texts);
         $analysis = $utils->getAnalysis();
         $request->session()->put('form_analysis.analysis', $analysis);
 

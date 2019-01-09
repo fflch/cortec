@@ -30,7 +30,7 @@ class CategoriaController extends Controller
         $categoria->nome = $request->nome;
         $categoria->save();
 
-        return redirect('/corporas/');
+        return redirect('/corpus/');
     }
 
     /**
@@ -56,7 +56,7 @@ class CategoriaController extends Controller
         $categoria->nome = $request->nome;
         $categoria->save();
 
-        return redirect("/corporas/");
+        return redirect("/corpus/");
     }
 
     /**
@@ -68,8 +68,8 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         $categoria->delete();
-        
-        return redirect('/corporas/');
+
+        return redirect('/corpus/');
     }
 
     /**
@@ -80,11 +80,11 @@ class CategoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        $corporas = $categoria->corporas->filter(function ($corpora, $key) {
-            return (count($corpora->corpuses) > 0);
+        $corpuses = $categoria->corpuses->filter(function ($corpus, $key) {
+            return (count($corpus->texts) > 0);
         });
 
-        return view('categorias.show',compact('categoria','corporas'));
+        return view('categorias.show',compact('categoria','corpuses'));
     }
 
 }

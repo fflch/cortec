@@ -24,7 +24,7 @@ class Corpus extends Model
     }
 
     /**
-    * Set the corpus for the corpora by text.
+    * Set the texts for the corpus.
     *
     * @param  String  $corpus
     * @param  String  $lang
@@ -36,14 +36,14 @@ class Corpus extends Model
     }
 
     /**
-    * Set and return the compilation of corpus of a corpora by the registered corpus.
+    * Set and return the compilation of texts of a corpus.
     *
     * @param  String  $lang
     * @return String
     */
     public function getAllTexts(String $lang = "pt")
     {
-        //verifica se o atributo já não foi setado e carrega os corpus caso não e o seta
+        //verifica se o atributo já não foi setado e carrega os textos caso não e os seta
         if(empty($this->all_texts[$lang])) {
             $texts = $this->texts->filter(function ($value, $key) use ($lang) {
                 return $value->idioma == $lang;
@@ -60,7 +60,7 @@ class Corpus extends Model
     }
 
     /**
-    * Set and return a specific analysis of a corpora of a specific language.
+    * Set and return a specific analysis of a corpus of a specific language.
     *
     * @param  String  $type
     * @param  String  $lang
@@ -83,7 +83,7 @@ class Corpus extends Model
     }
 
     /**
-    * Verifies if the specified corpora has corpus of a certain language.
+    * Verifies if the specified corpus has text of a certain language.
     *
     * @param  String  $lang
     * @return boolean
@@ -96,7 +96,7 @@ class Corpus extends Model
     }
 
     /**
-    * Returns an array of languages of a specified corpora by its corpus.
+    * Returns an array of languages of a specified corpus by its texts.
     *
     * @param  String  $lang
     * @return array

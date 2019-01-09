@@ -137,7 +137,7 @@ class CorpusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexCorpus(Corpus  $corpus)
+    public function indexText(Corpus  $corpus)
     {
         $corpus->texts = Text::where('corpus_id', '=', $corpus->id)->paginate(10);
 

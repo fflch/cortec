@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <form method="POST" action="/corporas">
+  <form method="POST" action="/corpus">
       {{ csrf_field() }}
       <div class="form-group">
         <label for="categoria_id">Categoria</label>

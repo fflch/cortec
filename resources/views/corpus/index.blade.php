@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col pl-0">
         <a class="btn btn-success" href="/categorias/create" >Criar Categoria</a>
-        <a class="btn btn-success" href="/corporas/create" >Criar Corpora</a>
+        <a class="btn btn-success" href="/corpuses/create" >Criar Corpus</a>
       </div>
     </div>
     <div class="row align-items-center row-header-lista px-1 mt-4">
@@ -29,21 +29,21 @@
                 <button type="submit" class="btn btn-sm btn-outline-danger">X</button>
               </span>
             </div>
-            @foreach ($categoria->corporas as $corpora)
+            @foreach ($categoria->corpuses as $corpus)
               <ul class="list-group">
                 <li class="list-group-item list-group-item-action">
                   <div class="row text-center align-items-center">
                     <div class="col-sm-3">
-                      <a href="/corporas/{{ $corpora->id }}">{{ $corpora->titulo }}</a>
+                      <a href="/corpus/{{ $corpus->id }}">{{ $corpus->titulo }}</a>
                     </div>
                     <div class="col-sm-3">
-                      <a href="/corporas/{{ $corpora->id }}/corpus/" class="btn btn-outline-secondary">Listar Corpus</a>
+                      <a href="/corpus/{{ $corpus->id }}/text/" class="btn btn-outline-secondary">Listar Textos</a>
                     </div>
                     <div class="col-sm-3">
-                      <a href="/corporas/{{ $corpora->id }}/edit" class="btn btn-outline-secondary">Editar</a>
+                      <a href="/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary">Editar</a>
                     </div>
                     <div class="col-sm-3">
-                      <form class="delete" method="POST" action="/corporas/{{ $corpora->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
+                      <form class="delete" method="POST" action="/corpus/{{ $corpus->id }}" onsubmit="return confirm('{!! __('messages.confirma') !!}');">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <button type="submit" class="btn btn-outline-danger">Apagar</button>

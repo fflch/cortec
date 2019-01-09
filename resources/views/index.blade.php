@@ -57,7 +57,7 @@
                       return (count($corpus->texts) > 0);
                   });
                 @endphp
-                @foreach ($corpuses as $text)
+                @foreach ($corpuses as $corpus)
                   <label for="check_{{$categoria->id}}_{{$corpus->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpus->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpus->id}}">
                     <input type="checkbox" name="corpuses[]" value="{{ $corpus->id }}" id="check_{{$categoria->id}}_{{$corpus->id}}">

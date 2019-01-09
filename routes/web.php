@@ -22,11 +22,11 @@ Route::resource('categorias','CategoriaController');
 
 Route::get('/corpus/{disciplina_id}/text/create','CorpusController@createText');
 
-Route::post('/corpus/{corpora}/text','CorpusController@storeText');
-Route::get('/corpus/{corpora}/text','CorpusController@indexText');
-Route::get('/corpus/{corpora}/text/{text}/edit','CorpusController@editText');
-Route::post('/corpus/{corpora}/text/{text}','CorpusController@updateText');
-Route::delete('/corpus/{corpora}/text/{text}','CorpusController@destroyText');
+Route::post('/corpus/{corpus}/text','CorpusController@storeText');
+Route::get('/corpus/{corpus}/text','CorpusController@indexText');
+Route::get('/corpus/{corpus}/text/{text}/edit','CorpusController@editText');
+Route::post('/corpus/{corpus}/text/{text}','CorpusController@updateText');
+Route::delete('/corpus/{corpus}/text/{text}','CorpusController@destroyText');
 
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');

@@ -32,7 +32,7 @@
                insertResult(xhr.responseText);
             }
         };
-        xhr.open('POST', '/api/corporas/corpus/upload', true);
+        xhr.open('POST', '/api/corpus/corpus/upload', true);
         xhr.send(formData);
 
       }

@@ -13,10 +13,10 @@
         <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
       </div>
     </div>
-    <div class="row bg-gray" >
+    <div class="row bg-gray pt-3">
       <div class="col">
         @foreach ($categorias as $categoria)
-          <div class="card mt-3">
+          <div class="card mb-3">
             <div class="card-header">
               {{ $categoria->nome }}
               <span>

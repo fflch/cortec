@@ -14,11 +14,11 @@
         <h3 class="h3 h3-lista">Lista de Textos</h3>
       </div>
     </div>
-    <div class="row bg-gray pb-3">
+    <div class="row bg-gray pt-3">
       <div class="col">
         <ul class="corpora list-group" style='width:100%'>
           @foreach ($corpus->texts as $text)
-            <li class="corpora list-group-item list-group-item-action">
+            <li class="corpora list-group-item list-group-item-action mb-3">
               <div class="row align-items-center">
                 <div class="col-sm-3">
                   {{ $text->created_at->formatLocalized('%d/%m/%G %k:%M:%S')}}

@@ -41,6 +41,12 @@ class CorpusController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'categoria_id' => 'required|integer',
+            'titulo' => 'required|string',
+            'descricao' => 'required|string',
+        ]);
+
         $corpus = new Corpus;
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
@@ -83,6 +89,12 @@ class CorpusController extends Controller
      */
     public function update(Request $request, Corpus  $corpus)
     {
+        $validatedData = $request->validate([
+            'categoria_id' => 'required|integer',
+            'titulo' => 'required|string',
+            'descricao' => 'required|string',
+        ]);
+
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
         $corpus->descricao = $request->descricao;
@@ -122,6 +134,11 @@ class CorpusController extends Controller
      */
     public function storeText(Request $request, Corpus  $corpus)
     {
+        $validatedData = $request->validate([
+            'idioma' => 'required|string',
+            'conteudo' => 'required|string'
+        ]);
+
         $text = new Text;
         $text->idioma = $request->idioma;
         $text->conteudo = $request->conteudo;
@@ -154,6 +171,11 @@ class CorpusController extends Controller
      */
     public function updateText(Request $request, Corpus  $corpus, Text $text)
     {
+        $validatedData = $request->validate([
+            'idioma' => 'required|string',
+            'conteudo' => 'required|string'
+        ]);
+        
         $text->conteudo = $request->conteudo;
         $text->idioma = $request->idioma;
         $text->save();

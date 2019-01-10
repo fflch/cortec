@@ -14,7 +14,7 @@
         {{ method_field('patch') }}
         <div class="form-group mt-2">
           <label for="categoria_id">Categoria</label>
-          <select name="categoria_id" class="custom-select">
+          <select name="categoria_id" class="custom-select" required>
             @foreach ($categorias as $categoria)
               <option value="{{$categoria->id}}" {{($categoria->id == $corpus->categoria_id) ? 'selected' : ''}}>{{$categoria->nome}}</option>
             @endforeach
@@ -22,11 +22,11 @@
         </div>
         <div class="form-group">
           <label for="titulo">Nome</label>
-          <input type="text" class="form-control" name="titulo" id="titulo" value="{{ $corpus->titulo }}">
+          <input type="text" class="form-control" name="titulo" id="titulo" required value="{{ $corpus->titulo }}">
         </div>
         <div class="form-group">
           <label for="descricao">Descrição</label>
-          <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ $corpus->descricao }}</textarea>
+          <textarea class="form-control" id="descricao" name="descricao" required rows="3">{{ $corpus->descricao }}</textarea>
         </div>
         <button type="submit" class="btn btn-success">Salvar</button>
       </form>

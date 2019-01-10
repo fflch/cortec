@@ -6,7 +6,7 @@
 
       <div class="form-group">
         <legend class="col-form-label">Idioma</legend>
-        <select class="custom-select" id="idioma" name="idioma">
+        <select class="custom-select" id="idioma" name="idioma" required>
           <option {{($text->idioma == 'pt') ? 'selected' : ''}} value="pt">Português</option>
           <option {{($text->idioma == 'en') ? 'selected' : ''}} value="en">Inglês</option>
         </select>
@@ -31,7 +31,7 @@
       <div id="fields">
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5">{{ $text->conteudo }}</textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required>{{ $text->conteudo }}</textarea>
         </div>
         <div class="form-group d-none" id="div_upload">
           <label for="upload_field">Upload</label>

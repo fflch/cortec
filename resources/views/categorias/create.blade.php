@@ -7,7 +7,7 @@
         {{ csrf_field() }}
         <div class="form-group mt-2">
           <label for="titulo">Nome</label>
-          <input type="text" class="form-control" name="nome" id="nome" value="">
+          <input type="text" class="form-control" name="nome" id="nome" required value="">
         </div>
         <button type="submit" class="btn btn-success">Salvar</button>
       </form>

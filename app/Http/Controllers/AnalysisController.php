@@ -35,7 +35,9 @@ class AnalysisController extends Controller
         });
 
         if(!$has_language) {
-            return redirect("/");
+            return redirect("/")
+                ->withErrors('error')
+                ->withInput();
         }
 
         return view('analysis.tool_selection', compact('language'));

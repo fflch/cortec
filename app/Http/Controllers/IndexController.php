@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Corpora;
+use App\Corpus;
 use App\Categoria;
 
 class IndexController extends Controller
 {
   /**
-   * Display the first step for corpora analysis, the selection of languange and corporas.
+   * Display the first step for corpus analysis, the selection of languange and corpuses.
    *
    * @return \Illuminate\Http\Response
    */
     public function step1()
     {
-        $categorias = Categoria::whereHas('corporas.corpuses')->get();
+        $categorias = Categoria::whereHas('corpuses.texts')->get();
 
         return view('index', compact('categorias'));
     }

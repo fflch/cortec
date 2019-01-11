@@ -30,25 +30,25 @@
           @php
             $i = 1;
           @endphp
-          @foreach ($ocorrencias->combine($ocorrencias_exp) as $ocorrencia => $ocorrencia_exp)
+          @foreach ($ocorrencias as $ocorrencia)
             <tr class="row align-middle">
               <td class="text-center align-self-center col-2" >
                 {{$i}}
               </td>
               @php
-                $ocorrencia = str_replace ( '{{' , '<a data-toggle="collapse" href="#occrExp'.$i.'" role="button" aria-expanded="false" aria-controls="occrExp1">' , $ocorrencia);
-                $ocorrencia = str_replace ( '}}' ,  '</a>' , $ocorrencia);
+                $ocorrencia[0] = str_replace ( '{{' , '<a data-toggle="collapse" href="#occrExp'.$i.'" role="button" aria-expanded="false" aria-controls="occrExp1">' , $ocorrencia[0]);
+                $ocorrencia[0] = str_replace ( '}}' ,  '</a>' , $ocorrencia[0]);
               @endphp
               <td class="text-center col-10">
-                {!! $ocorrencia !!}
+                {!! $ocorrencia[0] !!}
                 <div class="collapse" id="occrExp{{$i}}">
                   <div class="card card-body">
                     <div class="card-text">
                       @php
-                      $ocorrencia_exp = str_replace ( '{{' , '<strong>' , $ocorrencia_exp);
-                      $ocorrencia_exp = str_replace ( '}}' ,  '</strong>' , $ocorrencia_exp);
+                      $ocorrencia[1] = str_replace ( '{{' , '<strong>' , $ocorrencia[1]);
+                      $ocorrencia[1] = str_replace ( '}}' ,  '</strong>' , $ocorrencia[1]);
                       @endphp
-                      {!! $ocorrencia_exp !!}
+                      {!! $ocorrencia[1] !!}
                     </div>
                   </div>
                 </div>

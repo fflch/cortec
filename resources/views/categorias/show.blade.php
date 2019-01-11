@@ -8,15 +8,15 @@
           <div class="row">
             <div class="col">
               <h1>{!! __('texts.categorias.texto1') !!} {{$categoria->nome}}</h1>
-              <p>{!! __('texts.categorias.texto2', ['count' => count($categoria->corporas)]) !!}</p>
+              <p>{!! __('texts.categorias.texto2', ['count' => count($categoria->corpuses)]) !!}</p>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
               <div id="list-example" class="list-group">
-                @foreach ($corporas as $corpora)
-                  <a class="list-group-item list-group-item-action" href="#{{ $corpora->id }}">{{ $corpora->titulo }}</a>
+                @foreach ($corpuses as $corpus)
+                  <a class="list-group-item list-group-item-action" href="#{{ $corpus->id }}">{{ $corpus->titulo }}</a>
                 @endforeach
               </div>
             </div>
@@ -40,20 +40,20 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col">
-          @foreach ($categoria->corporas as $corpora)
+          @foreach ($categoria->corpuses as $corpus)
             <div class="card mt-3 ">
-              <a name="{{ $corpora->id }}"></a>
+              <a name="{{ $corpus->id }}"></a>
               <div class="card-header">
-                <h3>{{ $corpora->titulo }}</h3>
+                <h3>{{ $corpus->titulo }}</h3>
               </div>
               <div class="card-body">
-                <p>{{ $corpora->descricao }}</p>
+                <p>{{ $corpus->descricao }}</p>
                 <div class="row justify-content-md-center">
                   <div class="col-xs-4">
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">{{ $corpora->titulo }}</th>
+                          <th scope="col">{{ $corpus->titulo }}</th>
                           <th scope="col" class="text-center">{!! __('texts.passo1.lingua2') !!}</th>
                           <th scope="col" class="text-center">{!! __('texts.passo1.lingua1') !!}</th>
                         </tr>
@@ -61,18 +61,18 @@
                       <tbody>
                         <tr>
                           <th scope="row">{!! __('texts.categorias.ocorrencias') !!}</th>
-                          <td class="text-center">{{$corpora->getAnalysis('count-tokens', 'en')}}</td>
-                          <td class="text-center">{{$corpora->getAnalysis('count-tokens')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('count-tokens', 'en')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('count-tokens')}}</td>
                         </tr>
                         <tr>
                           <th scope="row">{!! __('texts.categorias.formas') !!}</th>
-                          <td class="text-center">{{$corpora->getAnalysis('count-types','en')}}</td>
-                          <td class="text-center">{{$corpora->getAnalysis('count-types')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('count-types','en')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('count-types')}}</td>
                         </tr>
                         <tr>
                           <th scope="row">{!! __('texts.categorias.ratio') !!}</th>
-                          <td class="text-center">{{$corpora->getAnalysis('ratio', 'en')}}</td>
-                          <td class="text-center">{{$corpora->getAnalysis('ratio')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('ratio', 'en')}}</td>
+                          <td class="text-center">{{$corpus->getAnalysis('ratio')}}</td>
                         </tr>
                       </tbody>
                     </table>

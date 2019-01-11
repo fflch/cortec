@@ -1,4 +1,4 @@
-//Funcões para marcar os corpora de acordo com a marcação na respectiva categoria de corpora
+//Funcões para marcar os corpus de acordo com a marcação na respectiva categoria de corpus
 checks_cats = Array.from(document.step1.querySelectorAll('[id^="check_cat_"]'));
 
 checks_cats.map(function (elm){
@@ -29,13 +29,13 @@ checks_cats.map(function (elm){
 
 });
 
-//Função para exibir os corpora de acordo com a língua
+//Função para exibir os corpus de acordo com a língua
 function showCorpuses(evt){
   let show = document.step1.querySelector("input[name=language]:checked").value;
 
   showElms = Array.from(document.step1.querySelectorAll('li[data-lang*="'+show+'"]'));
   hideFields = Array.from(document.step1.querySelectorAll('li[data-lang]'));
-  cards_categoria = Array.from(document.getElementById("div_corporas").children);
+  cards_categoria = Array.from(document.getElementById("div_corpuses").children);
 
   cards_categoria.map( function( card ) {
       let cat_id = card.getAttribute('data-cat');
@@ -55,7 +55,7 @@ function showCorpuses(evt){
   } );
 }
 
-//Função para desmarcar todas categorias e corpora
+//Função para desmarcar todas categorias e corpus
 function uncheckAll(){
   let checkboxes = Array.from(document.step1.querySelectorAll('[id^="check_"]'));
 

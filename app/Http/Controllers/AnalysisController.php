@@ -99,8 +99,8 @@ class AnalysisController extends Controller
         $conc = new TextCorpus($all_texts);
 
         //reduzido
-        $ocorrencias = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
-        if ($ocorrencias->isEmpty()) {
+        $ocorrencias_red = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
+        if ($ocorrencias_red->isEmpty()) {
             return redirect('/analysis/process')
                 ->withErrors(__('messages.validacao.modal_concord.error2'))
                 ->withInput();
@@ -109,10 +109,13 @@ class AnalysisController extends Controller
         //expandido
         // $concordanciador->setContextLength(150);
         $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao, true));
-        $request->session()->put('form_analysis.concord', $ocorrencias);
+
+        $ocorrencias = $ocorrencias_red->zip($ocorrencias_exp);
+
+        $request->session()->put('form_analysis.concord', $ocorrencias_red);
         $request->session()->put('form_analysis.concord_exp', $ocorrencias_exp);
 
-        return view('analysis.concord', compact('ocorrencias', 'ocorrencias_exp'));
+        return view('analysis.concord', compact('ocorrencias'));
     }
 
     /**

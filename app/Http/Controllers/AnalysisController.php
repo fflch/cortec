@@ -6,7 +6,6 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Corpora;
 use App\Utils;
-use App\Concordanciador;
 use TextAnalysis\Corpus\TextCorpus;
 
 class AnalysisController extends Controller

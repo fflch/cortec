@@ -3,7 +3,7 @@
 @section('content')
   <div class="row fluid">
     <div class="col">
-      <a href="/corpus/{{ $corpus->id }}/text/"  class="btn btn-success">Listar Texto</a>
+      <a href="/corpus/{{ $corpus->id }}/text/"  class="btn btn-success">Listar Textos</a>
       <a href="/corpus/{{ $corpus->id }}/text/create"  class="btn btn-success">Adicionar Texto</a>
     </div>
   </div>

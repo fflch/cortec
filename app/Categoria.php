@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    public function corporas()
+    public function corpuses()
     {
-        return $this->hasMany('App\Corpora');
+        return $this->hasMany('App\Corpus');
     }
 }

@@ -21,7 +21,7 @@ class Utils
     public function __construct(String $text)
     {
         $this->text = $text;
-        $this->tokenizer = new RegexTokenizer('/([A-ZÁ-Ú]+[\\/\-_\']?[A-ZÁ-Ú]+)+|[A-ZÁ-Ú]+/iu');
+        $this->tokenizer = new RegexTokenizer('/([\p{L}]+[\/\-_\']?[\p{L}]+)+|[\p{L}]+/iu');
         $this->tokens = normalize_tokens($this->tokenizer->tokenize($this->text));
         $this->setAnalysis();
     }

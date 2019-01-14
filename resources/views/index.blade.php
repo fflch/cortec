@@ -41,7 +41,7 @@
           <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
         </div>
       </div>
-      <div class="row bg-gray pb-4" id="div_corporas">
+      <div class="row bg-gray pb-4" id="div_corpuses">
         @foreach ($categorias as $categoria)
           <div class="col-sm-3 mt-2" data-cat="{{$categoria->id}}">
             <div class="card">
@@ -53,18 +53,18 @@
               </label>
               <ul class="list-group list-group-flush" id="list_corp">
                 @php
-                  $corporas = $categoria->corporas->filter(function ($corpora, $key) {
-                      return (count($corpora->corpuses) > 0);
+                  $corpuses = $categoria->corpuses->filter(function ($corpus, $key) {
+                      return (count($corpus->texts) > 0);
                   });
                 @endphp
-                @foreach ($corporas as $corpora)
-                  <label for="check_{{$categoria->id}}_{{$corpora->id}}" style="margin-bottom: 0;">
-                    <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpora->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpora->id}}">
-                    <input type="checkbox" name="corporas[]" value="{{ $corpora->id }}" id="check_{{$categoria->id}}_{{$corpora->id}}">
-                      <a href="/categorias/{{$categoria->id}}#{{ $corpora->id }}" style="font-weight:normal;">
-                        {{ $corpora->titulo }}
+                @foreach ($corpuses as $corpus)
+                  <label for="check_{{$categoria->id}}_{{$corpus->id}}" style="margin-bottom: 0;">
+                    <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpus->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpus->id}}">
+                    <input type="checkbox" name="corpuses[]" value="{{ $corpus->id }}" id="check_{{$categoria->id}}_{{$corpus->id}}">
+                      <a href="/categorias/{{$categoria->id}}#{{ $corpus->id }}" style="font-weight:normal;">
+                        {{ $corpus->titulo }}
                       </a>
-                      @foreach ($corpora->getLanguages() as $lang)
+                      @foreach ($corpus->getLanguages() as $lang)
                         <span class="badge badge-secondary">{{$lang}}</span>
                       @endforeach
                     </li>

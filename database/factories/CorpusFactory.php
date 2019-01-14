@@ -1,13 +1,13 @@
 <?php
 
- use Faker\Generator as Faker;
+use Faker\Generator as Faker;
 
- $factory->define(App\Corpus::class, function (Faker $faker) {
+$factory->define(App\Corpus::class, function (Faker $faker) {
     return [
-        'corpora_id' => function () {
-            return factory(App\Corpora::class)->create()->id;
+        'categoria_id' => function () {
+            return factory(App\Categoria::class)->create()->id;
         },
-        'conteudo' => $faker->unique()->text(50000),
-        'idioma' => $faker->randomElement($array = array ('pt','en')) ,
+        'titulo' => $faker->unique()->text(25),
+        'descricao' => $faker->unique()->text(255),
     ];
 });

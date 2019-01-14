@@ -66,7 +66,7 @@ class CategoriaCrudTest extends TestCase
   public function testIndexCategoria()
   {
       $categoria = factory(Categoria::class)->create();
-      $response = $this->get('corporas?page=' . Categoria::paginate(10)->lastPage());
+      $response = $this->get('corpus?page=' . Categoria::paginate(10)->lastPage());
       $response->assertStatus(200);
       $response->assertSeeText($categoria->nome);
   }

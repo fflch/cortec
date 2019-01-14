@@ -16,17 +16,17 @@ Route::post('/analysis/tool', 'AnalysisController@toolSelection' );
 Route::match(['get', 'post'], '/analysis/process', 'AnalysisController@process' );
 Route::post('/analysis/concordanciador', 'AnalysisController@concordanciador' );
 
-Route::get('/corporas/','CorporaController@index');
-Route::resource('corporas','CorporaController');
+Route::get('/corpus/','CorpusController@index');
+Route::resource('corpus','CorpusController');
 Route::resource('categorias','CategoriaController');
 
-Route::get('/corporas/{disciplina_id}/corpus/create','CorporaController@createCorpus');
+Route::get('/corpus/{disciplina_id}/text/create','CorpusController@createText');
 
-Route::post('/corporas/{corpora}/corpus','CorporaController@storeCorpus');
-Route::get('/corporas/{corpora}/corpus','CorporaController@indexCorpus');
-Route::get('/corporas/{corpora}/corpus/{corpus}/edit','CorporaController@editCorpus');
-Route::post('/corporas/{corpora}/corpus/{corpus}','CorporaController@updateCorpus');
-Route::delete('/corporas/{corpora}/corpus/{corpus}','CorporaController@destroyCorpus');
+Route::post('/corpus/{corpus}/text','CorpusController@storeText');
+Route::get('/corpus/{corpus}/text','CorpusController@indexText');
+Route::get('/corpus/{corpus}/text/{text}/edit','CorpusController@editText');
+Route::post('/corpus/{corpus}/text/{text}','CorpusController@updateText');
+Route::delete('/corpus/{corpus}/text/{text}','CorpusController@destroyText');
 
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');

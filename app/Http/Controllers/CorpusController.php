@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class CorpusController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -175,7 +180,7 @@ class CorpusController extends Controller
             'idioma' => 'required|string',
             'conteudo' => 'required|string'
         ]);
-        
+
         $text->conteudo = $request->conteudo;
         $text->idioma = $request->idioma;
         $text->save();

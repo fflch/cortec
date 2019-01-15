@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('callback', 'Auth\LoginController@handleProviderCallback');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/', 'IndexController@step1' );
 Route::post('/analysis/tool', 'AnalysisController@toolSelection' );
 Route::match(['get', 'post'], '/analysis/process', 'AnalysisController@process' );

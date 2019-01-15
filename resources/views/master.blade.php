@@ -10,6 +10,16 @@
     @else
         <a href="/locale/en">English</a>
     @endif
+
+    @auth
+        <form method="post" action="/logout">
+            @csrf
+            <button type="submit">logout</button>
+        </form>
+    @else
+        <a href="/login">Login</a>
+    @endauth
+
 @endsection
 
 @section('menu-itens')

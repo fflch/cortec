@@ -28,12 +28,11 @@
   <li class="nav-item active divider-vertical">
     <a class="nav-link" href="/">{!! __('basic.busca') !!}</a>
   </li>
-  <li class="nav-item divider-vertical">
-    <a class="nav-link" href="#">{!! __('basic.oquee') !!}</a>
-  </li>
-  <li class="nav-item divider-vertical">
-    <a class="nav-link" href="/corpus/">{!! __('basic.ger_corpus') !!}</a>
-  </li>
+  @auth
+      <li class="nav-item divider-vertical">
+        <a class="nav-link" href="/corpus/">{!! __('basic.ger_corpus') !!}</a>
+      </li>
+  @endauth
 @endsection
 
 @section('footer')

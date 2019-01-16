@@ -3,9 +3,12 @@
     return [
         'confirma' => 'Você confirma esta operação?',
         'validacao' => [
+            'header' => 'Erro!',
             'modal_step1' => [
-                'header' => 'Erro!',
                 'body' => 'Seleção incorreta de corpora'
+            ],
+            'login' => [
+                'body' => 'Usuário sem permissão. Por favor, logue no sistema USP com um usuário válido.'
             ],
             'modal_concord' => [
                 'header' => 'Erro!',

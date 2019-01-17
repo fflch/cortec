@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "2a0bc4d3387455eafc131d2271768edc",
@@ -3264,12 +3264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-comet-theme.git",
-                "reference": "98a723f58d4aac9be6d371f6785509edd200354c"
+                "reference": "12af6c6517c840290d0609d4db46acddd175731d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/98a723f58d4aac9be6d371f6785509edd200354c",
-                "reference": "98a723f58d4aac9be6d371f6785509edd200354c",
+                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/12af6c6517c840290d0609d4db46acddd175731d",
+                "reference": "12af6c6517c840290d0609d4db46acddd175731d",
                 "shasum": ""
             },
             "type": "library",
@@ -3296,7 +3296,7 @@
                 }
             ],
             "description": "comet theme for laravel",
-            "time": "2018-12-06T17:58:53+00:00"
+            "time": "2019-01-16T19:51:38+00:00"
         },
         {
             "name": "uspdev/senhaunica-socialite",

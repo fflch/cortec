@@ -35,7 +35,7 @@ class AnalysisController extends Controller
 
         if(!$has_language) {
             return redirect("/")
-                ->withErrors('error')
+                ->withErrors(__('messages.validacao.modal_step1.body'))
                 ->withInput();
         }
 

@@ -49,8 +49,16 @@ class LoginController extends Controller
     {
         $userSenhaUnica = Socialite::driver('senhaunica')->user();
 
+        # verifica se o usuário é um admin
+        $admins = explode(',', env('ADMINS'));
+        if(!in_array($userSenhaUnica->codpes, $admins)) {
+            return redirect('/')
+            ->withErrors(__('messages.validacao.login.body'));
+        }
+
         # busca o usuário local
         $user = User::where('codpes',$userSenhaUnica->codpes)->first();
+
 
         if (is_null($user)) {
             $user = new User;

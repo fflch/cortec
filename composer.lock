@@ -2157,16 +2157,16 @@
         },
         {
             "name": "socialiteproviders/manager",
-            "version": "v3.3.3",
+            "version": "v3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/Manager.git",
-                "reference": "f87057486472e35cf0a208c870f613289806ade1"
+                "reference": "58b72a667da292a1d0a0b1e6e9aeda4053617030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/f87057486472e35cf0a208c870f613289806ade1",
-                "reference": "f87057486472e35cf0a208c870f613289806ade1",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/58b72a667da292a1d0a0b1e6e9aeda4053617030",
+                "reference": "58b72a667da292a1d0a0b1e6e9aeda4053617030",
                 "shasum": ""
             },
             "require": {
@@ -2198,10 +2198,14 @@
                 {
                     "name": "Andy Wendt",
                     "email": "andy@awendt.com"
+                },
+                {
+                    "name": "Anton Komarev",
+                    "email": "a.komarev@cybercog.su"
                 }
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
-            "time": "2019-01-11T20:44:14+00:00"
+            "time": "2019-01-16T07:58:54+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3264,12 +3268,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-comet-theme.git",
-                "reference": "12af6c6517c840290d0609d4db46acddd175731d"
+                "reference": "2333c1ae85b64ca63e9dad79d24105462877cfdd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/12af6c6517c840290d0609d4db46acddd175731d",
-                "reference": "12af6c6517c840290d0609d4db46acddd175731d",
+                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/2333c1ae85b64ca63e9dad79d24105462877cfdd",
+                "reference": "2333c1ae85b64ca63e9dad79d24105462877cfdd",
                 "shasum": ""
             },
             "type": "library",
@@ -3296,7 +3300,7 @@
                 }
             ],
             "description": "comet theme for laravel",
-            "time": "2019-01-16T19:51:38+00:00"
+            "time": "2019-01-18T17:46:11+00:00"
         },
         {
             "name": "uspdev/senhaunica-socialite",

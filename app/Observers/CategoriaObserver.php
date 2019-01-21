@@ -8,7 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoriaObserver
 {
-
+    /**
+     * Store the change in the database.
+     *
+     * @param  \App\Categoria  $categoria
+     * @param  string  $operacao
+     * @return void
+     */
     private function storeChange(Categoria $categoria, string $operacao)
     {
         $change = new Change;
@@ -21,6 +27,7 @@ class CategoriaObserver
 
         $change->save();
     }
+
     /**
      * Handle the categoria "created" event.
      *

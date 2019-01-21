@@ -4,8 +4,11 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+
 use App\Categoria;
 use App\Observers\CategoriaObserver;
+use App\Corpus;
+use App\Observers\CorpusObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         Categoria::observe(CategoriaObserver::class);
+        Corpus::observe(CorpusObserver::class);
     }
 
     /**

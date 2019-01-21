@@ -64,5 +64,19 @@
             'ocorrencias' => 'Tokens',
             'formas' => 'Types',
             'ratio' => 'T/T ratio',
+        ],
+        'changes' => [
+            'usuario' => 'User',
+            'entidade_id' => 'Entity ID',
+            'entidade_tipo' => 'Entity Type',
+            'entidade_nome' => 'Entity Name',
+            'operacao' => 'operation',
+            'data' => 'Date/Time',
+            'categoria' => 'Category',
+            'corpus' => 'Corpus',
+            'text' => 'Text',
+            'criado' => 'Created',
+            'modificado' => 'Modified',
+            'removido' => 'Removed',
         ]
     ];

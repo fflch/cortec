@@ -7,12 +7,12 @@
                 <table class="table lista-palavras tbl-striped mx-3 table-borderless" id="tbl-lista-palavras">
                     <thead>
                         <tr class="row">
-                            <th class="text-center col">Usuário</th>
-                            <th class="text-center col">ID da Entidade</th>
-                            <th class="text-center col">Tipo de Entidade</th>
-                            <th class="text-center col">Nome da Entidade</th>
-                            <th class="text-center col">Operação</th>
-                            <th class="text-center col">Data/Hora</th>
+                            <th class="text-center col">{{__('texts.changes.usuario')}}</th>
+                            <th class="text-center col">{{__('texts.changes.entidade_id')}}</th>
+                            <th class="text-center col">{{__('texts.changes.entidade_tipo')}}</th>
+                            <th class="text-center col">{{__('texts.changes.entidade_nome')}}</th>
+                            <th class="text-center col">{{__('texts.changes.operacao')}}</th>
+                            <th class="text-center col">{{__('texts.changes.data')}}</th>
                         </tr>
                     </thead>
                     @foreach ($changes as $change)
@@ -24,13 +24,13 @@
                                 {{$change->entidade_id}}
                             </td>
                             <td class="col text-center align-self-center" >
-                                {{$change->entidade_tipo}}
+                                {{__('texts.changes.'.$change->entidade_tipo)}}
                             </td>
                             <td class="col text-center align-self-center" >
                                 {{$change->entidade_nome}}
                             </td>
                             <td class="col text-center align-self-center" >
-                                {{$change->operacao}}
+                                {{__('texts.changes.'.$change->operacao)}}
                             </td>
                             <td class="col text-center align-self-center" >
                                 {{$change->created_at}}

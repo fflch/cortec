@@ -9,6 +9,8 @@ use App\Categoria;
 use App\Observers\CategoriaObserver;
 use App\Corpus;
 use App\Observers\CorpusObserver;
+use App\Text;
+use App\Observers\TextObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
 
         Categoria::observe(CategoriaObserver::class);
         Corpus::observe(CorpusObserver::class);
+        Text::observe(TextObserver::class);
     }
 
     /**

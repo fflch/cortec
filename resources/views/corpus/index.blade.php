@@ -2,11 +2,14 @@
 
 @section('content')
     <div class="container-lista">
-    <div class="row">
+    <div class="row justify-content-between">
         <div class="col pl-0">
             <a class="btn btn-success" href="/categorias/create" >Criar Categoria</a>
             <a class="btn btn-success" href="/corpus/create" >Criar Corpus</a>
-      </div>
+        </div>
+        <div class="col text-right pr-0">
+            <a class="btn btn-success" href="/changes" >Histórico de alterações</a>
+        </div>
     </div>
     <div class="row align-items-center row-header-lista px-1 mt-4">
         <div class="col-xs-1 text-center">

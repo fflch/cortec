@@ -33,7 +33,7 @@
                                 {{__('texts.changes.'.$change->operacao)}}
                             </td>
                             <td class="col text-center align-self-center" >
-                                {{$change->created_at}}
+                                {{$change->created_at->format('d/m/Y G:i:s')}}
                             </td>
                         </tr>
                     @endforeach

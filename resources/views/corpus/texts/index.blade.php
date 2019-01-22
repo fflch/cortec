@@ -21,7 +21,7 @@
             <li class="corpora list-group-item list-group-item-action mb-3">
               <div class="row align-items-center">
                 <div class="col-sm-3">
-                  {{ $text->created_at->formatLocalized('%d/%m/%G %k:%M:%S')}}
+                  {{ $text->created_at->format('d/m/Y G:i:s')}}
                 </div>
                 <div class="col-sm-3">
                   {{ str_limit($text->conteudo, 100) }}

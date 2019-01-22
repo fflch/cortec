@@ -1,7 +1,6 @@
 @extends('master')
 
 @section('content')
-  <div class="container-lista">
     <div class="row">
       <h2>{!! __('texts.passo1.passo') !!}</h2>
     </div>
@@ -82,7 +81,7 @@
         </div>
       </div>
     </form>
-  </div>
+    
   @if ($errors->any())
   <div class="modal" tabindex="-1" role="dialog" id="modalWarning">
       <div class="modal-dialog" role="document">

@@ -42,9 +42,3 @@
         </div>
     </div>
 @endsection
-
-
-@section('javascripts')
-  @parent
-  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-@endsection

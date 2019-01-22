@@ -81,7 +81,7 @@
         </div>
       </div>
     </form>
-    
+
   @if ($errors->any())
   <div class="modal" tabindex="-1" role="dialog" id="modalWarning">
       <div class="modal-dialog" role="document">
@@ -108,7 +108,6 @@
 
 @section('javascripts')
   @parent
-  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/analise_form.js') }}"></script>
   @if ($errors->any())
       <script>

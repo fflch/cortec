@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\RegexTokenizer;
 use App\Utils;
+use App\Observers\CorpusObserver;
 
 class Corpus extends Model
 {
@@ -12,6 +13,12 @@ class Corpus extends Model
     protected $all_texts    = array('pt' => '', 'en' => '');
     protected $analysis = array('pt' => array(), 'en' => array());
     protected $idiomas  = array();
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::observe(CorpusObserver::class);
+    }
 
     public function texts()
     {

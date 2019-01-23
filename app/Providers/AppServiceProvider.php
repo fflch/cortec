@@ -16,11 +16,15 @@ class AppServiceProvider extends ServiceProvider
     {
         // mariadb support
         Schema::defaultStringLength(191);
-        
+
         // Forçar https em produção
         if (env('APP_ENV') === 'production') {
             \URL::forceScheme('https');
-        } 
+        }
+
+        //Categoria::observe(CategoriaObserver::class);
+        //Corpus::observe(CorpusObserver::class);
+        //Text::observe(TextObserver::class);
     }
 
     /**

@@ -90,7 +90,6 @@
 
 @section('javascripts')
   @parent
-  <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
   <script>
     var modal = new bsn.Modal(document.getElementById('modalWarning'));
     @if ($errors->any()) modal.show(); @endif

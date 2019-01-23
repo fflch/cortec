@@ -48,6 +48,9 @@
               </div>
               <div class="card-body">
                 <p>{{ $corpus->descricao }}</p>
+                @if($corpus->tipologia)<p><strong>Tipologia Textual:</strong> {{$corpus->tipologia}}</p>@endif
+                @if($corpus->compilador)<p><strong>Compilador:</strong> {{$corpus->compilador}}</p>@endif
+                @if($corpus->ano)<p><strong>Ano:</strong> {{$corpus->ano}}</p>@endif
                 <div class="row justify-content-md-center">
                   <div class="col-xs-4">
                     <table class="table">

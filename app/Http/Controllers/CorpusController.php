@@ -56,6 +56,9 @@ class CorpusController extends Controller
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
         $corpus->descricao = $request->descricao;
+        $corpus->tipologia = $request->tipologia;
+        $corpus->compilador = $request->compilador;
+        $corpus->ano = $request->ano;
         $corpus->save();
 
         return redirect('/corpus');
@@ -103,6 +106,9 @@ class CorpusController extends Controller
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
         $corpus->descricao = $request->descricao;
+        $corpus->tipologia = $request->tipologia;
+        $corpus->compilador = $request->compilador;
+        $corpus->ano = $request->ano;
         $corpus->save();
 
         return redirect("/corpus/");

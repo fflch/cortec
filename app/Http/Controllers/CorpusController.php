@@ -49,7 +49,6 @@ class CorpusController extends Controller
         $validatedData = $request->validate([
             'categoria_id' => 'required|integer',
             'titulo' => 'required|string',
-            'descricao' => 'required|string',
         ]);
 
         $corpus = new Corpus;
@@ -100,7 +99,6 @@ class CorpusController extends Controller
         $validatedData = $request->validate([
             'categoria_id' => 'required|integer',
             'titulo' => 'required|string',
-            'descricao' => 'required|string',
         ]);
 
         $corpus->categoria_id = $request->categoria_id;

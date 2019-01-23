@@ -17,19 +17,19 @@
       </div>
       <div class="form-group">
         <label for="descricao">Descrição</label>
-        <textarea class="form-control" id="descricao" name="descricao" required rows="3"></textarea>
+        <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
       </div>
       <div class="form-group">
         <label for="tipologia">Tipologia Textual</label>
-        <input type="text" class="form-control" name="tipologia" id="tipologia" required placeholder="Ex.: Não-literário informativo">
+        <input type="text" class="form-control" name="tipologia" id="tipologia" placeholder="Ex.: Não-literário informativo">
       </div>
       <div class="form-group">
         <label for="compilador">Compilador</label>
-        <input type="text" class="form-control" name="compilador" id="compilador" required placeholder="Ex.: Henry Kučera">
+        <input type="text" class="form-control" name="compilador" id="compilador" placeholder="Ex.: Henry Kučera">
       </div>
       <div class="form-group">
         <label for="ano">Ano</label>
-        <input type="number" class="form-control" name="ano" id="ano" min="1500" max="2150" required placeholder="Ex.: 2018">
+        <input type="number" class="form-control" name="ano" id="ano" min="1500" max="2150" placeholder="Ex.: 2018">
       </div>
       <button type="submit" class="btn btn-success">Salvar</button>
   </form>

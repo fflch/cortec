@@ -14,9 +14,10 @@ class AddFieldsToCorpusesTable extends Migration
     public function up()
     {
         Schema::table('corpuses', function (Blueprint $table) {
-            $table->string('tipologia');
-            $table->string('compilador');
-            $table->integer('ano');
+            $table->string('tipologia')->nullable();
+            $table->string('compilador')->nullable();
+            $table->integer('ano')->nullable();
+            $table->text('descricao')->nullable()->change();
         });
     }
 
@@ -31,6 +32,7 @@ class AddFieldsToCorpusesTable extends Migration
             $table->dropColumn('tipologia');
             $table->dropColumn('compilador');
             $table->dropColumn('ano');
+            $table->text('descricao')->change();
         });
     }
 }

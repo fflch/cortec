@@ -49,13 +49,15 @@ class CorpusController extends Controller
         $validatedData = $request->validate([
             'categoria_id' => 'required|integer',
             'titulo' => 'required|string',
-            'descricao' => 'required|string',
         ]);
 
         $corpus = new Corpus;
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
         $corpus->descricao = $request->descricao;
+        $corpus->tipologia = $request->tipologia;
+        $corpus->compilador = $request->compilador;
+        $corpus->ano = $request->ano;
         $corpus->save();
 
         return redirect('/corpus');
@@ -97,12 +99,14 @@ class CorpusController extends Controller
         $validatedData = $request->validate([
             'categoria_id' => 'required|integer',
             'titulo' => 'required|string',
-            'descricao' => 'required|string',
         ]);
 
         $corpus->categoria_id = $request->categoria_id;
         $corpus->titulo = $request->titulo;
         $corpus->descricao = $request->descricao;
+        $corpus->tipologia = $request->tipologia;
+        $corpus->compilador = $request->compilador;
+        $corpus->ano = $request->ano;
         $corpus->save();
 
         return redirect("/corpus/");

@@ -35,7 +35,7 @@
                 'types'  => 'Palavras únicas/formas (types)',
                 'total1' => 'Total de ocorrências/ palavras corridas (tokens)',
                 'total2' => 'Total de palavras distintas (types)',
-                'header1' => 'Palavras que aparecem uma vez',
+                'header1' => 'Palavras que aparecem uma única vez',
                 'header2' => 'Palavras que aparecem mais de uma vez',
                 'head2' => 'Índice Vocabular (token/type ratio)',
                 'ratio' => 'Token/Type',

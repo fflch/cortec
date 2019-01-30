@@ -9,5 +9,8 @@ $factory->define(App\Corpus::class, function (Faker $faker) {
         },
         'titulo' => $faker->unique()->text(25),
         'descricao' => $faker->unique()->text(255),
+        'tipologia' => $faker->unique()->words(3, true),
+        'compilador' => $faker->unique()->name(),
+        'ano' => $faker->unique()->year(),
     ];
 });

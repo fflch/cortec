@@ -8,13 +8,26 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Corpus;
 use App\Categoria;
+use App\User;
+use Auth;
 
 class CorpusCrudTest extends TestCase
 {
 
     /**
-     * @test create
-     */
+    * Setting up an auth user for testing the methods
+    */
+    public function setUp()
+    {
+        parent::setUp();
+
+        $user = factory(User::class)->make();
+        Auth::login($user, true);
+    }
+
+    /**
+    * @test create
+    */
     public function testCreateCorpus()
     {
         $corpus = factory(Corpus::class)->make();
@@ -23,8 +36,8 @@ class CorpusCrudTest extends TestCase
     }
 
     /**
-     * @test read
-     */
+    * @test read
+    */
     public function testReadCorpus()
     {
         $corpus = factory(Corpus::class)->create();
@@ -35,8 +48,8 @@ class CorpusCrudTest extends TestCase
     }
 
     /**
-     * @test update
-     */
+    * @test update
+    */
 
     public function testUpdateCorpus()
     {
@@ -53,8 +66,8 @@ class CorpusCrudTest extends TestCase
     }
 
     /**
-     * @test delete
-     */
+    * @test delete
+    */
 
     public function testDeleteCorpus()
     {
@@ -64,8 +77,8 @@ class CorpusCrudTest extends TestCase
     }
 
     /**
-     * @test index
-     */
+    * @test index
+    */
     public function testIndexCorpus()
     {
         $corpus = factory(Corpus::class)->create();

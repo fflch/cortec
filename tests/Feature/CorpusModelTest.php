@@ -7,48 +7,60 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use App\Corpus;
+use App\User;
+use Auth;
 
 class CorpusModelTest extends TestCase
 {
-
     /**
-     * @test create
-     */
+    * Setting up an auth user for testing the methods
+    */
+    public function setUp()
+    {
+        parent::setUp();
+        
+        $user = factory(User::class)->make();
+        Auth::login($user, true);
+    }
+    
+    /**
+    * @test create
+    */
     public function testCreateCorpus()
     {
         $corpus = factory(Corpus::class)->create();
         $this->assertDatabaseHas('corpuses', $corpus->toArray());
     }
-
+    
     /**
-     * @test read
-     */
+    * @test read
+    */
     public function testReadCorpus()
     {
         $corpus = factory(Corpus::class)->create();
         $this->assertNotNull(Corpus::find($corpus['id']));
     }
-
+    
     /**
-     * @test update
-     */
-
+    * @test update
+    */
+    
     public function testUpdateCorpus()
     {
         $corpus = factory(Corpus::class)->create();
         $corpus_updated = Corpus::find($corpus['id']);
-
+        
         // updated title field
         $corpus_updated->titulo = $corpus_updated->titulo . ' updated';
         $corpus_updated->descricao = $corpus_updated->descricao . ' updated';
         $corpus_updated->save();
         $this->assertDatabaseHas('corpuses', $corpus_updated->toArray());
     }
-
+    
     /**
-     * @test delete
-     */
-
+    * @test delete
+    */
+    
     public function testDeleteCorpus()
     {
         $corpus = factory(Corpus::class)->create();

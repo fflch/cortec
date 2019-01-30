@@ -41,7 +41,7 @@ class TextCrudTest extends TestCase
         $text = factory(Text::class)->create();
         $response = $this->get('corpus/'.$text->corpus_id.'/text/'.$text->id.'/edit');
         $response->assertStatus(200);
-        $response->assertSeeText($text->conteudo);
+        $response->assertSeeText(htmlentities($text->conteudo));
     }
 
     /**

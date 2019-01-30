@@ -10,7 +10,7 @@ use App\Corpus;
 use App\User;
 use Auth;
 
-class CorpusModelTest extends TestCase
+class CorpusCrudTest extends TestCase
 {
     /**
     * Setting up an auth user for testing the methods
@@ -18,11 +18,11 @@ class CorpusModelTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         $user = factory(User::class)->make();
         Auth::login($user, true);
     }
-    
+
     /**
     * @test create
     */
@@ -30,8 +30,17 @@ class CorpusModelTest extends TestCase
     {
         $corpus = factory(Corpus::class)->create();
         $this->assertDatabaseHas('corpuses', $corpus->toArray());
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_tipo' => 'corpus',
+            'entidade_nome' => $corpus->nome,
+            'operacao' => 'criado',
+            ]
+        );
     }
-    
+
     /**
     * @test read
     */
@@ -40,33 +49,53 @@ class CorpusModelTest extends TestCase
         $corpus = factory(Corpus::class)->create();
         $this->assertNotNull(Corpus::find($corpus['id']));
     }
-    
+
     /**
     * @test update
     */
-    
+
     public function testUpdateCorpus()
     {
         $corpus = factory(Corpus::class)->create();
         $corpus_updated = Corpus::find($corpus['id']);
-        
+
         // updated title field
         $corpus_updated->titulo = $corpus_updated->titulo . ' updated';
         $corpus_updated->descricao = $corpus_updated->descricao . ' updated';
         $corpus_updated->save();
         $this->assertDatabaseHas('corpuses', $corpus_updated->toArray());
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_id' => $corpus->id,
+            'entidade_tipo' => 'corpus',
+            'entidade_nome' => $corpus->nome,
+            'operacao' => 'modificado',
+            ]
+        );
     }
-    
+
     /**
     * @test delete
     */
-    
+
     public function testDeleteCorpus()
     {
         $corpus = factory(Corpus::class)->create();
         $corpus = Corpus::find($corpus['id']);
         $this->assertTrue($corpus->delete());
         $this->assertNull(Corpus::find($corpus->id));
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_id' => $corpus->id,
+            'entidade_tipo' => 'corpus',
+            'entidade_nome' => $corpus->nome,
+            'operacao' => 'removido',
+            ]
+        );
     }
 
 }

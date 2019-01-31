@@ -35,7 +35,7 @@ class CorpusCrudTest extends TestCase
         $this->assertDatabaseHas('changes', [
             'user_id' => Auth::user()->id,
             'entidade_tipo' => 'corpus',
-            'entidade_nome' => $corpus->nome,
+            'entidade_nome' => $corpus->titulo,
             'operacao' => 'criado',
             ]
         );
@@ -68,9 +68,9 @@ class CorpusCrudTest extends TestCase
         //change table
         $this->assertDatabaseHas('changes', [
             'user_id' => Auth::user()->id,
-            'entidade_id' => $corpus->id,
+            'entidade_id' => $corpus_updated->id,
             'entidade_tipo' => 'corpus',
-            'entidade_nome' => $corpus->nome,
+            'entidade_nome' => $corpus_updated->titulo,
             'operacao' => 'modificado',
             ]
         );
@@ -92,7 +92,7 @@ class CorpusCrudTest extends TestCase
             'user_id' => Auth::user()->id,
             'entidade_id' => $corpus->id,
             'entidade_tipo' => 'corpus',
-            'entidade_nome' => $corpus->nome,
+            'entidade_nome' => $corpus->titulo,
             'operacao' => 'removido',
             ]
         );

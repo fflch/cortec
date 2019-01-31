@@ -61,7 +61,7 @@ class TextCrudTest extends TestCase
         $response = $this->post('/corpus/'.$text->corpus_id.'/text/'.$text->id, $text->toArray());
         $response_template = $this->get('corpus/'.$text->corpus_id.'/text/'.$text->id.'/edit');
         $response_template->assertStatus(200);
-        $response_template->assertSeeText($text->conteudo);
+        $response_template->assertSeeText(htmlentities($text->conteudo));
     }
 
     /**

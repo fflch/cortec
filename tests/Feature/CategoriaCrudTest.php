@@ -32,9 +32,11 @@ class CategoriaCrudTest extends TestCase
         $response = $this->post('categorias', $categoria->toArray());
         $this->assertDatabaseHas('categorias', $categoria->toArray());
 
+
         //change table
         $this->assertDatabaseHas('changes', [
             'user_id' => Auth::user()->id,
+            'entidade_id' => Categoria::latest()->first()->id,
             'entidade_tipo' => 'categoria',
             'entidade_nome' => $categoria->nome,
             'operacao' => 'criado',

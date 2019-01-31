@@ -35,6 +35,7 @@ class TextCrudTest extends TestCase
         //change table
         $this->assertDatabaseHas('changes', [
             'user_id' => Auth::user()->id,
+            'entidade_id' => Text::latest()->first()->id,
             'entidade_tipo' => 'text',
             'operacao' => 'criado',
             ]

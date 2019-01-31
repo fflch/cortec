@@ -34,6 +34,7 @@ class CorpusCrudTest extends TestCase
         //change table
         $this->assertDatabaseHas('changes', [
             'user_id' => Auth::user()->id,
+            'entidade_id' => Corpus::latest()->first()->id,
             'entidade_tipo' => 'corpus',
             'entidade_nome' => $corpus->titulo,
             'operacao' => 'criado',

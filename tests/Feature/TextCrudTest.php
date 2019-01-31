@@ -31,6 +31,14 @@ class TextCrudTest extends TestCase
         $text = factory(Text::class)->make();
         $response = $this->post('corpus/'.$text->corpus_id.'/text', $text->toArray());
         $this->assertDatabaseHas('texts', $text->toArray());
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_tipo' => 'text',
+            'operacao' => 'criado',
+            ]
+        );
     }
 
     /**
@@ -41,7 +49,7 @@ class TextCrudTest extends TestCase
         $text = factory(Text::class)->create();
         $response = $this->get('corpus/'.$text->corpus_id.'/text/'.$text->id.'/edit');
         $response->assertStatus(200);
-        $response->assertSeeText(htmlentities($text->conteudo));
+        $response->assertSeeText(e($text->conteudo));
     }
 
     /**
@@ -61,7 +69,16 @@ class TextCrudTest extends TestCase
         $response = $this->post('/corpus/'.$text->corpus_id.'/text/'.$text->id, $text->toArray());
         $response_template = $this->get('corpus/'.$text->corpus_id.'/text/'.$text->id.'/edit');
         $response_template->assertStatus(200);
-        $response_template->assertSeeText(htmlentities($text->conteudo));
+        $response_template->assertSeeText(e($text->conteudo));
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_id' => $text->id,
+            'entidade_tipo' => 'text',
+            'operacao' => 'modificado',
+            ]
+        );
     }
 
     /**
@@ -73,6 +90,17 @@ class TextCrudTest extends TestCase
         $text = factory(Text::class)->create();
         $response = $this->delete('/corpus/'.$text->corpus_id.'/text/' . $text->id);
         $this->assertNull(Text::find($text->id));
+
+
+
+        //change table
+        $this->assertDatabaseHas('changes', [
+            'user_id' => Auth::user()->id,
+            'entidade_id' => $text->id,
+            'entidade_tipo' => 'text',
+            'operacao' => 'removido',
+            ]
+        );
     }
 
 }

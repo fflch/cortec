@@ -7,7 +7,7 @@
         'corpus_id' => function () {
             return factory(App\Corpus::class)->create()->id;
         },
-        'conteudo' => $faker->unique()->text(50000),
+        'conteudo' => $faker->unique()->realText(50000),
         'idioma' => $faker->randomElement($array = array ('pt','en')) ,
     ];
 });

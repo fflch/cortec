@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="row">
+      <div class="col">
+          <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+              <h1 class="display-4">Aviso</h1>
+              <p class="lead">Este site está sendo atualizado. Enquanto isso, por gentileza, acesse o antigo em <a href="http://oldcortec.fflch.usp.br" target="_self">oldcortec.fflch.usp.br</a>.</p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
       <h2>{!! __('texts.passo1.passo') !!}</h2>
     </div>
     <div class="row mt-10">

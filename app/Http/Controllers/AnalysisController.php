@@ -68,6 +68,7 @@ class AnalysisController extends Controller
                 return $this->listaPalavras($request);
                 break;
             case 'n_grams':
+                return view('analysis.ngrams_form', compact('analysis'));
                 break;
             default:
                 redirect("/");

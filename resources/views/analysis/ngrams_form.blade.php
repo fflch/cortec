@@ -19,39 +19,47 @@
         </div>
       </div>
 
-      <div class="row bg-gray row pt-3">
+      <div class="row align-items-center justify-content-center bg-gray row pt-3">
         <div class="col">
           <div class="container">
-            <div class="form-group row align-items-center justify-content-center">
-              <label for="nGramSize" class="col-md-4 col-form-label">Tamanho dos n-gramas:</label>
-              <div class="col-12 col-md-3 col-lg-2">
-                <select class="form-control" id="nGramSize" name="nGramSize" required>
+            <div class="form-group row justify-content-center">
+              <label for="nGramSize" class="col-md-5 col-form-label">Tamanho dos n-gramas:</label>
+              <div class="col-12 col-md-6 col-lg-4">
+                <select class="form-control" id="nGramSize" name="nGramSize" onchange="changeStats(this.value)" required>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
                 </select>
               </div>
             </div>
-            <div class="form-group row align-items-center justify-content-center">
-              <label for="stats" class="col-md-4 col-form-label">Incluir estatísticas de associação? (Disponível para bigramas e trigramas, somente)</label>
-              <div class="col-12 col-md-3 col-lg-2">
+            <div class="form-group row justify-content-center">
+              <label for="stats" class="col-md-5 col-form-label">Incluir estatísticas de associação: (Disponível para bigramas e trigramas, somente)</label>
+              <div class="col-12 col-md-6 col-lg-4">
                 <select class="form-control" id="stats" name="stats">
-                  <option value="">Não</option>
+                  <option value="">Nenhuma</option>
                 </select>
               </div>
             </div>
-            <div class="form-group row align-items-center justify-content-center">
-              <label for="contexto" class="col-md-4 col-form-label">Deseja utilizar uma Stoplist?</label>
-              <div class="col-12 col-md-3 col-lg-2">
+            <div class="form-group row justify-content-center">
+              <label for="stopList" class="col-md-5 col-form-label">Deseja utilizar uma Stoplist?</label>
+              <div class="col-12 col-md-6 col-lg-4">
                 <select class="form-control" id="stopList" name="stopList" required>
                   <option value="default">Padrão</option>
                   <option>Particular</option>
                 </select>
               </div>
             </div>
-            <div class="form-group row align-items-center justify-content-center">
-              <label for="stats" class="col-md-4 col-form-label">Cortar os itens com frequência menor a:</label>
-              <div class="col-12 col-md-3 col-lg-2">
+
+            <div class="form-group row justify-content-center">
+              <label for="upload_field" class="col-md-5 col-form-label">Upload</label>
+              <div class="col-12 col-md-6 col-lg-4">
+                  <input type="file" class="form-control-file" id="upload_field" name="upload_field" accept=".txt">
+              </div>
+            </div>
+
+            <div class="form-group row justify-content-center">
+              <label for="stats" class="col-md-5 col-form-label">Cortar os itens com frequência menor a:</label>
+              <div class="col-12 col-md-6 col-lg-4">
                 <input type="number" class="form-control" name="remove" min="0" step="1">
               </div>
             </div>
@@ -91,6 +99,10 @@
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/corpuses/ngrams_form.js') }}"></script>
+  <script>
+      changeStats(document.getElementById("nGramSize").value);
+  </script>
   <script>
     var modal = new bsn.Modal(document.getElementById('modalWarning'));
     @if ($errors->any()) modal.show(); @endif

@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
  mix.js('resources/assets/js/corpuses/analise_lista_palavras.js', 'public/js/corpuses');
-mix.js('resources/assets/js/corpuses/analise_form.js', 'public/js/corpuses');
+ mix.js('resources/assets/js/corpuses/analise_form.js', 'public/js/corpuses');
+mix.js('resources/assets/js/corpuses/ngrams_form.js', 'public/js/corpuses');
 mix.js('resources/assets/js/corpuses/form.js', 'public/js/corpuses');
 
 //Modules and vendor

@@ -3,6 +3,7 @@
     "/js/corpuses/analise_lista_palavras.js": "/js/corpuses/analise_lista_palavras.js",
     "/css/app.css": "/css/app.css",
     "/js/script.js": "/js/script.js",
+    "/js/corpuses/ngrams_form.js": "/js/corpuses/ngrams_form.js",
     "/js/corpuses/form.js": "/js/corpuses/form.js",
     "/js/corpuses/analise_form.js": "/js/corpuses/analise_form.js"
 }

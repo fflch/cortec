@@ -118,6 +118,21 @@ class AnalysisController extends Controller
         return view('analysis.concord', compact('ocorrencias'));
     }
 
+    public function ngramas(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nGramSize' => 'required|integer|max:4|min:2',
+            'stoplist' => 'required',
+            'upload_field' => 'required_if:stoplist,custom',
+            'min_freq' => 'integer|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/analysis/process')
+                ->withErrors(__('messages.validacao.modal_ngram.error1'))
+                ->withInput();
+        }
+    }
     /**
     * Process the analysis, store it in the session and display it.
     *

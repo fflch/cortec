@@ -9,9 +9,9 @@
       <p>{!! __('texts.ngrams.header2') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/ngrams" method="post">
+    <form name="step2" action="/analysis/ngramas" method="post">
       {{ csrf_field() }}
-      <input type="hidden" name="tool" value="ngrams">
+      <input type="hidden" name="tool" value="n_grams">
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
@@ -23,9 +23,9 @@
         <div class="col">
           <div class="container">
             <div class="form-group row justify-content-center">
-              <label for="nGramSize" class="col-md-5 col-form-label">{!! __('texts.ngrams.label1') !!}</label>
+              <label for="ngram_size" class="col-md-5 col-form-label">{!! __('texts.ngrams.label1') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
-                <select class="form-control" id="nGramSize" name="nGramSize" onchange="changeStats(this.value)" required>
+                <select class="form-control" id="ngram_size" name="ngram_size" onchange="changeStats(this.value)" required>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -41,9 +41,9 @@
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="stopList" class="col-md-5 col-form-label">{!! __('texts.ngrams.label3') !!}</label>
+              <label for="stoplist" class="col-md-5 col-form-label">{!! __('texts.ngrams.label3') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
-                <select class="form-control" id="stopList" name="stopList" onchange="showUpload(this)" required>
+                <select class="form-control" id="stoplist" name="stoplist" onchange="showUpload(this)" required>
                   <option value="default">{!! __('texts.ngrams.option3_1') !!}</option>
                   <option value="custom">{!! __('texts.ngrams.option3_2') !!}</option>
                 </select>
@@ -58,9 +58,9 @@
             </div>
 
             <div class="form-group row justify-content-center">
-              <label for="stats" class="col-md-5 col-form-label">{!! __('texts.ngrams.label4') !!}</label>
+              <label for="min_freq" class="col-md-5 col-form-label">{!! __('texts.ngrams.label4') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
-                <input type="number" class="form-control" name="remove" min="0" step="1">
+                <input type="number" class="form-control" name="min_freq" min="0" step="1">
               </div>
             </div>
           </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="modal-body">
             @foreach ($errors->all() as $error)
-                <p>{!! $error !!}</p>
+                <p>{!! $error !!}</p>ss
             @endforeach
         </div>
         <div class="modal-footer">

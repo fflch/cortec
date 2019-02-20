@@ -14,6 +14,9 @@
                 'header' => 'Error!',
                 'error1' => 'Incorrect expression or word',
                 'error2' => 'No occurrences were found'
+            ],
+            'modal_ngram' => [
+                'error1' => 'Analysis parameters incorrectly inserted',
             ]
         ]
     ];

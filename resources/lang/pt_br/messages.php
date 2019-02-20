@@ -14,6 +14,9 @@
                 'header' => 'Erro!',
                 'error1' => 'Expressão ou Palavra inserida incorretamente',
                 'error2' => 'Não foram encontradas ocorrências com o termo inserido'
+            ],
+            'modal_ngram' => [
+                'error1' => 'Parâmetros de análise inseridos incorretamente',
             ]
         ]
     ];

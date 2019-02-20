@@ -20,7 +20,9 @@ return [
         'corpuses' => [
             'required' => 'É necessário selecionar um corpus',
         ],
-        ''
+        'upload_field' => [
+            'required_if' => 'Nenhum arquivo foi inserido',
+        ]
     ],
 
     /*

@@ -19,6 +19,7 @@ Route::get('/', 'IndexController@step1' );
 Route::post('/analysis/tool', 'AnalysisController@toolSelection' );
 Route::match(['get', 'post'], '/analysis/process', 'AnalysisController@process' );
 Route::post('/analysis/concordanciador', 'AnalysisController@concordanciador' );
+Route::post('/analysis/ngramas', 'AnalysisController@ngramas' );
 
 Route::get('/corpus/','CorpusController@index');
 Route::resource('corpus','CorpusController');

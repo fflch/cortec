@@ -35,6 +35,6 @@ window.showUpload = function(select) {
 
 //initial
 document.addEventListener("DOMContentLoaded",function(){
-    changeStats(document.getElementById("nGramSize").value);
-    showUpload(document.getElementById("stopList"));
+    changeStats(document.getElementById("ngram_size").value);
+    showUpload(document.getElementById("stoplist"));
 });

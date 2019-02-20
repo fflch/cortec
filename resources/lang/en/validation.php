@@ -125,9 +125,15 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'language' => [
+            'required' => 'It\'s required to select one language',
         ],
+        'corpuses' => [
+            'required' => 'It\'s required to select at least one corpus',
+        ],
+        'upload_field' => [
+            'required_if' => 'None file was selected',
+        ]
     ],
 
     /*

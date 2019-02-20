@@ -20,23 +20,21 @@ window.changeStats = function (nGramSize) {
         {text: "Log-Likelihood", value: "ll"}
     ];
 
-    cleanOptions(target, true);
+    clearOptions(target, true);
 
     if (typeof ngrams[nGramSize] != "undefined") {
         ngrams[nGramSize].forEach(createOption.bind(null, target));
     }
 }
 
-function createOption(target, obj){
-    let opt = document.createElement('option');
-    opt.value = obj.value;
-    opt.innerHTML = obj.text;
-    target.appendChild(opt);
+window.showUpload = function(select) {
+    let stopList = select.value;
+    toggle = (stopList == 'default') ? 'none' : 'flex';
+    toggleElm(document.getElementById("upload_div"), toggle);
 }
 
-function cleanOptions(select, expFirst){
-    end = (expFirst) ? 1 : 0;
-    for(i = select.options.length - 1 ; i >= end ; i--) {
-        select.remove(i);
-    }
-}
+//initial
+document.addEventListener("DOMContentLoaded",function(){
+    changeStats(document.getElementById("nGramSize").value);
+    showUpload(document.getElementById("stopList"));
+});

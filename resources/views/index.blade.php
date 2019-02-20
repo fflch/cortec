@@ -108,7 +108,7 @@
 
 @section('javascripts')
   @parent
-  <script type="text/javascript" src="{{ asset('/js/corpuses/analise_form.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/analise/analise_form.js') }}"></script>
   @if ($errors->any())
       <script>
         var modal = new bsn.Modal(document.getElementById('modalWarning'));

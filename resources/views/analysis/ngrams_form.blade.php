@@ -43,14 +43,14 @@
             <div class="form-group row justify-content-center">
               <label for="stopList" class="col-md-5 col-form-label">Deseja utilizar uma Stoplist?</label>
               <div class="col-12 col-md-6 col-lg-4">
-                <select class="form-control" id="stopList" name="stopList" required>
+                <select class="form-control" id="stopList" name="stopList" onchange="showUpload(this)" required>
                   <option value="default">Padrão</option>
-                  <option>Particular</option>
+                  <option value="custom">Particular</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-group row justify-content-center">
+            <div class="form-group row justify-content-center" id="upload_div" style="display:none;">
               <label for="upload_field" class="col-md-5 col-form-label">Upload</label>
               <div class="col-12 col-md-6 col-lg-4">
                   <input type="file" class="form-control-file" id="upload_field" name="upload_field" accept=".txt">
@@ -99,10 +99,8 @@
 
 @section('javascripts')
   @parent
-  <script type="text/javascript" src="{{ asset('/js/corpuses/ngrams_form.js') }}"></script>
-  <script>
-      changeStats(document.getElementById("nGramSize").value);
-  </script>
+  <script type="text/javascript" src="{{ asset('/js/analise/ngrams_form.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/utils.js') }}"></script>
   <script>
     var modal = new bsn.Modal(document.getElementById('modalWarning'));
     @if ($errors->any()) modal.show(); @endif

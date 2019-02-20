@@ -3,10 +3,10 @@
 @section('content')
   <div class="container-lista">
     <div class="row">
-      <h2>Passo 3/3: Aplicando a Ferramenta sobre o Corpus.</h2>
+      <h2>{!! __('texts.ngrams.header1') !!}</h2>
     </div>
     <div class="row mt-10">
-      <p>Configure a ferramenta usando as opções abaixo:</p>
+      <p>{!! __('texts.ngrams.header2') !!}</p>
     </div>
 
     <form name="step2" action="/analysis/ngrams" method="post">
@@ -15,7 +15,7 @@
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
-          <h3 class="h3 h3-lista">Gerador de N-Gramas</h3>
+          <h3 class="h3 h3-lista">{!! __('texts.ngrams.ferramenta') !!}</h3>
         </div>
       </div>
 
@@ -23,7 +23,7 @@
         <div class="col">
           <div class="container">
             <div class="form-group row justify-content-center">
-              <label for="nGramSize" class="col-md-5 col-form-label">Tamanho dos n-gramas:</label>
+              <label for="nGramSize" class="col-md-5 col-form-label">{!! __('texts.ngrams.label1') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
                 <select class="form-control" id="nGramSize" name="nGramSize" onchange="changeStats(this.value)" required>
                   <option value="2">2</option>
@@ -33,19 +33,19 @@
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="stats" class="col-md-5 col-form-label">Incluir estatísticas de associação: (Disponível para bigramas e trigramas, somente)</label>
+              <label for="stats" class="col-md-5 col-form-label">{!! __('texts.ngrams.label2') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
                 <select class="form-control" id="stats" name="stats">
-                  <option value="">Nenhuma</option>
+                  <option value="">{!! __('texts.ngrams.option2_1') !!}</option>
                 </select>
               </div>
             </div>
             <div class="form-group row justify-content-center">
-              <label for="stopList" class="col-md-5 col-form-label">Deseja utilizar uma Stoplist?</label>
+              <label for="stopList" class="col-md-5 col-form-label">{!! __('texts.ngrams.label3') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
                 <select class="form-control" id="stopList" name="stopList" onchange="showUpload(this)" required>
-                  <option value="default">Padrão</option>
-                  <option value="custom">Particular</option>
+                  <option value="default">{!! __('texts.ngrams.option3_1') !!}</option>
+                  <option value="custom">{!! __('texts.ngrams.option3_2') !!}</option>
                 </select>
               </div>
             </div>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group row justify-content-center">
-              <label for="stats" class="col-md-5 col-form-label">Cortar os itens com frequência menor a:</label>
+              <label for="stats" class="col-md-5 col-form-label">{!! __('texts.ngrams.label4') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
                 <input type="number" class="form-control" name="remove" min="0" step="1">
               </div>

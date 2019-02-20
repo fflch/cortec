@@ -54,6 +54,18 @@
             'thead1' => 'Ocorrência',
             'ferramenta' => 'Concordanciador',
         ],
+        'ngrams' => [
+            'header1' => 'Passo 3/3: Aplicando a Ferramenta sobre o Corpus.',
+            'header2' => 'Configure a ferramenta usando as opções abaixo:',
+            'ferramenta' => 'Gerador de N-Gramas',
+            'label1' => 'Tamanho dos n-gramas:',
+            'label2' => 'Incluir estatísticas de associação: (Disponível para bigramas e trigramas, somente)',
+            'option2_1' => 'Nenhuma',
+            'label3' => 'Deseja utilizar uma Stoplist?',
+            'option3_1' => 'Padrão',
+            'option3_2' => 'Particular',
+            'label4' => 'Cortar os itens com frequência menor a:',
+        ],
         'categorias' => [
             'texto1' => 'Sobre os Corpora',
             'texto2' => 'Esta categoria de Corpora é constituída de :count corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:',

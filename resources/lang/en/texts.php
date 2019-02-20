@@ -53,6 +53,18 @@
             'thead1' => 'Occurrence',
             'ferramenta' => 'Concordancer',
         ],
+        'ngrams' => [
+            'header1' => 'Step 3/3: Applying Tool to Corpus.',
+            'header2' => 'Select the tool according to the options below:',
+            'ferramenta' => 'N-Grams Extractor',
+            'label1' => 'N-grams size:',
+            'label2' => 'Include association statistics? (Available for bigrams and trigrams only)',
+            'option2_1' => 'None',
+            'label3' => 'Stoplist?',
+            'option3_1' => 'Standard',
+            'option3_2' => 'Customized',
+            'label4' => 'Leave out items with frequency below:',
+        ],
         'categorias' => [
             'texto1' => 'Corpora in',
             'texto2' => 'This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',

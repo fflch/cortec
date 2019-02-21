@@ -43,3 +43,5 @@ Route::get('/download/frequencia', 'AnalysisController@freqTable' );
 Route::get('/download/concord', 'AnalysisController@concordTable' );
 
 Route::get('/changes','ChangeController@index');
+
+Route::get('/stopwords','StopwordsController@edit');

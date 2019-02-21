@@ -3,7 +3,7 @@
     return [
         'confirma' => 'Confirm operation?',
         'validacao' => [
-            'header' => 'Error!',
+            'header' => 'Error(s)!',
             'modal_step1' => [
                 'body' => 'Incorrect corpora selection'
             ],

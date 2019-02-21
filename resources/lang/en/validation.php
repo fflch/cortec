@@ -126,13 +126,16 @@ return [
 
     'custom' => [
         'language' => [
-            'required' => 'It\'s required to select one language',
+            'required' => 'It\'s required to select one language.',
         ],
         'corpuses' => [
-            'required' => 'It\'s required to select at least one corpus',
+            'required' => 'It\'s required to select at least one corpus.',
         ],
         'upload_field' => [
-            'required_if' => 'None file was selected',
+            'required_if' => 'None file was selected.',
+        ],
+        'min_freq' => [
+            'integer' => 'Invalid minimum frequency number.',
         ]
     ],
 

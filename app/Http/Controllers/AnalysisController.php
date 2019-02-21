@@ -121,7 +121,7 @@ class AnalysisController extends Controller
     public function ngramas(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nGramSize' => 'required|integer|max:4|min:2',
+            'ngram_size' => 'required|integer|max:4|min:2',
             'stoplist' => 'required',
             'upload_field' => 'required_if:stoplist,custom',
             'min_freq' => 'integer|min:0',
@@ -129,9 +129,22 @@ class AnalysisController extends Controller
 
         if ($validator->fails()) {
             return redirect('/analysis/process')
-                ->withErrors(__('messages.validacao.modal_ngram.error1'))
+                ->withErrors($validator)
                 ->withInput();
         }
+
+        $all_texts      =  $request->session()->get('form_analysis.all_texts');
+        $ngram_size     =  $request->ngram_size;
+        $stats          =  $request->stats;
+        $stoplist       =  $request->stoplist;
+        $upload_field   =  $request->upload_field;
+        $min_freq       =  $request->min_freq;
+
+        $analysis   = new Utils($all_texts);
+        $tokens     = $analysis->getTokens();
+
+        dd($tokens);
+
     }
     /**
     * Process the analysis, store it in the session and display it.

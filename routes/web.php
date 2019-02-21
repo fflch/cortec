@@ -44,4 +44,5 @@ Route::get('/download/concord', 'AnalysisController@concordTable' );
 
 Route::get('/changes','ChangeController@index');
 
-Route::get('/stopwords','StopwordsController@edit');
+Route::get('/stopwords/{idioma}','StopwordsController@edit');
+Route::post('/stopwords/update','StopwordsController@update');

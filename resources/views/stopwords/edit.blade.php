@@ -1,16 +1,9 @@
 @extends('master')
 
 @section('content')
-  <form method="POST" name="stoplist" action="/stoplist/edit">
+  <form method="POST" name="stoplist" action="/stopwords/update">
       {{ csrf_field() }}
-
-      <div class="form-group">
-          <legend class="col-form-label">Idioma</legend>
-          <select class="custom-select" id="idioma" name="idioma" required>
-              <option selected value="pt">Português</option>
-              <option value="en">Inglês</option>
-          </select>
-      </div>
+      <input type="hidden" name="idioma" value="{{$idioma}}" >
 
       <div class="form-group" id="div_upload">
           <label for="upload_field">Upload</label>
@@ -19,7 +12,7 @@
 
       <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required></textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required>{{$stopwords}}</textarea>
       </div>
 
       <button type="submit" class="btn btn-success">Salvar</button>

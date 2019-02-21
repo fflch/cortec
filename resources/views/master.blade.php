@@ -38,6 +38,17 @@
       <li class="nav-item divider-vertical">
         <a class="nav-link" href="/corpus/">{!! __('basic.ger_corpus') !!}</a>
       </li>
+      <li class="nav-item divider-vertical">
+          <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gerenciar Stopwords
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="nav-link" href="/stopwords/pt">Stopwords em Português</a>
+                  <a class="nav-link" href="/stopwords/en">Stopwords em Inglês</a>
+              </div>
+          </div>
+      </li>
   @endauth
 @endsection
 

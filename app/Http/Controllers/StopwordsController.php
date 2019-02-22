@@ -27,7 +27,7 @@ class StopwordsController extends Controller
         $stopwords = array_filter($stopwords);
 
         //delete all stopwords of the language
-        Stopword::where('idioma', '==', $idioma)->delete();
+        Stopword::where('idioma', '=', $idioma)->delete();
 
         $stoplist = array();
         foreach ($stopwords as $stopword) {

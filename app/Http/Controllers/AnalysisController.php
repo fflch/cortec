@@ -121,10 +121,10 @@ class AnalysisController extends Controller
     public function ngramas(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'ngram_size' => 'required|integer|max:4|min:2',
-            'stoplist' => 'required',
-            'upload_field' => 'required_if:stoplist,custom',
-            'min_freq' => 'integer|min:0',
+            'ngram_size'    => 'required|integer|max:4|min:2',
+            'stoplist'      => 'required',
+            'upload_field'  => 'required_if:stoplist,custom',
+            'min_freq'      => 'nullable|integer|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -137,11 +137,30 @@ class AnalysisController extends Controller
         $ngram_size     =  $request->ngram_size;
         $stats          =  $request->stats;
         $stoplist       =  $request->stoplist;
-        $upload_field   =  $request->upload_field;
         $min_freq       =  $request->min_freq;
+        $language       = $request->session()->get('form_analysis.language');
 
         $analysis   = new Utils($all_texts);
         $tokens     = $analysis->getTokens();
+
+        if($stoplist == 'default') {
+            $stoplist = \App\Stopword::where('idioma', '=', $language)->pluck('palavra')->toArray();
+        } else {
+            try {
+                if ($request->file('upload_field')->isValid()) {
+                    $stopwords_file = $request->file('upload_field');
+                    $stopwords = explode("\r\n", $stopwords_file->get());
+                    $stoplist = array_filter($stopwords);
+                }
+            } catch (\Exception $e) {
+                return redirect('/analysis/process')
+                    ->withErrors('Erro ao processar arquivo de Stoplist')
+                    ->withInput();
+            }
+        }
+
+        filter_stopwords($tokens, $stoplist);
+        $tokens = array_values(array_filter($tokens));
 
         dd($tokens);
 

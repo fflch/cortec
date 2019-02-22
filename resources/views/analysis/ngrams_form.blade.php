@@ -9,7 +9,7 @@
       <p>{!! __('texts.ngrams.header2') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/ngramas" method="post">
+    <form name="step2" action="/analysis/ngramas" method="post" enctype="multipart/form-data">
       {{ csrf_field() }}
       <input type="hidden" name="tool" value="n_grams">
 

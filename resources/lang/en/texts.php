@@ -63,7 +63,27 @@
             'label3' => 'Stoplist?',
             'option3_1' => 'Standard',
             'option3_2' => 'Customized',
+            'label3_1' => '(.txt with one word per line and without separator)',
             'label4' => 'Leave out items with frequency below:',
+            'tabela'     => [
+                'title'    => 'N-grams table',
+                'download' => 'Download Table',
+                'header1'  => 'Postition',
+                'header2'  => 'N-gram',
+                'header3_1'  => 'Frequency',
+                'header3_2'  => [
+                    'tmi'         => 'True Mutual Information value',
+                    'pmi'         => 'Pointwise Mutual Information value',
+                    'dice'        => 'Dice value',
+                    'll'          => 'Log-Likelihood value',
+                    'x2'          => 'Chi-Square Test value',
+                    'leftFisher'  => 'Left-Fisher Test of Associativity value',
+                    'rightFisher' => 'Right-Fisher Test of Associativity value',
+                    'pmi'         => 'T-Score value',
+                    'phi'         => 'Phi Coefficient value',
+                    'odds'        => 'Odds Ratio value',
+                ]
+            ],
         ],
         'categorias' => [
             'texto1' => 'Corpora in',

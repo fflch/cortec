@@ -3,10 +3,10 @@
 @section('content')
     <div class="row mb-2 justify-content-between">
         <div class="col">
-            <h2>Tabela de N-gramas</h2>
+            <h2>{!! __('texts.ngrams.tabela.title') !!}</h2>
         </div>
         <div class="col text-right">
-            <a href="/download/frequencia" target="_blank" class="btn btn-success">{!! __('texts.lista_palavras.tabela.download') !!}</a>
+            <a href="/download/frequencia" target="_blank" class="btn btn-success">{!! __('texts.ngrams.tabela.download') !!}</a>
         </div>
     </div>
 
@@ -15,12 +15,12 @@
             <table class="table lista-palavras tbl-striped" id="tbl-lista-palavras">
                 <thead>
                     <tr style="cursor: pointer;">
-                        <th scope="col" data-sort class="text-center">{!! __('texts.lista_palavras.tabela.header2_1') !!} <i class="fas fa-sort"></i></th>
-                        <th scope="col" data-sort class="text-center">N-grama <i class="fas fa-sort"></i></th>
+                        <th scope="col" data-sort class="text-center">{!! __('texts.ngrams.tabela.header1') !!} <i class="fas fa-sort"></i></th>
+                        <th scope="col" data-sort class="text-center">{!! __('texts.ngrams.tabela.header2') !!} <i class="fas fa-sort"></i></th>
                         @if ($stats)
-                            <th scope="col" data-sort class="text-center">Probabilidade de associação</th>
+                            <th scope="col" data-sort class="text-center">{!! __('texts.ngrams.tabela.header3_2.'.$stats) !!}</th>
                         @else
-                            <th scope="col" data-sort class="text-center">Frequência<i class="fas fa-sort"></i></th>
+                            <th scope="col" data-sort class="text-center">{!! __('texts.ngrams.tabela.header3_1') !!} <i class="fas fa-sort"></i></th>
                         @endif
                     </tr>
                 </thead>

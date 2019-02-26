@@ -17,6 +17,7 @@
             ],
             'modal_ngram' => [
                 'error1' => 'Parâmetros de análise inseridos incorretamente',
-            ]
+            ],
+            'error_stoplist' => 'Erro ao processar arquivo de Stoplist.',
         ]
     ];

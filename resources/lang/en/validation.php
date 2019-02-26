@@ -132,10 +132,14 @@ return [
             'required' => 'It\'s required to select at least one corpus.',
         ],
         'upload_field' => [
-            'required_if' => 'None file was selected.',
+            'required_if' => 'No file was selected.',
         ],
         'min_freq' => [
             'integer' => 'Invalid minimum frequency number.',
+        ],
+        'ngram_size' => [
+            'required' => 'Invalid n-gram size.',
+            'integer'  => 'Invalid n-gram size.',
         ]
     ],
 

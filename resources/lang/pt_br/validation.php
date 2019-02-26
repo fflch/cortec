@@ -25,6 +25,10 @@ return [
         ],
         'min_freq' => [
             'integer' => 'Número de corte inválido.',
+        ],
+        'ngram_size' => [
+            'required' => 'Tamanhos dos n-gramas inválido.',
+            'integer'  => 'Tamanhos dos n-gramas inválido.',
         ]
     ],
 

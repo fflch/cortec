@@ -30,7 +30,7 @@
                 @endphp
                 @foreach ($ngrams as $ngram => $raw_value)
                     @php
-                        $value = ($stats) ? round($raw_value, 4) : $raw_value[0];
+                        $value = ($stats) ? round($raw_value[0], 4) : $raw_value[0];
                         ($old_value > $value) ? $i++ : $i;
                         $old_value = $value;
                     @endphp

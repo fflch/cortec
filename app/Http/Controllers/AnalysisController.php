@@ -164,21 +164,16 @@ class AnalysisController extends Controller
         filter_stopwords($tokens, $stoplist);
         $tokens = array_values(array_filter($tokens));
 
-        //Gera os Ngramas
+        //Gera os N-gramas
         $ngrams = NGramFactory::create($tokens, $ngram_size, ' ');
         $ngrams = NGramFactory::getFreq($ngrams, ' ');
 
-        //Remove conforme a frequência mínima inserida
-        if($min_freq > 1) {
-            $ngrams = array_filter($ngrams, function($n) use ($min_freq) {
-                return ($n[0] >= $min_freq);
-            });
-        }
-
         //Calcula ou não as estatísticas e ordena o array
         if(!is_null($stats)) {
-            $ngrams = StatisticFacade::calculate($ngrams, $stats, $ngram_size);
-            arsort($ngrams, SORT_NUMERIC);
+            $ngrams_stats = StatisticFacade::calculate($ngrams, $stats, $ngram_size);
+            arsort($ngrams_stats, SORT_NUMERIC);
+
+            $ngrams = array_merge_recursive($ngrams_stats, $ngrams);
 
             //armazena o tipo de estatística na sessão
             $request->session()->put('form_analysis.ngrams.stats', $stats);
@@ -187,6 +182,14 @@ class AnalysisController extends Controller
                 return $element[0];
             }, $ngrams), SORT_DESC, $ngrams);
             $request->session()->forget('form_analysis.ngrams.stats');
+        }
+
+        //Remove conforme a frequência mínima inserida
+        if($min_freq > 1) {
+            $ngrams = array_filter($ngrams, function($n) use ($min_freq, $stats) {
+                $freq = ($stats) ? $n[1] : $n[0];
+                return ($freq >= $min_freq);
+            });
         }
 
         //armazena os n-gramas na sessão
@@ -271,14 +274,14 @@ class AnalysisController extends Controller
         # insere no CSV Header Tokens
         fputcsv($csv_temp, array(__('texts.ngrams.tabela.title')));
 
-        # insere tabela de frequência
+        # insere tabela de n-gramas
         $value_header = ($stats) ? __('texts.ngrams.tabela.header3_2.'.$stats) : __('texts.ngrams.tabela.header3_1');
         fputcsv($csv_temp, array(__('texts.ngrams.tabela.header1'), __('texts.ngrams.tabela.header2'), $value_header));
 
         $i = 1;
         $old_value = 0;
         foreach ($ngrams as $ngram => $raw_value) {
-            $value = ($stats) ? round($raw_value, 4) : $raw_value[0];
+            $value = ($stats) ? round($raw_value[0], 4) : $raw_value[0];
             ($old_value > $value) ? $i++ : $i;
             $old_value = $value;
 

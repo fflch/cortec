@@ -41,6 +41,7 @@ Route::get('/locale/{locale}', function ($locale, Request $request) {
 
 Route::get('/download/frequencia', 'AnalysisController@freqTable' );
 Route::get('/download/concord', 'AnalysisController@concordTable' );
+Route::get('/download/ngramas', 'AnalysisController@ngramsTable' );
 
 Route::get('/changes','ChangeController@index');
 

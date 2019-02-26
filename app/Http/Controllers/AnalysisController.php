@@ -97,7 +97,6 @@ class AnalysisController extends Controller
         $termo =  $request->termo;
         $contexto =  $request->contexto;
         $case =  boolval($request->case);
-        //$concordanciador = new Concordanciador($all_corpus, $posicao, $termo, $contexto, $case);
         $conc = new TextCorpus($all_texts);
 
         //reduzido
@@ -109,7 +108,6 @@ class AnalysisController extends Controller
         }
 
         //expandido
-        // $concordanciador->setContextLength(150);
         $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao, true));
 
         $ocorrencias = $ocorrencias_red->zip($ocorrencias_exp);
@@ -181,11 +179,18 @@ class AnalysisController extends Controller
         if(!is_null($stats)) {
             $ngrams = StatisticFacade::calculate($ngrams, $stats, $ngram_size);
             arsort($ngrams, SORT_NUMERIC);
+
+            //armazena o tipo de estatística na sessão
+            $request->session()->put('form_analysis.ngrams.stats', $stats);
         } else {
             array_multisort(array_map(function($element) {
                 return $element[0];
             }, $ngrams), SORT_DESC, $ngrams);
+            $request->session()->forget('form_analysis.ngrams.stats');
         }
+
+        //armazena os n-gramas na sessão
+        $request->session()->put('form_analysis.ngrams.values', $ngrams);
 
         return view('analysis.ngrams', compact('ngrams', 'stats'));
     }
@@ -247,6 +252,47 @@ class AnalysisController extends Controller
         return response($csv)
                 ->header('Content-Type', 'text/csv')
                 ->header('Content-disposition', 'attachment; filename = '.__('texts.lista_palavras.tabela.header2_3').'.csv');
+    }
+
+
+
+    /**
+    * Generates the table for n-grams
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function ngramsTable(Request $request)
+    {
+        $ngrams = $request->session()->get('form_analysis.ngrams.values');
+        $stats = $request->session()->get('form_analysis.ngrams.stats', null);
+
+        $csv_temp = fopen('php://temp', 'rw');
+
+        # insere no CSV Header Tokens
+        fputcsv($csv_temp, array(__('texts.ngrams.tabela.title')));
+
+        # insere tabela de frequência
+        $value_header = ($stats) ? __('texts.ngrams.tabela.header3_2.'.$stats) : __('texts.ngrams.tabela.header3_1');
+        fputcsv($csv_temp, array(__('texts.ngrams.tabela.header1'), __('texts.ngrams.tabela.header2'), $value_header));
+
+        $i = 1;
+        $old_value = 0;
+        foreach ($ngrams as $ngram => $raw_value) {
+            $value = ($stats) ? round($raw_value, 4) : $raw_value[0];
+            ($old_value > $value) ? $i++ : $i;
+            $old_value = $value;
+
+            $line = array($i,$ngram,$value);
+            fputcsv($csv_temp, $line);
+        }
+
+        rewind($csv_temp);
+        $csv = stream_get_contents($csv_temp);
+        fclose($csv_temp);
+
+        return response($csv)
+                ->header('Content-Type', 'text/csv')
+                ->header('Content-disposition', 'attachment; filename = '.__('texts.ngrams.tabela.title').'.csv');
     }
 
     public function concordTable(Request $request)

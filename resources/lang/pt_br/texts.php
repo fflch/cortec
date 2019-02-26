@@ -68,7 +68,7 @@
             'label4'     => 'Cortar os itens com frequência menor a:',
             'tabela'     => [
                 'title'    => 'Tabela de N-gramas',
-                'download' => 'Download da tabela',
+                'download' => 'Download da Tabela',
                 'header1'  => 'Posição',
                 'header2'  => 'N-grama',
                 'header3_1'  => 'Frequência',

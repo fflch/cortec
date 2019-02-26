@@ -6,7 +6,7 @@
             <h2>{!! __('texts.ngrams.tabela.title') !!}</h2>
         </div>
         <div class="col text-right">
-            <a href="/download/frequencia" target="_blank" class="btn btn-success">{!! __('texts.ngrams.tabela.download') !!}</a>
+            <a href="/download/ngramas" target="_blank" class="btn btn-success">{!! __('texts.ngrams.tabela.download') !!}</a>
         </div>
     </div>
 

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Corpus;
 use App\Utils;
 use TextAnalysis\Corpus\TextCorpus;
+use TextAnalysis\NGrams\NGramFactory;
+use TextAnalysis\NGrams\StatisticFacade;
 
 class AnalysisController extends Controller
 {
@@ -138,11 +140,13 @@ class AnalysisController extends Controller
         $stats          =  $request->stats;
         $stoplist       =  $request->stoplist;
         $min_freq       =  $request->min_freq;
-        $language       = $request->session()->get('form_analysis.language');
+        $language       =  $request->session()->get('form_analysis.language');
 
+        //Gera os Tokens
         $analysis   = new Utils($all_texts);
         $tokens     = $analysis->getTokens();
 
+        //Remove as stopwords
         if($stoplist == 'default') {
             $stoplist = \App\Stopword::where('idioma', '=', $language)->pluck('palavra')->toArray();
         } else {
@@ -162,9 +166,30 @@ class AnalysisController extends Controller
         filter_stopwords($tokens, $stoplist);
         $tokens = array_values(array_filter($tokens));
 
-        dd($tokens);
+        //Gera os Ngramas
+        $ngrams = NGramFactory::create($tokens, $ngram_size, ' ');
+        $ngrams = NGramFactory::getFreq($ngrams, ' ');
 
+        //Remove conforme a frequência mínima inserida
+        if($min_freq > 1) {
+            $ngrams = array_filter($ngrams, function($n) use ($min_freq) {
+                return ($n[0] >= $min_freq);
+            });
+        }
+
+        //Calcula ou não as estatísticas e ordena o array
+        if(!is_null($stats)) {
+            $ngrams = StatisticFacade::calculate($ngrams, $stats, $ngram_size);
+            arsort($ngrams, SORT_NUMERIC);
+        } else {
+            array_multisort(array_map(function($element) {
+                return $element[0];
+            }, $ngrams), SORT_DESC, $ngrams);
+        }
+
+        return view('analysis.ngrams', compact('ngrams', 'stats'));
     }
+
     /**
     * Process the analysis, store it in the session and display it.
     *

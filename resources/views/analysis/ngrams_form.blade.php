@@ -50,10 +50,10 @@
               </div>
             </div>
 
-            <div class="form-group row justify-content-center" id="upload_div" style="display:none;">
-              <label for="upload_field" class="col-md-5 col-form-label">Upload {!! __('texts.ngrams.label3_1') !!}</label>
+            <div class="form-group row justify-content-center" id="stopwords_div" style="display:none;">
+              <label for="stopwords" class="col-md-5 col-form-label">Stopwords</label>
               <div class="col-12 col-md-6 col-lg-4">
-                  <input type="file" class="form-control-file" id="upload_field" name="upload_field" accept=".txt">
+                  <textarea class="form-control" id="stopwords" name="stopwords" rows="5" required>{{ $stopwords }}</textarea>
               </div>
             </div>
 

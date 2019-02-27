@@ -27,8 +27,8 @@ window.changeStats = function (nGramSize) {
 
 window.showUpload = function(select) {
     let stopList = select.value;
-    toggle = (stopList == 'default') ? 'none' : 'flex';
-    toggleElm(document.getElementById("upload_div"), toggle);
+    toggle = (stopList == 'no') ? 'none' : 'flex';
+    toggleElm(document.getElementById("stopwords_div"), toggle);
 }
 
 //initial

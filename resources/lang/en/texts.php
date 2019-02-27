@@ -61,9 +61,9 @@
             'label2' => 'Include association statistics? (Available for bigrams and trigrams only)',
             'option2_1' => 'None',
             'label3' => 'Stoplist?',
-            'option3_1' => 'Standard',
-            'option3_2' => 'Customized',
-            'label3_1' => '(.txt with one word per line and without separator)',
+            'option3_1' => 'No',
+            'option3_2' => 'Yes',
+            'label3_1' => '(insert one word per line and without separator)',
             'label4' => 'Leave out items with frequency below:',
             'tabela'     => [
                 'title'    => 'N-grams table',

@@ -8,8 +8,6 @@ window.changeStats = function (nGramSize) {
         {text: "Dice", value: "dice"},
         {text: "Log-Likelihood", value: "ll"},
         {text: "Chi-Square Test", value: "x2"},
-        {text: "Left-Fisher Test of Associativity", value: "leftFisher"},
-        {text: "Right-Fisher Test of Associativity", value: "rightFisher"},
         {text: "T-Score", value: "pmi"},
         {text: "Phi Coefficient", value: "phi"},
         {text: "Odds Ratio", value: "odds"},

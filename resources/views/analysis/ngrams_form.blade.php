@@ -43,15 +43,15 @@
             <div class="form-group row justify-content-center">
               <label for="stoplist" class="col-md-5 col-form-label">{!! __('texts.ngrams.label3') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
-                <select class="form-control" id="stoplist" name="stoplist" onchange="showUpload(this)" required>
-                  <option value="default">{!! __('texts.ngrams.option3_1') !!}</option>
-                  <option value="custom">{!! __('texts.ngrams.option3_2') !!}</option>
+                <select class="form-control" id="stoplist" name="stoplist" onchange="showStopwords(this)" required>
+                  <option value="no">{!! __('texts.ngrams.option3_1') !!}</option>
+                  <option value="yes">{!! __('texts.ngrams.option3_2') !!}</option>
                 </select>
               </div>
             </div>
 
             <div class="form-group row justify-content-center" id="stopwords_div" style="display:none;">
-              <label for="stopwords" class="col-md-5 col-form-label">Stopwords</label>
+              <label for="stopwords" class="col-md-5 col-form-label" style="white-space: pre-wrap;">Stopwords<br>{!! __('texts.ngrams.label3_1') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
                   <textarea class="form-control" id="stopwords" name="stopwords" rows="5" required>{{ $stopwords }}</textarea>
               </div>

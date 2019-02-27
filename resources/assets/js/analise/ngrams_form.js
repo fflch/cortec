@@ -25,7 +25,7 @@ window.changeStats = function (nGramSize) {
     }
 }
 
-window.showUpload = function(select) {
+window.showStopwords = function(select) {
     let stopList = select.value;
     toggle = (stopList == 'no') ? 'none' : 'flex';
     toggleElm(document.getElementById("stopwords_div"), toggle);
@@ -34,5 +34,5 @@ window.showUpload = function(select) {
 //initial
 document.addEventListener("DOMContentLoaded",function(){
     changeStats(document.getElementById("ngram_size").value);
-    showUpload(document.getElementById("stoplist"));
+    showStopwords(document.getElementById("stoplist"));
 });

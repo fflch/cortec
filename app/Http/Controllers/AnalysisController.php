@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Corpus;
 use App\Utils;
+use App\Stopword;
 use TextAnalysis\Corpus\TextCorpus;
 use TextAnalysis\NGrams\NGramFactory;
 use TextAnalysis\NGrams\StatisticFacade;
@@ -70,7 +71,8 @@ class AnalysisController extends Controller
                 return $this->listaPalavras($request);
                 break;
             case 'n_grams':
-                return view('analysis.ngrams_form', compact('analysis'));
+                $stopwords = Stopword::getStoplist($language);
+                return view('analysis.ngrams_form', compact('analysis', 'stopwords'));
                 break;
             default:
                 redirect("/");
@@ -123,7 +125,7 @@ class AnalysisController extends Controller
         $validator = Validator::make($request->all(), [
             'ngram_size'    => 'required|integer|max:4|min:2',
             'stoplist'      => 'required',
-            'upload_field'  => 'required_if:stoplist,custom',
+            'stopwords'     => 'required_if:stoplist,yes',
             'min_freq'      => 'nullable|integer|min:0',
         ]);
 
@@ -145,24 +147,13 @@ class AnalysisController extends Controller
         $tokens     = $analysis->getTokens();
 
         //Remove as stopwords
-        if($stoplist == 'default') {
-            $stoplist = \App\Stopword::where('idioma', '=', $language)->pluck('palavra')->toArray();
-        } else {
-            try {
-                if ($request->file('upload_field')->isValid()) {
-                    $stopwords_file = $request->file('upload_field');
-                    $stopwords = explode("\r\n", $stopwords_file->get());
-                    $stoplist = array_filter($stopwords);
-                }
-            } catch (\Exception $e) {
-                return redirect('/analysis/process')
-                    ->withErrors('Erro ao processar arquivo de Stoplist')
-                    ->withInput();
-            }
-        }
+        if($stoplist == 'yes') {
+            $stopwords = explode("\r\n", $request->stopwords);
+            $stopwords = array_filter($stopwords);
 
-        filter_stopwords($tokens, $stoplist);
-        $tokens = array_values(array_filter($tokens));
+            filter_stopwords($tokens, $stopwords);
+            $tokens = array_values(array_filter($tokens));
+        }
 
         //Gera os N-gramas
         $ngrams = NGramFactory::create($tokens, $ngram_size, ' ');

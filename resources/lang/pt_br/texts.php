@@ -62,8 +62,8 @@
             'label2'     => 'Incluir estatísticas de associação: (Disponível para bigramas e trigramas, somente)',
             'option2_1'  => 'Nenhuma',
             'label3'     => 'Deseja utilizar uma Stoplist?',
-            'option3_1'  => 'No',
-            'option3_2'  => 'Yes',
+            'option3_1'  => 'Não',
+            'option3_2'  => 'Sim',
             'label3_1'   => '(insira uma palavra por linha e sem separador)',
             'label4'     => 'Cortar os itens com frequência menor a:',
             'tabela'     => [

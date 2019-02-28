@@ -8,7 +8,7 @@ window.changeStats = function (nGramSize) {
         {text: "Dice", value: "dice"},
         {text: "Log-Likelihood", value: "ll"},
         {text: "Chi-Square Test", value: "x2"},
-        {text: "T-Score", value: "pmi"},
+        {text: "T-Score", value: "tscore"},
         {text: "Phi Coefficient", value: "phi"},
         {text: "Odds Ratio", value: "odds"},
     ];

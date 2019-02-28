@@ -10,11 +10,6 @@ class Stopword extends Model
     {
         $stopwords = Stopword::where('idioma', '=', $lang)->get();
 
-        $stoplist = '';
-        foreach ($stopwords as $stopword) {
-            $stoplist .= $stopword->palavra . "\r\n";
-        }
-
-        return $stoplist;
+        return $stopwords->implode('palavra', "\r\n");
     }
 }

@@ -55,13 +55,16 @@
         @foreach ($categorias as $categoria)
           <div class="col-sm-3 mt-2" data-cat="{{$categoria->id}}">
             <div class="card">
-              <label for="check_cat_{{$categoria->id}}" style="margin-bottom: 0;">
-                <div class="card-header list-group-item-action">
+              <label for="check_cat_{{$categoria->id}}" class="mb-0">
+                <div class="card-header list-group-item-action" data-toggle="collapse" data-target="#list_corp_{{$categoria->id}}" aria-expanded="false">
                   <input type="checkbox" id="check_cat_{{$categoria->id}}" value="{{$categoria->id}}">
                   <a href="/categorias/{{$categoria->id}}"/>{{$categoria->nome}}</a>
+                  <div class="float-right">
+                      <span class="font-weight-bold" style="font-size: 1.25rem;">+</span>
+                  </div>
                 </div>
               </label>
-              <ul class="list-group list-group-flush" id="list_corp">
+              <ul class="collapse list-group list-group-flush" id="list_corp_{{$categoria->id}}">
                 @php
                   $corpuses = $categoria->corpuses->sortBy('titulo');
                   $corpuses = $corpuses->filter(function ($corpus, $key) {

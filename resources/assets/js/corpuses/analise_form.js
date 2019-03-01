@@ -60,7 +60,8 @@ function uncheckAll(){
   let checkboxes = Array.from(document.step1.querySelectorAll('[id^="check_"]'));
 
   checkboxes.map(function (checkbox) {
-    checkbox.checked = false;
+      checkbox.indeterminate = false;
+      checkbox.checked = false;
   });
 }
 

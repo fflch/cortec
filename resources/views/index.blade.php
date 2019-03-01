@@ -56,10 +56,10 @@
           <div class="col-sm-3 mt-2" data-cat="{{$categoria->id}}">
             <div class="card">
               <label for="check_cat_{{$categoria->id}}" class="mb-0">
-                <div class="card-header list-group-item-action" data-toggle="collapse" data-target="#list_corp_{{$categoria->id}}" aria-expanded="false">
+                <div class="card-header list-group-item-action">
                   <input type="checkbox" id="check_cat_{{$categoria->id}}" value="{{$categoria->id}}">
                   <a href="/categorias/{{$categoria->id}}"/>{{$categoria->nome}}</a>
-                  <div class="float-right">
+                  <div class="float-right btn btn-light btn-sm" data-toggle="collapse" data-target="#list_corp_{{$categoria->id}}" aria-expanded="false" style="line-height: 0.85rem">
                       <span class="font-weight-bold" style="font-size: 1.25rem;">+</span>
                   </div>
                 </div>

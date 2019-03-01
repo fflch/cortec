@@ -75,9 +75,6 @@
                       <a href="/categorias/{{$categoria->id}}#{{ $corpus->id }}" style="font-weight:normal;">
                         {{ $corpus->titulo }}
                       </a>
-                      @foreach ($corpus->getLanguages() as $lang)
-                        <span class="badge badge-secondary">{{$lang}}</span>
-                      @endforeach
                     </li>
                   </label>
                 @endforeach

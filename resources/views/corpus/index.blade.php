@@ -33,7 +33,7 @@
                             </form>
                         </span>
                     </div>
-                    @foreach ($categoria->corpuses as $corpus)
+                    @foreach ($categoria->corpuses->sortBy('titulo') as $corpus)
                         <ul class="list-group">
                             <li class="list-group-item list-group-item-action">
                                 <div class="row text-center align-items-center">

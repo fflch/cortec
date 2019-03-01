@@ -63,7 +63,8 @@
               </label>
               <ul class="list-group list-group-flush" id="list_corp">
                 @php
-                  $corpuses = $categoria->corpuses->filter(function ($corpus, $key) {
+                  $corpuses = $categoria->corpuses->sortBy('titulo');
+                  $corpuses = $corpuses->filter(function ($corpus, $key) {
                       return (count($corpus->texts) > 0);
                   });
                 @endphp

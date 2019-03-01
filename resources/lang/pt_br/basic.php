@@ -1,7 +1,7 @@
 <?php
 
     return [
-        'busca' => 'Busca',
+        'index' => 'Home',
         'oquee' => 'O que é',
         'ger_corpus' => 'Gerenciar Corpus',
         'rodape' => 'CorTec - <i>Corpus</i> Técnico-Científico',

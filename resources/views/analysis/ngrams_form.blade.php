@@ -53,7 +53,7 @@
             <div class="form-group row justify-content-center" id="stopwords_div" style="display:none;">
               <label for="stopwords" class="col-md-5 col-form-label" style="white-space: pre-wrap;">Stopwords<br>{!! __('texts.ngrams.label3_1') !!}</label>
               <div class="col-12 col-md-6 col-lg-4">
-                  <textarea class="form-control" id="stopwords" name="stopwords" rows="5" required>{{ $stopwords }}</textarea>
+                  <textarea class="form-control" id="stopwords" name="stopwords" rows="5">{{ $stopwords }}</textarea>
               </div>
             </div>
 

@@ -61,4 +61,15 @@ class TextObserver
         $this->storeChange($text, 'removido');
     }
 
+    /**
+     * Handle the text "deleted" event.
+     *
+     * @param  \App\Text  $text
+     * @return void
+     */
+    public function saving(Text $text)
+    {
+        $text->conteudo = preg_replace("/<[^>]*>/", '', $text->conteudo);
+    }
+
 }

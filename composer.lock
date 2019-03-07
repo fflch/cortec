@@ -3751,12 +3751,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yooper/php-text-analysis.git",
-                "reference": "a4460204a42e20143c5b3369b51b5a4373ea5223"
+                "reference": "a0332ed4ed76bcd9fe280f82f519fa9ce8ab20c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yooper/php-text-analysis/zipball/a4460204a42e20143c5b3369b51b5a4373ea5223",
-                "reference": "a4460204a42e20143c5b3369b51b5a4373ea5223",
+                "url": "https://api.github.com/repos/yooper/php-text-analysis/zipball/a0332ed4ed76bcd9fe280f82f519fa9ce8ab20c4",
+                "reference": "a0332ed4ed76bcd9fe280f82f519fa9ce8ab20c4",
                 "shasum": ""
             },
             "require": {
@@ -3808,7 +3808,7 @@
                 "text analysis",
                 "text classification"
             ],
-            "time": "2019-01-14T13:42:59+00:00"
+            "time": "2019-03-04T20:51:32+00:00"
         },
         {
             "name": "yooper/stop-words",

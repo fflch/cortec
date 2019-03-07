@@ -125,9 +125,22 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'language' => [
+            'required' => 'It\'s required to select one language.',
         ],
+        'corpuses' => [
+            'required' => 'It\'s required to select at least one corpus.',
+        ],
+        'upload_field' => [
+            'required_if' => 'No file was selected.',
+        ],
+        'min_freq' => [
+            'integer' => 'Invalid minimum frequency number.',
+        ],
+        'ngram_size' => [
+            'required' => 'Invalid n-gram size.',
+            'integer'  => 'Invalid n-gram size.',
+        ]
     ],
 
     /*

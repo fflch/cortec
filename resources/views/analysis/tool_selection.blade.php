@@ -33,9 +33,9 @@
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="tool" id="n_grams" value="n_grams" disabled>
+              <input class="form-check-input" type="radio" name="tool" id="n_grams" value="n_grams">
               <label class="form-check-label" for="n_grams">
-                {!! __('texts.categorias.gerador2') !!} <small> (Em desenvolvimento)</small>
+                {!! __('texts.categorias.gerador2') !!}
               </label>
             </div>
           </ul>

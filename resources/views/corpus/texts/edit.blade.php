@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <form method="POST" name="text" action="/corpus/{{ $corpus->id }}/text/{{ $text->id }}">
+  <form method="POST" name="corpus" action="/corpus/{{ $corpus->id }}/text/{{ $text->id }}">
       {{ csrf_field() }}
 
       <div class="form-group">
@@ -45,5 +45,6 @@
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/utils.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/form.js') }}"></script>
 @endsection

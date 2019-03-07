@@ -9,33 +9,7 @@
     document.getElementById('upload_field').addEventListener('change', function(evt) {
       var file = document.getElementById('upload_field').files[0];
 
-      if(window.FileReader) {
-        //the browser does support the FileReader Object, so do this
-        var reader  = new FileReader();
-        reader.addEventListener("load", function () {
-          insertResult(reader.result);
-        }, false);
-        reader.addEventListener("error", function () {
-          alert('Erro!');
-        }, false);
-        if (file) {
-          reader.readAsText(file);
-        }
-      } else {
-        //the browser doesn't support the FileReader Object, so do this
-        var formData = new FormData();
-        formData.append('file', file);
-
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-               insertResult(xhr.responseText);
-            }
-        };
-        xhr.open('POST', '/api/corpus/corpus/upload', true);
-        xhr.send(formData);
-
-      }
+      readTxt(file, insertResult);
 
     }, false);
 

@@ -3,7 +3,7 @@
     return [
         'confirma' => 'Você confirma esta operação?',
         'validacao' => [
-            'header' => 'Erro!',
+            'header' => 'Erro(s)!',
             'modal_step1' => [
                 'body' => 'Seleção incorreta de corpora'
             ],
@@ -14,6 +14,10 @@
                 'header' => 'Erro!',
                 'error1' => 'Expressão ou Palavra inserida incorretamente',
                 'error2' => 'Não foram encontradas ocorrências com o termo inserido'
-            ]
+            ],
+            'modal_ngram' => [
+                'error1' => 'Parâmetros de análise inseridos incorretamente',
+            ],
+            'error_stoplist' => 'Erro ao processar arquivo de Stoplist.',
         ]
     ];

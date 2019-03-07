@@ -1,4 +1,4 @@
-@extends('master')
+    @extends('master')
 @section('content')
   <h1>{{ $corpus->titulo }}</h1>
   <p>{{ $corpus->descricao }}</p>
@@ -15,18 +15,18 @@
         <tbody>
           <tr>
             <th scope="row">Ocorrências/tokens</th>
-            <td class="text-center"></td>
+            <td class="text-center">{{$corpus->getAnalysis('count-tokens', 'en')}}</td>
             <td class="text-center">{{$corpus->getAnalysis('count-tokens')}}</td>
           </tr>
           <tr>
             <th scope="row">Formas/types</th>
-            <td class="text-center"></td>
+            <td class="text-center">{{$corpus->getAnalysis('count-types', 'en')}}</td>
             <td class="text-center">{{$corpus->getAnalysis('count-types')}}</td>
           </tr>
           <tr>
             <th scope="row">T/T ratio</th>
-            <td class="text-center"></td>
-            <td class="text-center">{{round($corpus->getAnalysis('count-tokens')/$corpus->getAnalysis('count-types'),2)}}</td>
+            <td class="text-center">{{$corpus->getAnalysis('ratio', 'en')}}</td>
+            <td class="text-center">{{$corpus->getAnalysis('ratio')}}</td>
           </tr>
         </tbody>
       </table>

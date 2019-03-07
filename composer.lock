@@ -3502,12 +3502,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-comet-theme.git",
-                "reference": "2333c1ae85b64ca63e9dad79d24105462877cfdd"
+                "reference": "bc5eea6cc860a726412d138eaeff7074718fec87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/2333c1ae85b64ca63e9dad79d24105462877cfdd",
-                "reference": "2333c1ae85b64ca63e9dad79d24105462877cfdd",
+                "url": "https://api.github.com/repos/uspdev/laravel-comet-theme/zipball/bc5eea6cc860a726412d138eaeff7074718fec87",
+                "reference": "bc5eea6cc860a726412d138eaeff7074718fec87",
                 "shasum": ""
             },
             "type": "library",
@@ -3534,7 +3534,7 @@
                 }
             ],
             "description": "comet theme for laravel",
-            "time": "2019-01-18T17:46:11+00:00"
+            "time": "2019-03-07T19:04:12+00:00"
         },
         {
             "name": "uspdev/senhaunica-socialite",

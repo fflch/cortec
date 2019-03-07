@@ -23,7 +23,7 @@ checks_cats.map(function (elm){
   elm.onclick = function () {
     checks_corps = Array.from(document.step1.querySelectorAll('[id^="check_'+elm.value+'_"]'));
     checks_corps.map(function (elm_corp){
-      (elm_corp.offsetParent == null) ? (null) : (elm_corp.checked = elm.checked);
+      (elm_corp.parentElement.classList.contains("d-none")) ? (null) : (elm_corp.checked = elm.checked);
     });
   }
 

@@ -15,12 +15,21 @@ return [
 
     'custom' => [
         'language' => [
-            'required' => 'É necessário selecionar uma língua',
+            'required' => 'É necessário selecionar uma língua.',
         ],
         'corpuses' => [
-            'required' => 'É necessário selecionar um corpus',
+            'required' => 'É necessário selecionar um corpus.',
         ],
-        ''
+        'upload_field' => [
+            'required_if' => 'Nenhum arquivo foi inserido.',
+        ],
+        'min_freq' => [
+            'integer' => 'Número de corte inválido.',
+        ],
+        'ngram_size' => [
+            'required' => 'Tamanhos dos n-gramas inválido.',
+            'integer'  => 'Tamanhos dos n-gramas inválido.',
+        ]
     ],
 
     /*

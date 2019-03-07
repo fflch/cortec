@@ -68,5 +68,5 @@
 
 @section('javascripts')
   @parent
-  <script type="text/javascript" src="{{ asset('/js/corpuses/analise_lista_palavras.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('/js/analise/analise_lista_palavras.js') }}"></script>
 @endsection

@@ -69,4 +69,14 @@ class Utils
     {
         return $this->analysis;
     }
+
+    /**
+    * Return an Array of tokens.
+    *
+    * @return array
+    */
+    public function getTokens()
+    {
+        return $this->tokens;
+    }
 }

@@ -14,72 +14,71 @@ use TextAnalysis\NGrams\StatisticFacade;
 class AnalysisController extends Controller
 {
     /**
-    * Verifies the entry and display the second step for corpus analysis, the selection of tool.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function toolSelection(Request $request)
-    {
-        $validatedData = $request->validate([
-            'language' => 'required',
-            'corpuses' => 'required',
-        ]);
-
-        $corpuses_ids = collect($request->corpuses);
-        $request->session()->put('form_analysis.corpuses_ids', $corpuses_ids);
-        $language = $request->language;
-        $request->session()->put('form_analysis.language', $language);
-
-        //verifica se todos os corpuses estão disponíveis no idioma selecionado
-        $has_language = $corpuses_ids->every(function ($corpus_id) use ($language) {
-            $corpus = Corpus::find($corpus_id);
-            return $corpus->hasTextLang($language);
-        });
-
-        if(!$has_language) {
-            return redirect("/")
-                ->withErrors(__('messages.validacao.modal_step1.body'))
-                ->withInput();
-        }
-
-        return view('analysis.tool_selection', compact('language'));
-    }
-
-    /**
     * Redirect to the selected tool.
     *
     * @return \Illuminate\Http\Response
     */
     public function process(Request $request)
     {
-        $tool = isset($request->tool) ? $request->tool : $request->old('tool');
+        //verifica se é um retorno de validação
+        if ($request->old('tool')) {
+            return $this->showForm($request);
+        }
+
+        Validator::make($request->all(), [
+            'language' => 'required',
+            'corpuses' => 'required',
+            'tool'     => 'required',
+        ])->validate();
+
+        $corpuses_ids = collect($request->corpuses);
+        $language     = $request->language;
+        $tool         = $request->tool;
+
+        //verifica se todos os corpuses estão disponíveis no idioma selecionado
+        $has_language = $corpuses_ids->every(function ($corpus_id) use ($language) {
+            $corpus = Corpus::find($corpus_id);
+            return $corpus->hasTextLang($language);
+        });
+        if (!$has_language) {
+            return redirect("/")
+                ->withErrors(__('messages.validacao.modal_step1.body'))
+                ->withInput();
+        }
 
         //gather all corpus in one string and put in the session
-        $corpus_ids = collect($request->session()->get('form_analysis.corpuses_ids'));
-        $language = $request->session()->get('form_analysis.language');
-        $all_texts = $corpus_ids->reduce(function ($carry, $id) use ($language) {
+        $all_texts = $corpuses_ids->reduce(function ($carry, $id) use ($language) {
             $corpus_text = Corpus::find($id)->getAllTexts($language);
             return $carry . ' ' . $corpus_text;
         });
+
+        //armazena a compilação de textos na sessão
         $request->session()->put('form_analysis.all_texts', $all_texts);
+
+        //retorna o formulário de acordo
+        return $this->showForm($request);
+    }
+
+    private function showForm(Request $request) {
+        //carrega as variáveis
+        $tool     = $request->old('tool') ?? $request->tool;
+        $language = $request->old('language') ?? $request->language;
 
         switch ($tool) {
             case 'concordanciador':
-                return view('analysis.conc_form', compact('analysis'));
+                return view('analysis.conc_form');
                 break;
             case 'lista_palavras':
                 return $this->listaPalavras($request);
                 break;
             case 'n_grams':
-                $stopwords = Stopword::getStoplist($language);
-                return view('analysis.ngrams_form', compact('analysis', 'stopwords'));
+                $stopwords = Stopword::getStoplist($request->language);
+                return view('analysis.ngrams_form', compact('stopwords'));
                 break;
             default:
                 redirect("/");
                 break;
         }
-
-        return redirect("/");
     }
 
     public function concordanciador(Request $request)
@@ -147,7 +146,7 @@ class AnalysisController extends Controller
         $tokens     = $analysis->getTokens();
 
         //Remove as stopwords
-        if($stoplist == 'yes') {
+        if ($stoplist == 'yes') {
             $stopwords = explode("\r\n", $request->stopwords);
             $stopwords = array_filter($stopwords);
 
@@ -160,7 +159,7 @@ class AnalysisController extends Controller
         $ngrams = NGramFactory::getFreq($ngrams, ' ');
 
         //Calcula ou não as estatísticas e ordena o array
-        if(!is_null($stats)) {
+        if (!is_null($stats)) {
             $ngrams_stats = StatisticFacade::calculate($ngrams, $stats, $ngram_size);
             arsort($ngrams_stats, SORT_NUMERIC);
 
@@ -176,7 +175,7 @@ class AnalysisController extends Controller
         }
 
         //Remove conforme a frequência mínima inserida
-        if($min_freq > 1) {
+        if ($min_freq > 1) {
             $ngrams = array_filter($ngrams, function($n) use ($min_freq, $stats) {
                 $freq = ($stats) ? $n[1] : $n[0];
                 return ($freq >= $min_freq);
@@ -194,7 +193,7 @@ class AnalysisController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function listaPalavras(Request $request)
+    private function listaPalavras(Request $request)
     {
         $all_texts = $request->session()->get('form_analysis.all_texts');
         $utils = new Utils($all_texts);

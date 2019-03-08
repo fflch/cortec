@@ -19,10 +19,44 @@
       <p>{!! __('texts.passo1.texto1') !!}</p>
     </div>
 
-    <form name="step1" action="/analysis/tool" method="post" >
+    <form name="step1" action="/analysis/process" method="post" >
       {{ csrf_field() }}
 
+      {{-- SELEÇÃO DA FERRAMENTA --}}
+
       <div class="row align-items-center row-header-lista px-1">
+        <div class="col-xs-1 text-center">
+          <h3 class="h3 h3-lista">{!! __('texts.passo2.lista') !!}</h3>
+        </div>
+      </div>
+      <div class="row bg-gray">
+        <div class="col-lg-1-12">
+          <ul class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="concordanciador" value="concordanciador" checked>
+              <label class="form-check-label" for="concordanciador">
+                {!! __('texts.categorias.concordanciador') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="lista_palavras" value="lista_palavras">
+              <label class="form-check-label" for="lista_palavras">
+                {!! __('texts.categorias.gerador1') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="n_grams" value="n_grams">
+              <label class="form-check-label" for="n_grams">
+                {!! __('texts.categorias.gerador2') !!}
+              </label>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      {{-- SELEÇÃO DE IDIOMA --}}
+
+      <div class="row align-items-center row-header-lista px-1 mt-4">
         <div class="col-xs-1 text-center">
           <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
         </div>
@@ -45,6 +79,8 @@
           </ul>
         </div>
       </div>
+
+      {{-- SELEÇÃO DE CORPORA --}}
 
       <div class="row align-items-center row-header-lista px-1 mt-4">
         <div class="col-xs-1 text-center">

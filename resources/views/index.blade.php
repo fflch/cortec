@@ -13,10 +13,10 @@
     </div>
 
     <div class="row">
-      <h2>{!! __('texts.passo1.passo') !!}</h2>
+      <h2>{!! __('texts.passo2.passo') !!}</h2>
     </div>
     <div class="row mt-10">
-      <p>{!! __('texts.passo1.texto1') !!}</p>
+      <p>{!! __('texts.passo2.texto1') !!}</p>
     </div>
 
     <form name="step1" action="/analysis/process" method="post" >
@@ -55,8 +55,14 @@
       </div>
 
       {{-- SELEÇÃO DE IDIOMA --}}
+      <div class="row mt-4">
+        <h2>{!! __('texts.passo1.passo') !!}</h2>
+      </div>
+      <div class="row mt-10">
+        <p>{!! __('texts.passo1.texto1') !!}</p>
+      </div>
 
-      <div class="row align-items-center row-header-lista px-1 mt-4">
+      <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
           <h3 class="h3 h3-lista">{!! __('texts.passo1.lingua') !!}</h3>
         </div>

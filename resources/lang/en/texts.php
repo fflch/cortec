@@ -2,7 +2,7 @@
 
     return [
         'passo1' => [
-            'passo' => 'Step 1/3: Corpus selection.',
+            'passo' => 'Step 2/3: Corpus selection.',
             'texto1' => 'Select which one(s) you want to work on.',
             'lista' => 'List of Corpora',
             'lingua' => 'Language',
@@ -10,7 +10,7 @@
             'lingua2' => 'English',
         ],
         'passo2' => [
-            'passo' => 'Step 2/3: Select your tool.',
+            'passo' => 'Step 1/3: Select your tool.',
             'texto1' => '',
             'lista' => 'List of Tools'
         ],

@@ -8,7 +8,7 @@
           <div class="row">
             <div class="col">
               <h1>{!! __('texts.categorias.texto1') !!} {{$categoria->nome}}</h1>
-              <p>{!! __('texts.categorias.texto2', ['count' => count($categoria->corpuses)]) !!}</p>
+              <p>{!! trans_choice('texts.categorias.texto2', count($categoria->corpuses), ['count' => count($categoria->corpuses)]) !!}</p>
             </div>
           </div>
 

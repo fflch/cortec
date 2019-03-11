@@ -119,7 +119,7 @@
                   <label for="check_{{$categoria->id}}_{{$corpus->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpus->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpus->id}}">
                     <input type="checkbox" name="corpuses[]" value="{{ $corpus->id }}" id="check_{{$categoria->id}}_{{$corpus->id}}">
-                      <a style="font-weight:normal;cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}/{{$corpus->id}}'">
+                      <a style="font-weight:normal;cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}/{{$corpus->id}}#{{$corpus->id}}'">
                         {{ $corpus->titulo }}
                       </a>
                     </li>

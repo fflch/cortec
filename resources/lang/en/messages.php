@@ -2,6 +2,7 @@
 
     return [
         'confirma' => 'Confirm operation?',
+        'confirma_ferramenta' => 'You will be redirected to the search for this set of texts. Do you want to proceed?',
         'validacao' => [
             'header' => 'Error(s)!',
             'modal_step1' => [

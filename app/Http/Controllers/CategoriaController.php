@@ -92,7 +92,9 @@ class CategoriaController extends Controller
             return (count($corpus->texts) > 0);
         });
 
-        return view('categorias.show',compact('categoria','corpuses'));
+        $corpuses_ids = ($corpus_id === '') ? $corpuses->pluck('id') : array($corpus_id);
+
+        return view('categorias.show',compact('categoria', 'corpuses', 'corpuses_ids', 'idioma'));
     }
 
 }

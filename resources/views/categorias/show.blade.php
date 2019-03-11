@@ -27,9 +27,45 @@
               <p>{!! __('texts.categorias.texto3') !!}</p>
               <p>{!! __('texts.categorias.texto4') !!}</p>
               <ul>
-                <li>{!! __('texts.categorias.concordanciador') !!}</li>
-                <li>{!! __('texts.categorias.gerador1') !!}</li>
-                <li>{!! __('texts.categorias.gerador2') !!}</li>
+                <li>
+                    <form class="concordanciador" method="POST" action="/analysis/process" onsubmit="return confirm('{!! __('messages.confirma_ferramenta') !!}');">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="language"   value="{{$idioma}}">
+                        <input type="hidden" name="tool"       value="concordanciador">
+                        @foreach ($corpuses_ids as $corpus_id)
+                            <input type="hidden" name="corpuses[]" value="{{$corpus_id}}">
+                        @endforeach
+                        <button type="submit" class="btn btn-outline-success">
+                            {!! __('texts.categorias.concordanciador') !!}
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form class="lista_palavras" method="POST" action="/analysis/process" onsubmit="return confirm('{!! __('messages.confirma_ferramenta') !!}');">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="language"   value="{{$idioma}}">
+                        <input type="hidden" name="tool"       value="lista_palavras">
+                        @foreach ($corpuses_ids as $corpus_id)
+                            <input type="hidden" name="corpuses[]" value="{{$corpus_id}}">
+                        @endforeach
+                        <button type="submit" class="btn btn-outline-success">
+                            {!! __('texts.categorias.gerador1') !!}
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form class="n_grams" method="POST" action="/analysis/process" onsubmit="return confirm('{!! __('messages.confirma_ferramenta') !!}');">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="language"   value="{{$idioma}}">
+                        <input type="hidden" name="tool"       value="n_grams">
+                        @foreach ($corpuses_ids as $corpus_id)
+                            <input type="hidden" name="corpuses[]" value="{{$corpus_id}}">
+                        @endforeach
+                        <button type="submit" class="btn btn-outline-success">
+                            {!! __('texts.categorias.gerador2') !!}
+                        </button>
+                    </form>
+                </li>
               </ul>
             </div>
           </div>

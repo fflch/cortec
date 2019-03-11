@@ -100,7 +100,9 @@
               <label for="check_cat_{{$categoria->id}}" class="mb-0">
                 <div class="card-header list-group-item-action">
                   <input type="checkbox" id="check_cat_{{$categoria->id}}" value="{{$categoria->id}}">
-                  <a href="/categorias/{{$categoria->id}}"/>{{$categoria->nome}}</a>
+                  <a style="cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}'">
+                    {{$categoria->nome}}
+                  </a>
                   <div class="float-right btn btn-light btn-sm" data-toggle="collapse" data-target="#list_corp_{{$categoria->id}}" aria-expanded="false" style="line-height: 0.85rem">
                       <span class="font-weight-bold" style="font-size: 1.25rem;">+</span>
                   </div>
@@ -117,7 +119,7 @@
                   <label for="check_{{$categoria->id}}_{{$corpus->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpus->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpus->id}}">
                     <input type="checkbox" name="corpuses[]" value="{{ $corpus->id }}" id="check_{{$categoria->id}}_{{$corpus->id}}">
-                      <a href="/categorias/{{$categoria->id}}#{{ $corpus->id }}" style="font-weight:normal;">
+                      <a style="font-weight:normal;cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}/{{$corpus->id}}'">
                         {{ $corpus->titulo }}
                       </a>
                     </li>

@@ -60,7 +60,7 @@ class CategoriaController extends Controller
         $validatedData = $request->validate([
             'nome' => 'required|string',
         ]);
-        
+
         $categoria->nome = $request->nome;
         $categoria->save();
 
@@ -86,7 +86,7 @@ class CategoriaController extends Controller
      * @param  \App\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Categoria $categoria)
+    public function show(string $idioma, Categoria $categoria, string $corpus_id = '')
     {
         $corpuses = $categoria->corpuses->filter(function ($corpus, $key) {
             return (count($corpus->texts) > 0);

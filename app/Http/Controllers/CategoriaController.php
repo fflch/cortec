@@ -88,11 +88,17 @@ class CategoriaController extends Controller
      */
     public function show(string $idioma, Categoria $categoria, string $corpus_id = '')
     {
-        $corpuses = $categoria->corpuses->filter(function ($corpus, $key) {
+        //Corpuses a serem exibidos
+        $corpuses = $categoria->corpuses->filter(function ($corpus, $key) use ($idioma) {
             return (count($corpus->texts) > 0);
         });
 
-        $corpuses_ids = ($corpus_id === '') ? $corpuses->pluck('id') : array($corpus_id);
+        //Corpuses a serem inseridos no formulário
+        $corpuses_form = $corpuses->filter(function ($corpus, $key) use ($idioma) {
+            return ($corpus->hasTextLang($idioma));
+        });
+
+        $corpuses_ids = ($corpus_id === '') ? $corpuses_form->pluck('id') : array($corpus_id);
 
         return view('categorias.show',compact('categoria', 'corpuses', 'corpuses_ids', 'idioma'));
     }

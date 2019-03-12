@@ -78,7 +78,7 @@
     <div class="col-md-6">
       <div class="row">
         <div class="col">
-          @foreach ($categoria->corpuses as $corpus)
+          @foreach ($corpuses as $corpus)
             <div class="card mt-3 ">
               <a name="{{ $corpus->id }}"></a>
               <div class="card-header">

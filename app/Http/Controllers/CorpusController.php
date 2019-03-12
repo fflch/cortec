@@ -21,7 +21,8 @@ class CorpusController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::paginate(10);
+        $categorias = Categoria::orderBy('nome')
+                                    ->paginate(10);
 
         return view('corpus.index', compact('categorias'));
     }

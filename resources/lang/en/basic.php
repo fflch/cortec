@@ -1,7 +1,7 @@
 <?php
 
   return [
-        'busca' => 'Search',
+        'index' => 'Home',
         'oquee' => 'What It Is',
         'ger_corpus' => 'Manage Corpus',
         'rodape' => 'CorTec – Technical Scientific <i>Corpus</i>',

@@ -16,7 +16,9 @@ class IndexController extends Controller
    */
     public function step1()
     {
-        $categorias = Categoria::whereHas('corpuses.texts')->get();
+        $categorias = Categoria::whereHas('corpuses.texts')
+                                    ->orderBy('nome')
+                                    ->get();
 
         return view('index', compact('categorias'));
     }

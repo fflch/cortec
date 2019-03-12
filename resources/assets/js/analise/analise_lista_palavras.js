@@ -8,9 +8,9 @@ const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
 document.querySelectorAll('th[data-sort]').forEach(th => th.addEventListener('click', (() => {
   const tbody = th.closest('table').tBodies[0];
   const thead = th.closest('table').tHead;
-  thead.style.cursor = '';
-  tbody.parentElement.style.cursor = 'progress';
-  setTimeout(function(){ sortTable(th, tbody); tbody.parentElement.style.cursor = ''; thead.style.cursor = 'pointer';}, 400);
+  thead.firstElementChild.style.cursor = '';
+  thead.firstElementChild.style.cursor = 'progress';
+  setTimeout(function(){ sortTable(th, tbody); thead.firstElementChild.style.cursor = ''; thead.firstElementChild.style.cursor = 'pointer';}, 400);
 })));
 
 //Função para ordenar a table

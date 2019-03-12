@@ -13,14 +13,54 @@
     </div>
 
     <div class="row">
-      <h2>{!! __('texts.passo1.passo') !!}</h2>
+      <h2>{!! __('texts.passo2.passo') !!}</h2>
     </div>
     <div class="row mt-10">
-      <p>{!! __('texts.passo1.texto1') !!}</p>
+      <p>{!! __('texts.passo2.texto1') !!}</p>
     </div>
 
-    <form name="step1" action="/analysis/tool" method="post" >
+    <form name="step1" action="/analysis/process" method="post" >
       {{ csrf_field() }}
+
+      {{-- SELEÇÃO DA FERRAMENTA --}}
+
+      <div class="row align-items-center row-header-lista px-1">
+        <div class="col-xs-1 text-center">
+          <h3 class="h3 h3-lista">{!! __('texts.passo2.lista') !!}</h3>
+        </div>
+      </div>
+      <div class="row bg-gray">
+        <div class="col-lg-1-12">
+          <ul class="mt-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="concordanciador" value="concordanciador" checked>
+              <label class="form-check-label" for="concordanciador">
+                {!! __('texts.categorias.concordanciador') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="lista_palavras" value="lista_palavras">
+              <label class="form-check-label" for="lista_palavras">
+                {!! __('texts.categorias.gerador1') !!}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="tool" id="n_grams" value="n_grams">
+              <label class="form-check-label" for="n_grams">
+                {!! __('texts.categorias.gerador2') !!}
+              </label>
+            </div>
+          </ul>
+        </div>
+      </div>
+
+      {{-- SELEÇÃO DE IDIOMA --}}
+      <div class="row mt-4">
+        <h2>{!! __('texts.passo1.passo') !!}</h2>
+      </div>
+      <div class="row mt-10">
+        <p>{!! __('texts.passo1.texto1') !!}</p>
+      </div>
 
       <div class="row align-items-center row-header-lista px-1">
         <div class="col-xs-1 text-center">
@@ -46,6 +86,8 @@
         </div>
       </div>
 
+      {{-- SELEÇÃO DE CORPORA --}}
+
       <div class="row align-items-center row-header-lista px-1 mt-4">
         <div class="col-xs-1 text-center">
           <h3 class="h3 h3-lista">{!! __('texts.passo1.lista') !!}</h3>
@@ -58,7 +100,9 @@
               <label for="check_cat_{{$categoria->id}}" class="mb-0">
                 <div class="card-header list-group-item-action">
                   <input type="checkbox" id="check_cat_{{$categoria->id}}" value="{{$categoria->id}}">
-                  <a href="/categorias/{{$categoria->id}}"/>{{$categoria->nome}}</a>
+                  <a style="cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}'">
+                    {{$categoria->nome}}
+                  </a>
                   <div class="float-right btn btn-light btn-sm" data-toggle="collapse" data-target="#list_corp_{{$categoria->id}}" aria-expanded="false" style="line-height: 0.85rem">
                       <span class="font-weight-bold" style="font-size: 1.25rem;">+</span>
                   </div>
@@ -75,7 +119,7 @@
                   <label for="check_{{$categoria->id}}_{{$corpus->id}}" style="margin-bottom: 0;">
                     <li class="list-group-item list-group-item-action" data-lang="{{implode('|', $corpus->getLanguages()->toArray())}}" id="li_{{$categoria->id}}_{{$corpus->id}}">
                     <input type="checkbox" name="corpuses[]" value="{{ $corpus->id }}" id="check_{{$categoria->id}}_{{$corpus->id}}">
-                      <a href="/categorias/{{$categoria->id}}#{{ $corpus->id }}" style="font-weight:normal;">
+                      <a style="font-weight:normal;cursor:pointer;" onclick="javascript:location.href='/categorias/'+document.forms[1].language.value+'/{{$categoria->id}}/{{$corpus->id}}#{{$corpus->id}}'">
                         {{ $corpus->titulo }}
                       </a>
                     </li>

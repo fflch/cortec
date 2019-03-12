@@ -2,6 +2,7 @@
 
     return [
         'confirma' => 'Você confirma esta operação?',
+        'confirma_ferramenta' => 'Você será encaminhado a pesquisa para este conjunto de textos. Deseja prosseguir?',
         'validacao' => [
             'header' => 'Erro(s)!',
             'modal_step1' => [

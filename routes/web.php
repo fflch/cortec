@@ -23,7 +23,12 @@ Route::post('/analysis/ngramas', 'AnalysisController@ngramas' );
 
 Route::get('/corpus/','CorpusController@index');
 Route::resource('corpus','CorpusController');
-Route::resource('categorias','CategoriaController');
+
+Route::resource('categorias','CategoriaController')->except([
+    'index', 'show'
+]);
+
+Route::get('/categorias/{idioma}/{categoria}/{corpus_id?}','CategoriaController@show');
 
 Route::get('/corpus/{disciplina_id}/text/create','CorpusController@createText');
 

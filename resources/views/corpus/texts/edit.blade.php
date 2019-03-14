@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group">
-        <legend class="col-form-label">Qual forma inserir o texto?</legend>
+        <legend class="col-form-label">Como inserir o texto?</legend>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="modo" id="campo" value="campo" checked data-show="#div_conteudo">
           <label class="form-check-label" for="campo">

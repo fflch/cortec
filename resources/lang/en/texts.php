@@ -87,7 +87,7 @@
         ],
         'categorias' => [
             'texto1' => 'Corpora in',
-            'texto2' => '{1}This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following area:|[2,*]This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',
+            'texto2' => '{1}This categoryis made up of :count comparable corpus, that is, collections of similar texts in authentic English and Portuguese in the following area:|[2,*]This categoryis made up of :count comparable corpora, that is, collections of similar texts in authentic English and Portuguese in the following areas:',
             'texto3' => 'Each corpus totals about 200,000 words in each language.',
             'texto4' => 'There are three tools which can be applied to one or more corpora at the same time:',
             'concordanciador' => 'Concordancer',

@@ -34,7 +34,7 @@ class CorpusController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::all()->sortBy('nome');
 
         return view('corpus.create', compact('categorias'));
     }
@@ -83,7 +83,7 @@ class CorpusController extends Controller
      */
     public function edit(Corpus  $corpus)
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::all()->sortBy('nome');
 
         return view('corpus.edit',compact('corpus','categorias'));
     }

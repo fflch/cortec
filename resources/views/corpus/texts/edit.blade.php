@@ -31,7 +31,7 @@
       <div id="fields">
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required>{{ $text->conteudo }}</textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="16" required>{{ $text->conteudo }}</textarea>
         </div>
         <div class="form-group d-none" id="div_upload">
           <label for="upload_field">Upload</label>

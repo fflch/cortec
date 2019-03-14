@@ -31,7 +31,7 @@
       <div id='fields'>
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required oninvalid="LibComet.showHideFields(['#div_conteudo']);document.getElementById('campo').checked=true"></textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="16" required oninvalid="LibComet.showHideFields(['#div_conteudo']);document.getElementById('campo').checked=true"></textarea>
         </div>
 
         <div class="form-group d-none" id="div_upload">

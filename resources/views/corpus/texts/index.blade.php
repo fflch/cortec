@@ -11,7 +11,7 @@
     </div>
     <div class="row align-items-center row-header-lista px-1 mt-4">
       <div class="col-xs-1 text-center">
-        <h3 class="h3 h3-lista">Lista de Textos</h3>
+        <h3 class="h3 h3-lista">Corpus</h3>
       </div>
     </div>
     <div class="row bg-gray pt-3">

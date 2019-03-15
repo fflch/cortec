@@ -11,6 +11,7 @@ const mix = require('laravel-mix');
  |
  */
  mix.js('resources/assets/js/utils.js', 'public/js/');
+ mix.js('resources/assets/js/analise/analise_concord.js', 'public/js/analise');
  mix.js('resources/assets/js/analise/analise_lista_palavras.js', 'public/js/analise');
  mix.js('resources/assets/js/analise/analise_form.js', 'public/js/analise');
  mix.js('resources/assets/js/analise/ngrams_form.js', 'public/js/analise');

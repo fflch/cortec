@@ -6,5 +6,6 @@
     "/js/corpuses/form.js": "/js/corpuses/form.js",
     "/js/analise/ngrams_form.js": "/js/analise/ngrams_form.js",
     "/js/analise/analise_lista_palavras.js": "/js/analise/analise_lista_palavras.js",
-    "/js/analise/analise_form.js": "/js/analise/analise_form.js"
+    "/js/analise/analise_form.js": "/js/analise/analise_form.js",
+    "/js/analise/analise_concord.js": "/js/analise/analise_concord.js"
 }

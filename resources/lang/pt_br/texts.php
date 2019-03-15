@@ -49,8 +49,8 @@
         'concord' => [
             'texto1' => 'Foram encontradas :count ocorrências!!',
             'texto2' => 'Clique na palavra de busca para obter um contexto expandido com 150 caracteres.',
-            'download1' => 'com contexto reduzido',
-            'download2' => 'com contexto expandido',
+            'download1' => 'da tabela com contexto reduzido',
+            'download2' => 'da tabela com contexto expandido',
             'thead1' => 'Ocorrência',
             'ferramenta' => 'Concordanciador',
         ],

@@ -48,8 +48,8 @@
         'concord' => [
             'texto1' => ':count occurrences has been found!!',
             'texto2' => 'Click on search word to obtain expanded context (150 characters).',
-            'download1' => 'with reduced context',
-            'download2' => 'with expanded context',
+            'download1' => 'table with reduced context',
+            'download2' => 'table with expanded context',
             'thead1' => 'Occurrence',
             'ferramenta' => 'Concordancer',
         ],

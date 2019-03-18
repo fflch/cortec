@@ -1,5 +1,20 @@
 @extends('master')
 
+@section('styles')
+    @parent
+
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script>
+       function onSubmit() {
+           grecaptcha.execute();
+           return false;
+       }
+       function reCaptcha(token) {
+           document.getElementById('form_step2').submit();
+       }
+     </script>
+@endsection
+
 @section('content')
   <div class="container-lista">
     <div class="row">
@@ -9,7 +24,7 @@
       <p>{!! __('texts.ngrams.header2') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/ngramas" method="post" enctype="multipart/form-data">
+    <form name="step2" id="form_step2" action="/analysis/ngramas" method="post" onsubmit="return onSubmit();" enctype="multipart/form-data">
       {{ csrf_field() }}
       <input type="hidden" name="tool" value="n_grams">
 
@@ -72,6 +87,13 @@
           <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
+
+      <div class="g-recaptcha"
+          data-sitekey="{{env('RECAPCHA_SITE')}}"
+          data-callback="reCaptcha"
+          data-size="invisible">
+      </div>
+
     </form>
 
     <div class="modal" tabindex="-1" role="dialog" id="modalWarning">

@@ -3,6 +3,7 @@
     "/js/utils.js": "/js/utils.js",
     "/css/app.css": "/css/app.css",
     "/js/script.js": "/js/script.js",
+    "/js/recaptcha.js": "/js/recaptcha.js",
     "/js/corpuses/form.js": "/js/corpuses/form.js",
     "/js/analise/ngrams_form.js": "/js/analise/ngrams_form.js",
     "/js/analise/analise_lista_palavras.js": "/js/analise/analise_lista_palavras.js",

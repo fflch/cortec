@@ -41,7 +41,7 @@
                                         <a href="/corpus/{{ $corpus->id }}">{{ $corpus->titulo }}</a>
                                     </div>
                                     <div class="col-sm-3">
-                                        <a href="/corpus/{{ $corpus->id }}/text/" class="btn btn-outline-secondary">Listar Textos</a>
+                                        <a href="/corpus/{{ $corpus->id }}/text/" class="btn btn-outline-secondary">Corpus</a>
                                     </div>
                                     <div class="col-sm-3">
                                         <a href="/corpus/{{ $corpus->id }}/edit" class="btn btn-outline-secondary">Editar</a>

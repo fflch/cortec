@@ -1,5 +1,11 @@
 @extends('master')
 
+@section('javascripts_head')
+    @parent
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="text/javascript" src="{{ asset('/js/recaptcha.js') }}"></script>
+@endsection
+
 @section('content')
   <div class="container-lista">
     <div class="row">
@@ -9,7 +15,7 @@
       <p>{!! __('texts.passo3.concord.texto1') !!}</p>
     </div>
 
-    <form name="step2" action="/analysis/concordanciador" method="post">
+    <form name="step2" id="form_step2" action="/analysis/concordanciador" method="POST" onsubmit="return onSubmit();">
       {{ csrf_field() }}
       <input type="hidden" name="tool" value="concordanciador">
 
@@ -63,6 +69,13 @@
           <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
+
+      <div class="g-recaptcha"
+          data-sitekey="{{env('RECAPCHA_SITE')}}"
+          data-callback="reCaptcha"
+          data-size="invisible">
+      </div>
+
     </form>
 
     <div class="modal" tabindex="-1" role="dialog" id="modalWarning">

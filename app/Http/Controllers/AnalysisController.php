@@ -83,11 +83,14 @@ class AnalysisController extends Controller
 
     public function concordanciador(Request $request)
     {
+        $token = $request->input('g-recaptcha-response');
+        $ip    = $request->ip();
+
         $validator = Validator::make($request->all(), [
             'termo' => 'required',
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
             return redirect('/analysis/process')
                 ->withErrors(__('messages.validacao.modal_concord.error1'))
                 ->withInput();
@@ -121,6 +124,9 @@ class AnalysisController extends Controller
 
     public function ngramas(Request $request)
     {
+        $token = $request->input('g-recaptcha-response');
+        $ip    = $request->ip();
+
         $validator = Validator::make($request->all(), [
             'ngram_size'    => 'required|integer|max:4|min:2',
             'stoplist'      => 'required',
@@ -128,7 +134,7 @@ class AnalysisController extends Controller
             'min_freq'      => 'nullable|integer|min:0',
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
             return redirect('/analysis/process')
                 ->withErrors($validator)
                 ->withInput();
@@ -310,6 +316,25 @@ class AnalysisController extends Controller
         return response($csv)
             ->header('Content-Type', 'text/csv')
             ->header('Content-disposition', 'attachment; filename = '.__('texts.concord.ferramenta').'.csv');
+    }
+
+    private function verifyReCaptcha(string $token, string $ip_adress) : bool
+    {
+        $client = new \GuzzleHttp\Client();
+        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+            'form_params' => [
+                'secret' => env('RECAPCHA_SECRET'),
+                'response' => $token,
+                'remoteip' => $ip_adress
+            ]
+        ]);
+
+        $status = $response->getStatusCode(); # 200
+        $header = $response->getHeaderLine('content-type'); # 'application/json; charset=utf8'
+        $result   = json_decode($response->getBody()->getContents());
+
+        return $result->success;
+
     }
 
 }

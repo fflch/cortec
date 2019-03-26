@@ -13,7 +13,7 @@
       </div>
 
       <div class="form-group">
-        <legend class="col-form-label">Qual forma inserir o texto?</legend>
+        <legend class="col-form-label">Como inserir o texto?</legend>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="modo" id="campo" value="campo" checked data-show="#div_conteudo">
           <label class="form-check-label" for="campo">
@@ -31,7 +31,7 @@
       <div id="fields">
         <div class="form-group" id="div_conteudo">
           <label for="conteudo">Conteúdo</label>
-          <textarea class="form-control" id="conteudo" name="conteudo" rows="5" required>{{ $text->conteudo }}</textarea>
+          <textarea class="form-control" id="conteudo" name="conteudo" rows="16" required>{{ $text->conteudo }}</textarea>
         </div>
         <div class="form-group d-none" id="div_upload">
           <label for="upload_field">Upload</label>

@@ -49,8 +49,8 @@
         'concord' => [
             'texto1' => 'Foram encontradas :count ocorrências!!',
             'texto2' => 'Clique na palavra de busca para obter um contexto expandido com 150 caracteres.',
-            'download1' => 'com contexto reduzido',
-            'download2' => 'com contexto expandido',
+            'download1' => 'da tabela com contexto reduzido',
+            'download2' => 'da tabela com contexto expandido',
             'thead1' => 'Ocorrência',
             'ferramenta' => 'Concordanciador',
         ],
@@ -88,7 +88,7 @@
         ],
         'categorias' => [
             'texto1' => 'Sobre os Corpora',
-            'texto2' => '{1}Esta categoria é constituída de :count corpora comparável, ou seja, com textos semelhantes, em inglês e português originais, na seguinte área:|[2,*] Esta categoria é constituída de :count corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:',
+            'texto2' => '{1}Esta categoria é constituída de :count corpus comparável, ou seja, com textos semelhantes, em inglês e português originais, na seguinte área:|[2,*] Esta categoria é constituída de :count corpora comparáveis, ou seja, com textos semelhantes, em inglês e português originais, nas seguintes áreas:',
             'texto3' => 'Cada corpus técnico é composto por aproximadamente 200.000 palavras em cada língua.',
             'texto4' => 'Estão disponíveis três ferramentas que podem ser aplicadas a um ou mais corpora ao mesmo tempo. São elas:',
             'concordanciador' => 'Concordanciador',

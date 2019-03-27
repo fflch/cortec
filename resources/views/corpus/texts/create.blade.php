@@ -47,5 +47,6 @@
 
 @section('javascripts')
   @parent
+  <script type="text/javascript" src="{{ asset('/js/utils.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/corpuses/form.js') }}"></script>
 @endsection

@@ -31,9 +31,14 @@
 
       <div class="form-group" >
         <label for="texto">Texto</label>
-        <textarea class="form-control" id="texto" name="texto" rows="16" required>{{ $aviso->texto }}</textarea>
+        <textarea class="form-control editor__editable" id="editor" name="texto" required>{{ $aviso->texto }}</textarea>
       </div>
 
       <button type="submit" class="btn btn-success">Salvar</button>
   </form>
+@endsection
+
+@section('javascripts')
+  @parent
+  <script type="text/javascript" src="{{ asset('/js/plugins/ckeditor.js') }}"></script>
 @endsection

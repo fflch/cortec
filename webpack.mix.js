@@ -17,6 +17,7 @@ const mix = require('laravel-mix');
  mix.js('resources/assets/js/analise/ngrams_form.js', 'public/js/analise');
  mix.js('resources/assets/js/corpuses/form.js', 'public/js/corpuses');
  mix.js('resources/assets/js/recaptcha.js', 'public/js/');
+ mix.js('resources/assets/js/plugins/ckeditor.js', 'public/js/plugins');
 
 //Modules and vendor
 mix.js('resources/assets/js/app.js', 'public/js');

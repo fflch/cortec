@@ -26,7 +26,7 @@
         </div>
         <div class="form-group">
           <label for="descricao">Descrição</label>
-          <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ $corpus->descricao }}</textarea>
+          <textarea class="form-control" id="editor" name="descricao" rows="3">{{ $corpus->descricao }}</textarea>
         </div>
         <div class="form-group">
           <label for="tipologia">Tipologia Textual</label>
@@ -44,4 +44,9 @@
       </form>
     </div>
   </div>
+@endsection
+
+@section('javascripts')
+  @parent
+  <script type="text/javascript" src="{{ asset('/js/plugins/ckeditor.js') }}"></script>
 @endsection

@@ -47,6 +47,9 @@
               <a class="nav-link" href="/stopwords/en">Stopwords em Inglês</a>
           </div>
       </li>
+      <li class="nav-item divider-vertical">
+        <a class="nav-link" href="/avisos/edit">{!! __('basic.ger_aviso') !!}</a>
+      </li>
   @endauth
 @endsection
 

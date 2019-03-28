@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Corpus;
 use App\Categoria;
 use App\Text;
+use App\Aviso;
 
 class IndexController extends Controller
 {
@@ -16,10 +17,13 @@ class IndexController extends Controller
    */
     public function step1()
     {
+
+        $aviso = Aviso::all()->first();
+
         $categorias = Categoria::whereHas('corpuses.texts')
                                     ->orderBy('nome')
                                     ->get();
 
-        return view('index', compact('categorias'));
+        return view('index', compact('categorias', 'aviso'));
     }
 }

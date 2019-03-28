@@ -27,17 +27,16 @@ class AvisoController extends Controller
     {
         $validatedData = $request->validate([
             'titulo'  => 'required|string',
-            'texto'   => 'required|string',
-            'ativado' => 'required|boolean',
+            'texto'   => 'required|string'
         ]);
 
         $aviso = new Aviso;
         $aviso->titulo = $request->titulo;
         $aviso->texto  = $request->texto;
-        $aviso->ativado = $request->ativado;
+        $aviso->ativado = false;
         $aviso->save();
 
-        return redirect('/avisos/');
+        return redirect('/avisos/edit');
     }
 
     /**
@@ -49,7 +48,6 @@ class AvisoController extends Controller
     public function edit()
     {
         $aviso = Aviso::all()->first();
-
         return view('avisos.edit',compact('aviso'));
     }
 
@@ -62,6 +60,17 @@ class AvisoController extends Controller
      */
     public function update(Request $request, Aviso $aviso)
     {
-        //
+        $validatedData = $request->validate([
+            'titulo'  => 'required|string',
+            'texto'   => 'required|string',
+            'ativado' => 'required|boolean',
+        ]);
+
+        $aviso->titulo  = $request->titulo;
+        $aviso->texto   = $request->texto;
+        $aviso->ativado = $request->ativado;
+        $aviso->save();
+
+        return redirect('/avisos/edit');
     }
 }

@@ -52,3 +52,9 @@ Route::get('/changes','ChangeController@index');
 
 Route::get('/stopwords/{idioma}','StopwordsController@edit');
 Route::post('/stopwords/update','StopwordsController@update');
+
+Route::get('/avisos/create','AvisosController@edit');
+Route::post('/avisos/store','AvisosController@store');
+
+Route::get('/avisos','AvisosController@edit');
+Route::post('/avisos/update','AvisosController@update');

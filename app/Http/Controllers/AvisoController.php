@@ -8,23 +8,13 @@ use Illuminate\Http\Request;
 class AvisoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('avisos.create');
     }
 
     /**
@@ -35,18 +25,19 @@ class AvisoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'titulo'  => 'required|string',
+            'texto'   => 'required|string',
+            'ativado' => 'required|boolean',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Aviso  $aviso
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Aviso $aviso)
-    {
-        //
+        $aviso = new Aviso;
+        $aviso->titulo = $request->titulo;
+        $aviso->texto  = $request->texto;
+        $aviso->ativado = $request->ativado;
+        $aviso->save();
+
+        return redirect('/avisos/');
     }
 
     /**
@@ -55,9 +46,11 @@ class AvisoController extends Controller
      * @param  \App\Aviso  $aviso
      * @return \Illuminate\Http\Response
      */
-    public function edit(Aviso $aviso)
+    public function edit()
     {
-        //
+        $aviso = Aviso::all()->first();
+
+        return view('avisos.edit',compact('aviso'));
     }
 
     /**
@@ -68,17 +61,6 @@ class AvisoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Aviso $aviso)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Aviso  $aviso
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Aviso $aviso)
     {
         //
     }

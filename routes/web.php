@@ -26,7 +26,7 @@ Route::resource('corpus','CorpusController');
 
 Route::resource('categorias','CategoriaController')->except([
     'index', 'show'
-]);
+])->middleware('auth');
 
 Route::get('/categorias/{idioma}/{categoria}/{corpus_id?}','CategoriaController@show');
 

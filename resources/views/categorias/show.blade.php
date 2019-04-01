@@ -85,7 +85,7 @@
                 <h3>{{ $corpus->titulo }}</h3>
               </div>
               <div class="card-body">
-                @if($corpus->descricao)<p>{{ $corpus->descricao }}</p>@endif
+                @if($corpus->descricao)<p>{!! $corpus->descricao !!}</p>@endif
                 @if($corpus->tipologia)<p><strong>Tipologia Textual:</strong> {{$corpus->tipologia}}</p>@endif
                 @if($corpus->compilador)<p><strong>Compilador:</strong> {{$corpus->compilador}}</p>@endif
                 @if($corpus->ano)<p><strong>Ano:</strong> {{$corpus->ano}}</p>@endif

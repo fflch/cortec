@@ -26,7 +26,7 @@ Route::resource('corpus','CorpusController');
 
 Route::resource('categorias','CategoriaController')->except([
     'index', 'show'
-]);
+])->middleware('auth');
 
 Route::get('/categorias/{idioma}/{categoria}/{corpus_id?}','CategoriaController@show');
 
@@ -52,3 +52,8 @@ Route::get('/changes','ChangeController@index');
 
 Route::get('/stopwords/{idioma}','StopwordsController@edit');
 Route::post('/stopwords/update','StopwordsController@update');
+
+Route::get('/avisos/create','AvisoController@create');
+Route::get('/avisos/edit','AvisoController@edit');
+Route::post('/avisos/{aviso}','AvisoController@update');
+Route::post('/avisos/','AvisoController@store');

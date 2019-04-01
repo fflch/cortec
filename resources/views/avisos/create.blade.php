@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('content')
-  <form method="POST" name="corpus" action="/avisos/">
+  <form method="POST" name="corpus" action="/avisos">
       {{ csrf_field() }}
 
       <div class="">

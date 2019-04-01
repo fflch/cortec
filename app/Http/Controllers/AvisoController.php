@@ -11,7 +11,7 @@ class AvisoController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -53,6 +53,9 @@ class AvisoController extends Controller
     public function edit()
     {
         $aviso = Aviso::all()->first();
+        if (empty($aviso)) {
+            return redirect('/avisos/create');
+        }
         return view('avisos.edit',compact('aviso'));
     }
 

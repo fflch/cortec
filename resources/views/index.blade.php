@@ -2,6 +2,8 @@
 
 @section('content')
 
+
+    @if (!empty($aviso))
     @if ($aviso->ativado)
         <div class="row">
             <div class="col">
@@ -13,6 +15,7 @@
                 </div>
             </div>
         </div>
+    @endif
     @endif
 
     <div class="row">

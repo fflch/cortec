@@ -56,4 +56,4 @@ Route::post('/stopwords/update','StopwordsController@update');
 Route::get('/avisos/create','AvisoController@create');
 Route::get('/avisos/edit','AvisoController@edit');
 Route::post('/avisos/{aviso}','AvisoController@update');
-Route::post('/avisos/','AvisoController@store');
+Route::post('/avisos','AvisoController@store');

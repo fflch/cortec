@@ -15,7 +15,7 @@ class CategoriaCrudTest extends TestCase
     /**
     * Setting up an auth user for testing the methods
     */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

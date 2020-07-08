@@ -18,3 +18,4 @@ yarn-error.log
 /public/vendor/
 *.swp
 *~
+package-lock.json

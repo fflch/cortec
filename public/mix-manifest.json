@@ -8,6 +8,5 @@
     "/js/plugins/ckeditor.js": "/js/plugins/ckeditor.js",
     "/js/recaptcha.js": "/js/recaptcha.js",
     "/js/script.js": "/js/script.js",
-    "/js/utils.js": "/js/utils.js",
-    "/css/app.css": "/css/app.css"
+    "/js/utils.js": "/js/utils.js"
 }

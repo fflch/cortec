@@ -15,7 +15,7 @@ class IndexController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-    public function step1()
+    public function index()
     {
 
         $aviso = Aviso::all()->first();

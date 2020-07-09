@@ -20,5 +20,6 @@
                 'error1' => 'Parâmetros de análise inseridos incorretamente',
             ],
             'error_stoplist' => 'Erro ao processar arquivo de Stoplist.',
+            'limite_digitos' => 'Números de caracteres (1 milhão) ultrapassado. Tente refinar seu filtro na busca.',
         ]
     ];

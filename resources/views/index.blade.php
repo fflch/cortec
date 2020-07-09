@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     @if (!empty($aviso))
     @if ($aviso->ativado)
         <div class="row">

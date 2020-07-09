@@ -9,8 +9,9 @@ use App\Observers\CorpusObserver;
 
 class Corpus extends Model
 {
+    protected $table = 'corpuses';
 
-    protected $all_texts    = array('pt' => '', 'en' => '');
+    protected $all_texts  = array('pt' => '', 'en' => '');
     protected $analysis = array('pt' => array(), 'en' => array());
     protected $idiomas  = array();
 

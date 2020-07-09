@@ -70,8 +70,9 @@ class CorpusController extends Controller
      * @param  \App\Corpus  $corpus
      * @return \Illuminate\Http\Response
      */
-    public function show(Corpus $corpus)
+    public function show($id)
     {
+        $corpus = Corpus::where('id',$id)->first();
         return view('corpus.show',compact('corpus'));
     }
 
@@ -81,8 +82,9 @@ class CorpusController extends Controller
      * @param  \App\Corpus  $corpus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Corpus  $corpus)
+    public function edit($id)
     {
+        $corpus = Corpus::where('id',$id)->first();
         $categorias = Categoria::all()->sortBy('nome');
 
         return view('corpus.edit',compact('corpus','categorias'));
@@ -95,8 +97,10 @@ class CorpusController extends Controller
      * @param  \App\Corpus  $corpus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Corpus  $corpus)
+    public function update(Request $request, $id)
     {
+        $corpus = Corpus::where('id',$id)->first();
+
         $validatedData = $request->validate([
             'categoria_id' => 'required|integer',
             'titulo' => 'required|string',
@@ -119,8 +123,9 @@ class CorpusController extends Controller
      * @param  \App\Corpus  $corpus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Corpus  $corpus)
+    public function destroy($id)
     {
+        $corpus = Corpus::where('id',$id)->first();
         $corpus->delete();
 
         return redirect('/corpus/');

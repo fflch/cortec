@@ -20,6 +20,7 @@ class AnalysisController extends Controller
     */
     public function process(Request $request)
     {
+
         //verifica se é um retorno de validação
         if ($request->old('tool')) {
             return $this->showForm($request);
@@ -54,13 +55,14 @@ class AnalysisController extends Controller
 
         //armazena a compilação de textos na sessão
         $request->session()->put('form_analysis.all_texts', $all_texts);
-
+        
         //retorna o formulário de acordo
         return $this->showForm($request);
     }
 
     private function showForm(Request $request) {
         //carrega as variáveis
+
         $tool     = $request->old('tool') ?? $request->tool;
         $language = $request->old('language') ?? $request->language;
 
@@ -98,22 +100,37 @@ class AnalysisController extends Controller
         }
 
         $all_texts = $request->session()->get('form_analysis.all_texts');
+        //dd(strlen($all_texts));
+
+        // essa análise fica muito lenta com texto muito grande
+        $validator = Validator::make(['all_texts' => $all_texts], [
+            'all_texts' => 'string|min:1|max:1000000',
+        ]);
+        
+        if ($validator->fails()) {
+            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+            return redirect('/')
+                ->withErrors(__('messages.validacao.limite_digitos'))
+                ->withInput();
+        }
+
         $posicao =  $request->posicao;
         $termo =  $request->termo;
-        $contexto =  $request->contexto;
+        $contexto = $request->contexto;
         $case =  boolval($request->case);
-        $conc = new TextCorpus($all_texts);
+        
+        $conc = new TextCorpus($all_texts);       
 
-        //reduzido
         $ocorrencias_red = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
+
         if ($ocorrencias_red->isEmpty()) {
             return redirect('/analysis/process')
                 ->withErrors(__('messages.validacao.modal_concord.error2'))
                 ->withInput();
         }
-
-        //expandido
+        
         $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao, true));
+        
 
         $ocorrencias = $ocorrencias_red->zip($ocorrencias_exp);
 
@@ -143,6 +160,18 @@ class AnalysisController extends Controller
         }
 
         $all_texts      =  $request->session()->get('form_analysis.all_texts');
+
+        $validator = Validator::make(['all_texts' => $all_texts], [
+            'all_texts' => 'string|min:1|max:1000000',
+        ]);
+        
+        if ($validator->fails()) {
+            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+            return redirect('/')
+                ->withErrors(__('messages.validacao.limite_digitos'))
+                ->withInput();
+        }
+
         $ngram_size     =  $request->ngram_size;
         $stats          =  $request->stats;
         $stoplist       =  $request->stoplist;
@@ -204,6 +233,18 @@ class AnalysisController extends Controller
     private function listaPalavras(Request $request)
     {
         $all_texts = $request->session()->get('form_analysis.all_texts');
+
+        $validator = Validator::make(['all_texts' => $all_texts], [
+            'all_texts' => 'string|min:1|max:1000000',
+        ]);
+        
+        if ($validator->fails()) {
+            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+            return redirect('/')
+                ->withErrors(__('messages.validacao.limite_digitos'))
+                ->withInput();
+        }
+
         $utils = new Utils($all_texts);
         $analysis = $utils->getAnalysis();
         $request->session()->put('form_analysis.analysis', $analysis);

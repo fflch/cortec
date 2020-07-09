@@ -24,7 +24,7 @@
                   {{ $text->created_at->format('d/m/Y G:i:s')}}
                 </div>
                 <div class="col-sm-3">
-                  {{ str_limit($text->conteudo, 100) }}
+                  {{ \Illuminate\Support\Str::limit($text->conteudo, 100) }}
                 </div>
                 <div class="col-sm-1">
                   <span class="badge badge-secondary">{{$text->idioma}}</span>

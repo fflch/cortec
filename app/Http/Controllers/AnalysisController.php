@@ -104,7 +104,7 @@ class AnalysisController extends Controller
 
         // essa análise fica muito lenta com texto muito grande
         $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:100000',
+            'all_texts' => 'string|min:1|max:1000000',
         ]);
         
         if ($validator->fails()) {
@@ -162,7 +162,7 @@ class AnalysisController extends Controller
         $all_texts      =  $request->session()->get('form_analysis.all_texts');
 
         $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:100000',
+            'all_texts' => 'string|min:1|max:1000000',
         ]);
         
         if ($validator->fails()) {
@@ -235,7 +235,7 @@ class AnalysisController extends Controller
         $all_texts = $request->session()->get('form_analysis.all_texts');
 
         $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:100000',
+            'all_texts' => 'string|min:1|max:1000000',
         ]);
         
         if ($validator->fails()) {

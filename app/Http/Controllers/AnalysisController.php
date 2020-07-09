@@ -90,7 +90,8 @@ class AnalysisController extends Controller
             'termo' => 'required',
         ]);
 
-        if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+        if ($validator->fails()) {
+        //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
             return redirect('/analysis/process')
                 ->withErrors(__('messages.validacao.modal_concord.error1'))
                 ->withInput();
@@ -134,7 +135,8 @@ class AnalysisController extends Controller
             'min_freq'      => 'nullable|integer|min:0',
         ]);
 
-        if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+        //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
+        if ($validator->fails() ) {
             return redirect('/analysis/process')
                 ->withErrors($validator)
                 ->withInput();

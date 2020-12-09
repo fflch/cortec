@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Event;
 
@@ -14,8 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         //Evita a execução de event listeners
         Event::fake();
-
-        factory(App\Text::class, 10)->create();
+        $this->call([
+            TextSeeder::class,
+        ]);
+        
 
     }
 }

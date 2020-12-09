@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Categoria;
-use App\Change;
+use App\Models\Categoria;
+use App\Models\Change;
 use Illuminate\Support\Facades\Auth;
 
 class CategoriaObserver

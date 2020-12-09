@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Aviso;
+use App\Models\Aviso;
 use Illuminate\Http\Request;
 
 class AvisoController extends Controller

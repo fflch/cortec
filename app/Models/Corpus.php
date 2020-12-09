@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\RegexTokenizer;
 use App\Utils;
@@ -9,6 +10,8 @@ use App\Observers\CorpusObserver;
 
 class Corpus extends Model
 {
+    use HasFactory;
+
     protected $table = 'corpuses';
 
     protected $all_texts  = array('pt' => '', 'en' => '');
@@ -23,12 +26,12 @@ class Corpus extends Model
 
     public function texts()
     {
-        return $this->hasMany('App\Text');
+        return $this->hasMany(Text::class);
     }
 
     public function categoria()
     {
-        return $this->belongsTo('App\Categoria');
+        return $this->belongsTo(Categoria::class);
     }
 
     /**

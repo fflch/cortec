@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Text;
-use App\Change;
+use App\Models\Text;
+use App\Models\Change;
 use Illuminate\Support\Facades\Auth;
 
 class TextObserver

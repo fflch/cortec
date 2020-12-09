@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
-use App\Corpus;
+use App\Models\Corpus;
 use App\Utils;
-use App\Stopword;
+use App\Models\Stopword;
 use TextAnalysis\Corpus\TextCorpus;
 use TextAnalysis\NGrams\NGramFactory;
 use TextAnalysis\NGrams\StatisticFacade;

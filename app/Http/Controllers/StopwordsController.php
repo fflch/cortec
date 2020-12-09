@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Stopword;
+use App\Models\Stopword;
 
 class StopwordsController extends Controller
 {

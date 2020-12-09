@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Corpus;
-use App\Categoria;
-use App\Text;
-use App\Aviso;
+use App\Models\Corpus;
+use App\Models\Categoria;
+use App\Models\Text;
+use App\Models\Aviso;
 
 class IndexController extends Controller
 {

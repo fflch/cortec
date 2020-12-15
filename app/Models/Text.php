@@ -1,12 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\TextObserver;
 
 class Text extends Model
 {
+    use HasFactory;
+
     protected static function boot()
     {
         parent::boot();
@@ -15,6 +18,6 @@ class Text extends Model
 
     public function corpus()
     {
-        return $this->belongsTo('App\Corpus');
+        return $this->belongsTo(Corpus::class);
     }
 }

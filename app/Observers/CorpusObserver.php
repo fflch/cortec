@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\Corpus;
-use App\Change;
+use App\Models\Corpus;
+use App\Models\Change;
 use Illuminate\Support\Facades\Auth;
 
 class CorpusObserver

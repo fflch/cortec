@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Change;
+use App\Models\Change;
 
 class ChangeController extends Controller
 {

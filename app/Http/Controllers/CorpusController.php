@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Corpus;
-use App\Text;
-use App\Categoria;
+use App\Models\Corpus;
+use App\Models\Text;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
 class CorpusController extends Controller

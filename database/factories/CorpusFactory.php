@@ -1,16 +1,37 @@
 <?php
 
-use Faker\Generator as Faker;
+namespace Database\Factories;
 
-$factory->define(App\Corpus::class, function (Faker $faker) {
-    return [
-        'categoria_id' => function () {
-            return factory(App\Categoria::class)->create()->id;
-        },
-        'titulo' => $faker->unique()->text(25),
-        'descricao' => $faker->unique()->text(255),
-        'tipologia' => $faker->unique()->words(3, true),
-        'compilador' => $faker->unique()->name(),
-        'ano' => $faker->unique()->year(),
-    ];
-});
+use App\Models\Corpus;
+use App\Models\Categoria;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class CorpusFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Corpus::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'categoria_id' => Categoria::factory()->create()->id,
+            'titulo'       => $this->faker->unique()->text(25),
+            'descricao'    => $this->faker->unique()->text(255),
+            'tipologia'    => $this->faker->unique()->words(3, true),
+            'compilador'   => $this->faker->unique()->name(),
+            'ano'          => $this->faker->unique()->year(),
+        ];
+    }
+}
+ // 'categoria_id' => function () { 
+ //       return Categoria::factory()->create()->id; }, 
+        

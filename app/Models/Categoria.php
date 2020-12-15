@@ -1,13 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Events\CategoriaChanged;
 use App\Observers\CategoriaObserver;
 
 class Categoria extends Model
 {
+    use HasFactory;
+
     protected static function boot()
     {
         parent::boot();
@@ -16,6 +19,6 @@ class Categoria extends Model
 
     public function corpuses()
     {
-        return $this->hasMany('App\Corpus');
+        return $this->hasMany(Corpus::class);
     }
 }

@@ -1,13 +1,36 @@
 <?php
 
- use Faker\Generator as Faker;
+namespace Database\Factories;
 
- $factory->define(App\Text::class, function (Faker $faker) {
-    return [
-        'corpus_id' => function () {
-            return factory(App\Corpus::class)->create()->id;
-        },
-        'conteudo' => $faker->unique()->realText(50000),
-        'idioma' => $faker->randomElement($array = array ('pt','en')) ,
-    ];
-});
+use App\Models\Text;
+use App\Models\Corpus;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class TextFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Text::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'corpus_id' => Corpus::factory()->create()->id,
+            'conteudo'  => $this->faker->unique()->realText(50000),
+            'idioma'    => $this->faker->randomElement($array = array ('pt','en')) , 
+        ];
+    }
+}
+
+
+ //   'corpus_id' => function () {
+   //     return Corpus::factory()->create()->id;        },
+        

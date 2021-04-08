@@ -3,19 +3,17 @@
 /public/storage
 /storage/*.key
 /vendor
-/.idea
-/.vscode
-/.vagrant
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
-.phpunit.result.cache
+
 
 /public/vendor/
 *.swp
 *~
 package-lock.json
-#/public/css
-#/public/js

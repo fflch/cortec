@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Models\Corpus;
-use App\Utils;
+use App\LaravelTextAnalysis;
 use App\Models\Stopword;
 use TextAnalysis\Corpus\TextCorpus;
 use TextAnalysis\NGrams\NGramFactory;
@@ -20,106 +20,70 @@ class AnalysisController extends Controller
     */
     public function process(Request $request)
     {
-
-        //verifica se é um retorno de validação
-        if ($request->old('tool')) {
-            return $this->showForm($request);
-        }
-
-        Validator::make($request->all(), [
+        $request->validate([
             'language' => 'required',
             'corpuses' => 'required',
             'tool'     => 'required',
-        ])->validate();
+        ]);
 
-        $corpuses_ids = collect($request->corpuses);
+        $tool     = $request->old('tool') ?? $request->tool;
         $language     = $request->language;
-        $tool         = $request->tool;
+        $corpuses_ids = implode(',',$request->corpuses);
 
-        //verifica se todos os corpuses estão disponíveis no idioma selecionado
+        // verifica se todos os corpuses estão disponíveis no idioma selecionado
+        /* Melhor fazer cim formRequest!!!
         $has_language = $corpuses_ids->every(function ($corpus_id) use ($language) {
             $corpus = Corpus::find($corpus_id);
             return $corpus->hasTextLang($language);
         });
+
         if (!$has_language) {
-            return redirect("/")
-                ->withErrors(__('messages.validacao.modal_step1.body'))
-                ->withInput();
+            request()->session()->flash('alert-info','Corpus não disponível no idioma selecionado');
+            return redirect("/");
         }
-
-        //gather all corpus in one string and put in the session
-        $all_texts = $corpuses_ids->reduce(function ($carry, $id) use ($language) {
-            $corpus_text = Corpus::find($id)->getAllTexts($language);
-            return $carry . ' ' . $corpus_text;
-        });
-
-        //armazena a compilação de textos na sessão
-        $request->session()->put('form_analysis.all_texts', $all_texts);
+        */
         
-        //retorna o formulário de acordo
-        return $this->showForm($request);
-    }
-
-    private function showForm(Request $request) {
-        //carrega as variáveis
-
-        $tool     = $request->old('tool') ?? $request->tool;
-        $language = $request->old('language') ?? $request->language;
-
-        switch ($tool) {
-            case 'concordanciador':
-                return view('analysis.conc_form');
-                break;
-            case 'lista_palavras':
-                return $this->listaPalavras($request);
-                break;
-            case 'n_grams':
-                $stopwords = Stopword::getStoplist($request->language);
-                return view('analysis.ngrams_form', compact('stopwords'));
-                break;
-            default:
-                redirect("/");
-                break;
+        if($tool=='concordanciador'){
+            return view('analysis.conc_form',compact('corpuses_ids','language'));
         }
+
+        if($tool=='n_grams'){
+            $stopwords = Stopword::getStoplist($language);
+            return view('analysis.ngrams_form', compact('stopwords','corpuses_ids','language'));
+        }
+
+        if($tool=='lista_palavras'){
+            $corpuses_ids = collect($request->corpuses);
+            $text = $corpuses_ids->reduce(function ($carry, $id) use ($language) {
+                $corpus_text = Corpus::find($id)->getAllTexts($language);
+                return $carry . ' ' . $corpus_text;
+            });
+            $laravel_text_analysis = new LaravelTextAnalysis($text);
+            $analysis = $laravel_text_analysis->getAnalysis();
+            $request->session()->put('form_analysis.analysis', $analysis);
+            return view('analysis.lista_palavras', compact('analysis'));
+        }
+        redirect("/");
     }
 
     public function concordanciador(Request $request)
     {
-        $token = $request->input('g-recaptcha-response');
-        $ip    = $request->ip();
-
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'termo' => 'required',
         ]);
-
-        if ($validator->fails()) {
-        //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
-            return redirect('/analysis/process')
-                ->withErrors(__('messages.validacao.modal_concord.error1'))
-                ->withInput();
-        }
-
-        $all_texts = $request->session()->get('form_analysis.all_texts');
-        //dd(strlen($all_texts));
-
-        // essa análise fica muito lenta com texto muito grande
-        $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:1000000',
-        ]);
-        
-        if ($validator->fails()) {
-            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
-            return redirect('/')
-                ->withErrors(__('messages.validacao.limite_digitos'))
-                ->withInput();
-        }
+        $language = $request->language;
+        $corpuses_ids = collect(explode(',',$request->corpuses_ids));
+        $text = $corpuses_ids->reduce(function ($carry, $id) use ($language) {
+            $corpus_text = Corpus::find($id)->getAllTexts($language);
+            return $carry . ' ' . $corpus_text;
+        });
 
         $posicao =  $request->posicao;
         $termo =  $request->termo;
         $contexto = $request->contexto;
         $case =  boolval($request->case);
         
-        $conc = new TextCorpus($all_texts);       
+        $conc = new TextCorpus($text);       
 
         $ocorrencias_red = collect($conc->concordance($termo, $contexto, !$case, $posicao, true));
 
@@ -130,10 +94,7 @@ class AnalysisController extends Controller
         }
         
         $ocorrencias_exp = collect($conc->concordance($termo, 150, !$case, $posicao, true));
-        
-
         $ocorrencias = $ocorrencias_red->zip($ocorrencias_exp);
-
         $request->session()->put('form_analysis.concord', $ocorrencias_red);
         $request->session()->put('form_analysis.concord_exp', $ocorrencias_exp);
 
@@ -142,9 +103,6 @@ class AnalysisController extends Controller
 
     public function ngramas(Request $request)
     {
-        $token = $request->input('g-recaptcha-response');
-        $ip    = $request->ip();
-
         $validator = Validator::make($request->all(), [
             'ngram_size'    => 'required|integer|max:4|min:2',
             'stoplist'      => 'required',
@@ -152,25 +110,18 @@ class AnalysisController extends Controller
             'min_freq'      => 'nullable|integer|min:0',
         ]);
 
-        //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
         if ($validator->fails() ) {
             return redirect('/analysis/process')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $all_texts      =  $request->session()->get('form_analysis.all_texts');
-
-        $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:1000000',
-        ]);
-        
-        if ($validator->fails()) {
-            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
-            return redirect('/')
-                ->withErrors(__('messages.validacao.limite_digitos'))
-                ->withInput();
-        }
+        $language = $request->language;
+        $corpuses_ids = collect(explode(',',$request->corpuses_ids));
+        $text = $corpuses_ids->reduce(function ($carry, $id) use ($language) {
+            $corpus_text = Corpus::find($id)->getAllTexts($language);
+            return $carry . ' ' . $corpus_text;
+        });
 
         $ngram_size     =  $request->ngram_size;
         $stats          =  $request->stats;
@@ -179,7 +130,7 @@ class AnalysisController extends Controller
         $language       =  $request->session()->get('form_analysis.language');
 
         //Gera os Tokens
-        $analysis   = new Utils($all_texts);
+        $analysis   = new LaravelTextAnalysis($text);
         $tokens     = $analysis->getTokens();
 
         //Remove as stopwords
@@ -230,33 +181,6 @@ class AnalysisController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    private function listaPalavras(Request $request)
-    {
-        $all_texts = $request->session()->get('form_analysis.all_texts');
-
-        $validator = Validator::make(['all_texts' => $all_texts], [
-            'all_texts' => 'string|min:1|max:1000000',
-        ]);
-        
-        if ($validator->fails()) {
-            //if ($validator->fails() || !$this->verifyReCaptcha($token, $ip)) {
-            return redirect('/')
-                ->withErrors(__('messages.validacao.limite_digitos'))
-                ->withInput();
-        }
-
-        $utils = new Utils($all_texts);
-        $analysis = $utils->getAnalysis();
-        $request->session()->put('form_analysis.analysis', $analysis);
-
-        return view('analysis.lista_palavras', compact('analysis'));
-    }
-
-    /**
-    * Process the analysis, store it in the session and display it.
-    *
-    * @return \Illuminate\Http\Response
-    */
     public function freqTable(Request $request)
     {
         $analysis = $request->session()->get('form_analysis.analysis');
@@ -295,8 +219,6 @@ class AnalysisController extends Controller
                 ->header('Content-Type', 'text/csv')
                 ->header('Content-disposition', 'attachment; filename = '.__('texts.lista_palavras.tabela.header2_3').'.csv');
     }
-
-
 
     /**
     * Generates the table for n-grams
@@ -359,25 +281,6 @@ class AnalysisController extends Controller
         return response($csv)
             ->header('Content-Type', 'text/csv')
             ->header('Content-disposition', 'attachment; filename = '.__('texts.concord.ferramenta').'.csv');
-    }
-
-    private function verifyReCaptcha(string $token, string $ip_adress) : bool
-    {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
-            'form_params' => [
-                'secret' => env('RECAPCHA_SECRET'),
-                'response' => $token,
-                'remoteip' => $ip_adress
-            ]
-        ]);
-
-        $status = $response->getStatusCode(); # 200
-        $header = $response->getHeaderLine('content-type'); # 'application/json; charset=utf8'
-        $result   = json_decode($response->getBody()->getContents());
-
-        return $result->success;
-
     }
 
 }

@@ -75,40 +75,15 @@
         </div>
       </div>
 
+      <input type="hidden" name="corpuses_ids" value="{{ $corpuses_ids }}">
+      <input type="hidden" name="language" value="{{ $language }}">
+
       <div class="row">
         <div class="col text-right mt-4 pr-0">
           <button type="submit" class="btn btn-success text-right">{!! __('basic.buttons.proximo_passo') !!}</button>
         </div>
       </div>
-
-      <div class="g-recaptcha"
-          data-sitekey="{{env('RECAPCHA_SITE')}}"
-          data-callback="reCaptcha"
-          data-size="invisible">
-      </div>
-
     </form>
-
-    <div class="modal" tabindex="-1" role="dialog" id="modalWarning">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{!! __('messages.validacao.header') !!}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            @foreach ($errors->all() as $error)
-                <p>{!! $error !!}</p>
-            @endforeach
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-        </div>
-      </div>
-    </div>
-
   </div>
 @endsection
 
@@ -116,8 +91,4 @@
   @parent
   <script type="text/javascript" src="{{ asset('/js/analise/ngrams_form.js') }}"></script>
   <script type="text/javascript" src="{{ asset('/js/utils.js') }}"></script>
-  <script>
-    var modal = new bsn.Modal(document.getElementById('modalWarning'));
-    @if ($errors->any()) modal.show(); @endif
-  </script>
 @endsection

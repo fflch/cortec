@@ -4,9 +4,10 @@ namespace App;
 
 use TextAnalysis\Tokenizers\RegexTokenizer;
 
-class Utils
+class LaravelTextAnalysis
 {
     private $text = array();
+
     private $analysis = array(
         'frequency-tokens' => null,
         'count-tokens'=> null,
@@ -16,6 +17,7 @@ class Utils
         'ngrams'=> null
         );
     private $tokenizer;
+
     private $tokens;
 
     public function __construct(String $text)

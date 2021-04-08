@@ -20,7 +20,6 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 // Rotas Index
 Route::get('/', [IndexController::class, 'index']);
 
-
 // Rotas Analysis
 Route::post('/analysis/tool', [AnalysisController::class, 'toolSelection']);
 Route::match(['get', 'post'], '/analysis/process', [AnalysisController::class, 'process']);
@@ -44,7 +43,7 @@ Route::delete('/corpus/{corpus}/text/{text}', [CorpusController::class, 'destroy
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');
     Session::put('locale', $locale);
-    return redirect()->back();
+    return redirect('/');
 });
 
 

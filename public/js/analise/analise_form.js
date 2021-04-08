@@ -1,4 +1,5 @@
 //Funcões para marcar os corpus de acordo com a marcação na respectiva categoria de corpus
+
 checks_cats = Array.from(document.step1.querySelectorAll('[id^="check_cat_"]'));
 
 checks_cats.map(function (elm){

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use TextAnalysis\Tokenizers\RegexTokenizer;
-use App\Utils;
+use App\LaravelTextAnalysis;
 use App\Observers\CorpusObserver;
 
 class Corpus extends Model
@@ -86,7 +86,7 @@ class Corpus extends Model
         }
 
         if(empty($this->analysis[$lang])) {
-            $analysis = new Utils($all_texts);
+            $analysis = new LaravelTextAnalysis($all_texts);
             $this->analysis[$lang] = $analysis->getAnalysis();
         }
 

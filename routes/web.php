@@ -9,6 +9,8 @@ use App\Http\Controllers\ChangeController;
 use App\Http\Controllers\StopwordsController;
 use App\Http\Controllers\AvisoController;
 
+use Illuminate\Support\Facades\Session;
+
 // Rotas Login
 Route::get('login', [LoginController::class, 'redirectToProvider'])->name('login');
 Route::get('callback', [LoginController::class, 'handleProviderCallback']);
@@ -42,7 +44,7 @@ Route::delete('/corpus/{corpus}/text/{text}', [CorpusController::class, 'destroy
 Route::get('/locale/{locale}', function ($locale, Request $request) {
     App::setLocale('pt_');
     Session::put('locale', $locale);
-    return redirect('/');
+    return redirect()->back();
 });
 
 

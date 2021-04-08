@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/fflch/cortec.svg?branch=master)](https://travis-ci.org/fflch/cortec)
-
 ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/fflch/cortec.svg)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/fflch/cortec.svg)
 

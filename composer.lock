@@ -795,16 +795,16 @@
         },
         {
             "name": "fflch/laravel-comet-theme",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fflch/laravel-comet-theme.git",
-                "reference": "fb5979ac724167489a399a7b9da0f279aae28cb6"
+                "reference": "6b60852d3b886c549ca667a32e1490d5028f7241"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fflch/laravel-comet-theme/zipball/fb5979ac724167489a399a7b9da0f279aae28cb6",
-                "reference": "fb5979ac724167489a399a7b9da0f279aae28cb6",
+                "url": "https://api.github.com/repos/fflch/laravel-comet-theme/zipball/6b60852d3b886c549ca667a32e1490d5028f7241",
+                "reference": "6b60852d3b886c549ca667a32e1490d5028f7241",
                 "shasum": ""
             },
             "type": "library",
@@ -831,7 +831,7 @@
                 }
             ],
             "description": "comet theme for laravel",
-            "time": "2021-04-08T14:55:09+00:00"
+            "time": "2021-04-08T20:39:47+00:00"
         },
         {
             "name": "fideloper/proxy",

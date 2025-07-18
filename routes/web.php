@@ -12,9 +12,9 @@ use App\Http\Controllers\AvisoController;
 use Illuminate\Support\Facades\Session;
 
 // Rotas Login
-Route::get('login', [LoginController::class, 'redirectToProvider'])->name('login');
-Route::get('callback', [LoginController::class, 'handleProviderCallback']);
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+/* Route::get('login', [LoginController::class, 'redirectToProvider'])->name('login'); */
+/* Route::get('callback', [LoginController::class, 'handleProviderCallback']); */
+/* Route::post('logout', [LoginController::class, 'logout'])->name('logout'); */
 
 
 // Rotas Index

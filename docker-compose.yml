@@ -1,8 +1,6 @@
 services:
   cortec:
-    build:
-      context: .
-      dockerfile: dockerfile
+    build: .
     image: cortec:latest
     container_name: cortec
     ports:
@@ -12,20 +10,10 @@ services:
     networks:
       - cortec-network
     environment:
-      APP_ENV: local
-      APP_DEBUG: "true"
-      APP_URL: http://localhost:8000
-      DB_CONNECTION: mysql
-      DB_HOST: mariadb
-      DB_PORT: 3306
-      DB_DATABASE: cortec
-      DB_USERNAME: cortec
-      DB_PASSWORD: cortec
-      CACHE_DRIVER: file
-      SESSION_DRIVER: file
-      QUEUE_CONNECTION: sync
       HOME: /tmp
-    restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./:/var/www/html
 
   mariadb:
     image: mariadb:11
@@ -45,7 +33,7 @@ services:
     image: selenium/standalone-chrome
     container_name: cortec_selenium
     ports:
-      - "7903:7900" # VNC (pra ver o browser rodando)
+      - "7900:7900" # VNC (pra ver o browser rodando)
     networks:
       - cortec-network
     shm_size: 2gb

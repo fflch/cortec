@@ -17,3 +17,4 @@ yarn-error.log
 *.swp
 *~
 package-lock.json
+.phpunit.cache/test-results

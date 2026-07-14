@@ -38,6 +38,18 @@ services:
       - cortec-network
     shm_size: 2gb
 
+  senhaunica-faker:
+    image: uspdev/senhaunica-faker
+    container_name: cortec_senhaunica-faker
+    ports:
+      - "3141:3141"
+    environment:
+          - APP_URL=http://auth.local:3141
+    networks:
+      cortec-network:
+        aliases:
+          - auth.local
+
 networks:
   cortec-network:
 

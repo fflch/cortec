@@ -90,7 +90,6 @@ class CrudTest extends DuskTestCase
                 ->assertSee('Categoria Teste Editada');
 
             # Delete
-            // delete corpus (confirm dialog will be accepted)
             $browser->visit('/corpus')
                 ->waitFor("form[action='/corpus/{$corpus->id}'] button[type='submit']")
                 ->click("form[action='/corpus/{$corpus->id}'] button[type='submit']")
@@ -98,7 +97,6 @@ class CrudTest extends DuskTestCase
                 ->pause(1000)
                 ->assertDontSee('Corpus Teste Editado');
 
-            // delete categoria
             $browser->visit('/corpus')
                 ->waitFor("form[action='/categorias/{$categoria->id}'] button[type='submit']")
                 ->click("form[action='/categorias/{$categoria->id}'] button[type='submit']")
